@@ -1,6 +1,7 @@
 package eu.senla;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 
 public class LoginPage extends Basic {
   private By userNameInputLocator = By.name("username");
@@ -9,8 +10,8 @@ public class LoginPage extends Basic {
  // private By loginTitlelocator = By.className("oxd-text oxd-text--h5 orangehrm-login-title");
 
 
-  public LoginPage() {
-    super();
+  public LoginPage(WebDriver driver) {
+    super(driver);
   }
 
   public void visitLoginPage() {

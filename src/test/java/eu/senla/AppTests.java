@@ -1,15 +1,18 @@
 package eu.senla;
 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
 public class AppTests {
+  private WebDriver driver = new ChromeDriver();
 
   @Test
   public void testLogin() {
-    LoginPage loginPage = new LoginPage();
+    LoginPage loginPage = new LoginPage(driver);
     loginPage.visitLoginPage();
     try {
-      Thread.sleep(5000);
+      Thread.sleep(2500);
     } catch (InterruptedException e) {
       throw new RuntimeException(e);
     }
@@ -18,23 +21,28 @@ public class AppTests {
     loginPage.clickLoginButton();
 
     try {
-      Thread.sleep(10000);
+      Thread.sleep(2500);
     } catch (InterruptedException e) {
       throw new RuntimeException(e);
     }
 
-    AdminUserManagementPage adminUserManagementPage = new AdminUserManagementPage();
+    AdminUserManagementPage adminUserManagementPage = new AdminUserManagementPage(driver);
     adminUserManagementPage.switchToUserManagementPage();
-   // adminUserManagementPage.findElement();
 
 
     try {
-      Thread.sleep(5000);
+      Thread.sleep(2500);
     } catch (InterruptedException e) {
       throw new RuntimeException(e);
     }
 
+    adminUserManagementPage.expandArea();
+
     adminUserManagementPage.findElement();
+    adminUserManagementPage.findSearchButton();
+    adminUserManagementPage.findAddButton();
+    adminUserManagementPage.findDropDownUserRole();
+    adminUserManagementPage.findAdminItemLocator();
 
     try {
       Thread.sleep(5000);

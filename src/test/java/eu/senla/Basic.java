@@ -1,14 +1,13 @@
 package eu.senla;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Basic {
 
   protected WebDriver driver;
 
-  public Basic() {
-    this.driver = new ChromeDriver();
+  public Basic(WebDriver driver) {
+    this.driver = driver;
   }
 
   protected void visit(String url) {
