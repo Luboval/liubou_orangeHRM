@@ -1,19 +1,19 @@
-package eu.senla.tests;
+package eu.senla.tests.login;
 
-import eu.senla.BaseClass;
 import eu.senla.pages.AdminUserManagementPage;
+import eu.senla.tests.BaseTest;
 import org.testng.annotations.Test;
 
-public class CreateUserTest extends BaseClass {
+public class OpenAdminUserManagementPageTest extends BaseTest {
 
 
   @Test
-  public void testCreateUser() {
-    AdminUserManagementPage adminUserManagementPage = new AdminUserManagementPage();
+  public void openAdminUserManagementPage() {
+    AdminUserManagementPage adminUserManagementPage = new AdminUserManagementPage(driver);
     adminUserManagementPage.switchToUserManagementPage();
     adminUserManagementPage.waitForUserManagementLabelPresence();
 
-    adminUserManagementPage.expandArea();
+   // adminUserManagementPage.expandArea();
 
     adminUserManagementPage.findElement();
     adminUserManagementPage.findSearchButton();

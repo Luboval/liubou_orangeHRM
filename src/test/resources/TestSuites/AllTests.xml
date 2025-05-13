@@ -3,7 +3,7 @@
 <suite name="All Tests Suite" verbose="1">
     <test name="Login Test">
         <classes>
-            <class name="eu.senla.tests.LoginTest">
+            <class name="eu.senla.tests.login.LoginTest">
                 <methods>
                     <include name="testLogin"/>
                 </methods>
@@ -11,9 +11,19 @@
         </classes>
     </test>
 
+    <test name="Open Admin Page Test">
+        <classes>
+            <class name="eu.senla.tests.login.OpenAdminUserManagementPageTest">
+                <methods>
+                    <include name="openAdminUserManagementPage"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+
     <test name="Create User Test">
         <classes>
-            <class name="eu.senla.tests.CreateUserTest">
+            <class name="eu.senla.tests.login.CreateUserTest">
                 <methods>
                     <include name="testCreateUser"/>
                 </methods>

@@ -1,10 +1,10 @@
 package eu.senla.pages;
 
-import eu.senla.BaseClass;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.locators.RelativeLocator;
 
-public class AdminUserManagementPage extends BaseClass {
+public class AdminUserManagementPage extends BasePage {
     private By userNameFieldLocator = RelativeLocator.with(By.tagName("input")).below(By.xpath("//*[@class='oxd-label']"));
     private By userManagementPageLocator = By.xpath("//*[@id=\"app\"]/div[1]/div[1]/aside/nav/div[2]/ul/li[1]/a");
     private By expandLocator = By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[1]/div[1]/div[2]/div[3]/button/i");
@@ -13,7 +13,11 @@ public class AdminUserManagementPage extends BaseClass {
     private By dropDownUserRoleLocator = By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[2]/div/div[2]/div/div");
     private By adminItemLocator = By.xpath("//*[@role='listbox']//*[text()='Admin']");
     private By userManagementLabelLocator = By.xpath("//span//h6[text()='User Management']");
+    WaitsPage wait = new WaitsPage(driver);
 
+    public AdminUserManagementPage (WebDriver driver){
+        super(driver);
+    }
 
     public void findElement() {
         driver.findElement(userNameFieldLocator);
@@ -38,6 +42,7 @@ public class AdminUserManagementPage extends BaseClass {
     }
 
     public void findDropDownUserRole() {
+        wait.waitFluentInteractable(dropDownUserRoleLocator);
         driver.findElement(dropDownUserRoleLocator).click();
     }
 
@@ -46,7 +51,8 @@ public class AdminUserManagementPage extends BaseClass {
 
     }
     public void waitForUserManagementLabelPresence() {
-        WaitsPage.waitFluentPresence(userManagementLabelLocator);
+
+        wait.waitFluentPresence(userManagementLabelLocator);
 
     }
 

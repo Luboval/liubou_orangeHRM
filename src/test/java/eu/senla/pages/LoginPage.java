@@ -1,15 +1,18 @@
 package eu.senla.pages;
 
-import eu.senla.BaseClass;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 
-public class LoginPage extends BaseClass {
+public class LoginPage extends BasePage {
   private By userNameInputLocator = By.name("username");
   private By passwordInputLocator = By.name("password");
   private By loginButonLocator = By.xpath("//button[@type='submit']");
 
  // private By loginTitlelocator = By.className("oxd-text oxd-text--h5 orangehrm-login-title");
 
+  public LoginPage (WebDriver driver) {
+    super(driver);
+  }
 
 
   public void visitLoginPage() {
@@ -29,7 +32,8 @@ public class LoginPage extends BaseClass {
   }
 
   public void waitForUserNamePresence() {
-    WaitsPage.waitFluentPresence(userNameInputLocator);
+    WaitsPage wait = new WaitsPage(driver);
+    wait.waitFluentPresence(userNameInputLocator);
 
   }
 
