@@ -20,7 +20,5 @@ public class OpenAdminUserManagementPageTest extends BaseTest {
     adminUserManagementPage.findAddButton();
     adminUserManagementPage.findDropDownUserRole();
     adminUserManagementPage.findAdminItemLocator();
-
-
   }
 }

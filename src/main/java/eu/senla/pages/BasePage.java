@@ -27,7 +27,4 @@ public class BasePage {
   public void fillInput(By locator, String value) {
     driver.findElement(locator).sendKeys(value);
   }
-
-
-
 }

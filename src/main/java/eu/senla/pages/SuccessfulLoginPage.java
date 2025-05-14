@@ -14,5 +14,4 @@ public class SuccessfulLoginPage extends BasePage {
         WaitsPage wait = new WaitsPage(driver);
         wait.waitFluentIsDisplayed(dashboardLabelLocator);
     }
-
 }

@@ -20,7 +20,6 @@ public class WaitsPage extends BasePage {
             .pollingEvery(Duration.ofSeconds(1))
             .ignoring(NoSuchElementException.class);
 
-
     public void waitFluentPresence(By locator) {
 
         waitFluent.until(ExpectedConditions.presenceOfElementLocated(locator));

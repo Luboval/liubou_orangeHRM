@@ -15,9 +15,5 @@ public class CreateUserTest extends BaseTest {
     pimPage.clickAddButton();
     pimPage.waitForAddEmployeeLabel();
     pimPage.addEmployeeWithPassword();
-
-
-
-
   }
 }

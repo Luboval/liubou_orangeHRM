@@ -36,6 +36,4 @@ public class LoginPage extends BasePage {
     wait.waitFluentPresence(userNameInputLocator);
 
   }
-
-
 }

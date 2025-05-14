@@ -17,8 +17,6 @@ public class PimPage extends BasePage{
     private By confirmPasswordInputLocator = By.xpath("/html[1]/body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/form[1]/div[1]/div[2]/div[4]/div[1]/div[2]/div[1]/div[2]/input[1]");
     private By saveButtonLocator = By.xpath("//button[text()=' Save ']");
 
-
-
     WaitsPage waitsPage = new WaitsPage(driver);
 
     public PimPage(WebDriver driver){
@@ -41,8 +39,6 @@ public class PimPage extends BasePage{
         waitsPage.waitFluentIsDisplayed(addEmployeeLabelLocator);
     }
 
-
-
     public void addEmployeeWithPassword() {
         super.fillInput(inputFirstNameLocator,"AT1");
         super.fillInput(inputMiddleNameLocator,"AT11");
@@ -53,15 +49,5 @@ public class PimPage extends BasePage{
         super.fillInput(passwordInputLocator,"Ql321jdfanki4#@");
         super.fillInput(confirmPasswordInputLocator,"Ql321jdfanki4#@");
         super.clickButton(saveButtonLocator);
-
     }
-
-
-
-
-
-
-
-
-
 }

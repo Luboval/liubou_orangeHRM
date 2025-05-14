@@ -13,7 +13,7 @@ public class BaseTest {
     public void setup(){
        driver = new ChromeDriver();
        driver.manage().window().maximize();
-        System.out.println("Starting");
+       System.out.println("Starting");
     }
 
 

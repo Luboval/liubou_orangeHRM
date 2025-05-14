@@ -55,5 +55,4 @@ public class AdminUserManagementPage extends BasePage {
         wait.waitFluentPresence(userManagementLabelLocator);
 
     }
-
 }
