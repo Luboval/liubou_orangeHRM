@@ -13,4 +13,4 @@ jobs:
           distribution: 'temurin'
           cache: maven
       - name: Run with Maven checkstyle
-        uses: mvn checkstyle:check
+        run: mvn checkstyle:check
