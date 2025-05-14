@@ -10,11 +10,11 @@ public class App {
     WebDriver driver = new ChromeDriver();
     driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
     System.out.println("Browser is opened");
-    try {
-      Thread.sleep(5000);
-    } catch (InterruptedException e) {
-      throw new RuntimeException(e);
-    }
+//    try {
+//      Thread.sleep(5000);
+//    } catch (InterruptedException e) {
+//      throw new RuntimeException(e);
+//    }
     driver.quit();
   }
 }

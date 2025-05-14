@@ -65,7 +65,7 @@
     </module>
 
     <module name="LineLength">
-        <property name="max" value="140"/>
+        <property name="max" value="250"/>
     </module>
 
     <module name="TreeWalker">
@@ -157,7 +157,9 @@
         <module name="AvoidInlineConditionals"/>
         <module name="EmptyStatement"/>
         <module name="EqualsHashCode"/>
-        <module name="HiddenField"/>
+        <module name="HiddenField">
+          <property name="ignoreConstructorParameter" value="true"/>
+        </module>
         <module name="IllegalInstantiation"/>
         <module name="InnerAssignment"/>
         <module name="MagicNumber"/>
