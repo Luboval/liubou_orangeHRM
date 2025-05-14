@@ -7,10 +7,11 @@ public class LoginPage extends BasePage {
   private By userNameInputLocator = By.name("username");
   private By passwordInputLocator = By.name("password");
   private By loginButonLocator = By.xpath("//button[@type='submit']");
+  private WaitsPage wait = new WaitsPage(driver);
 
  // private By loginTitlelocator = By.className("oxd-text oxd-text--h5 orangehrm-login-title");
 
-  public LoginPage (WebDriver driver) {
+  public LoginPage(WebDriver driver) {
     super(driver);
   }
 
@@ -32,7 +33,6 @@ public class LoginPage extends BasePage {
   }
 
   public void waitForUserNamePresence() {
-    WaitsPage wait = new WaitsPage(driver);
     wait.waitFluentPresence(userNameInputLocator);
 
   }

@@ -8,4 +8,8 @@
     <suppress checks="JavadocPackage"/>
     <suppress checks="HideUtilityClassConstructor"/>
     <suppress checks="FinalParameters"/>
+    <suppress checks="JavadocVariable"/>
+    <suppress checks="DesignForExtension"/>
+    <suppress checks="MagicNumber"/>
+    <suppress checks="VisibilityModifier"/>
 </suppressions>

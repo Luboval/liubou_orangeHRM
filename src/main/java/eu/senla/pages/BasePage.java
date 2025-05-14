@@ -16,11 +16,11 @@ public class BasePage {
     driver.get(url);
   }
 
-  public String getCurrentUrl(){
+  public String getCurrentUrl() {
     return driver.getCurrentUrl();
   }
 
-  public void clickButton (By locator) {
+  public void clickButton(By locator) {
     driver.findElement(locator).click();
   }
 

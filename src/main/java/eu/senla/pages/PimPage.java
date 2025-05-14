@@ -3,7 +3,7 @@ package eu.senla.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class PimPage extends BasePage{
+public class PimPage extends BasePage {
     private By pimMenuLocator = By.xpath("//span[text()='PIM']");
     private By pimLabelLocator = By.xpath("//span//h6[text()='PIM']");
     private By addButtonLocator = By.xpath("//button[text()=' Add ']");
@@ -17,37 +17,37 @@ public class PimPage extends BasePage{
     private By confirmPasswordInputLocator = By.xpath("/html[1]/body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/form[1]/div[1]/div[2]/div[4]/div[1]/div[2]/div[1]/div[2]/input[1]");
     private By saveButtonLocator = By.xpath("//button[text()=' Save ']");
 
-    WaitsPage waitsPage = new WaitsPage(driver);
+    private WaitsPage wait = new WaitsPage(driver);
 
-    public PimPage(WebDriver driver){
+    public PimPage(WebDriver driver) {
         super(driver);
     }
 
-    public void switchToPimPage () {
+    public void switchToPimPage() {
         super.clickButton(pimMenuLocator);
     }
 
-    public void waitForPimLabel () {
-        waitsPage.waitFluentIsDisplayed(pimLabelLocator);
+    public void waitForPimLabel() {
+        wait.waitFluentIsDisplayed(pimLabelLocator);
     }
 
-    public void clickAddButton(){
+    public void clickAddButton() {
         super.clickButton(addButtonLocator);
     }
 
-    public void waitForAddEmployeeLabel(){
-        waitsPage.waitFluentIsDisplayed(addEmployeeLabelLocator);
+    public void waitForAddEmployeeLabel() {
+        wait.waitFluentIsDisplayed(addEmployeeLabelLocator);
     }
 
     public void addEmployeeWithPassword() {
-        super.fillInput(inputFirstNameLocator,"AT1");
-        super.fillInput(inputMiddleNameLocator,"AT11");
+        super.fillInput(inputFirstNameLocator, "AT1");
+        super.fillInput(inputMiddleNameLocator, "AT11");
         super.fillInput(inputLastNameLocator, "AT111");
         super.clickButton(switchLocator);
-        waitsPage.waitFluentIsDisplayed(usernameInputLocator);
-        super.fillInput(usernameInputLocator,"AT1");
-        super.fillInput(passwordInputLocator,"Ql321jdfanki4#@");
-        super.fillInput(confirmPasswordInputLocator,"Ql321jdfanki4#@");
+        wait.waitFluentIsDisplayed(usernameInputLocator);
+        super.fillInput(usernameInputLocator, "AT1");
+        super.fillInput(passwordInputLocator, "Ql321jdfanki4#@");
+        super.fillInput(confirmPasswordInputLocator, "Ql321jdfanki4#@");
         super.clickButton(saveButtonLocator);
     }
 }

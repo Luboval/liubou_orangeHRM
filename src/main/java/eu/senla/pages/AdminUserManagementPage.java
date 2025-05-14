@@ -13,9 +13,9 @@ public class AdminUserManagementPage extends BasePage {
     private By dropDownUserRoleLocator = By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[2]/div/div[2]/div/div");
     private By adminItemLocator = By.xpath("//*[@role='listbox']//*[text()='Admin']");
     private By userManagementLabelLocator = By.xpath("//span//h6[text()='User Management']");
-    WaitsPage wait = new WaitsPage(driver);
+    private WaitsPage wait = new WaitsPage(driver);
 
-    public AdminUserManagementPage (WebDriver driver){
+    public AdminUserManagementPage(WebDriver driver) {
         super(driver);
     }
 
@@ -23,21 +23,21 @@ public class AdminUserManagementPage extends BasePage {
         driver.findElement(userNameFieldLocator);
     }
 
-    public  void switchToUserManagementPage(){
+    public  void switchToUserManagementPage() {
 
         driver.findElement(userManagementPageLocator).click();
 
     }
 
-    public void expandArea(){
+    public void expandArea() {
         driver.findElement(expandLocator).click();
     }
 
-    public void findSearchButton(){
+    public void findSearchButton() {
         driver.findElement(searchButtonLocator);
     }
 
-    public void findAddButton(){
+    public void findAddButton() {
         driver.findElement(addButtonLocator);
     }
 
@@ -46,7 +46,7 @@ public class AdminUserManagementPage extends BasePage {
         driver.findElement(dropDownUserRoleLocator).click();
     }
 
-    public void findAdminItemLocator(){
+    public void findAdminItemLocator() {
        driver.findElement(adminItemLocator).click();
 
     }

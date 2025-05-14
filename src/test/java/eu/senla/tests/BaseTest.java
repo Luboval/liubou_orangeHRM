@@ -10,7 +10,7 @@ public class BaseTest {
     protected static WebDriver driver;
 
     @BeforeSuite(alwaysRun = true)
-    public void setup(){
+    public void setup() {
        driver = new ChromeDriver();
        driver.manage().window().maximize();
        System.out.println("Starting");

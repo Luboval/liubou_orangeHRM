@@ -18,6 +18,6 @@ public class LoginTest extends BaseTest {
     loginPage.enterPassword("admin123");
     loginPage.clickLoginButton();
     new SuccessfulLoginPage(driver).waitForDashboardLabelPresence();
-    Assert.assertEquals(loginPage.getCurrentUrl(),"https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index");
+    Assert.assertEquals(loginPage.getCurrentUrl(), "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index");
   }
 }

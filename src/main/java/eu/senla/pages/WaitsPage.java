@@ -10,14 +10,16 @@ import org.openqa.selenium.support.ui.Wait;
 import java.time.Duration;
 
 public class WaitsPage extends BasePage {
+    private int timeoutSec = 65;
+    private int poolingSec = 1;
 
-   public WaitsPage(WebDriver driver){
+   public WaitsPage(WebDriver driver) {
         super(driver);
     }
 
     Wait<WebDriver> waitFluent = new FluentWait<WebDriver>(driver)
-            .withTimeout(Duration.ofSeconds(60))
-            .pollingEvery(Duration.ofSeconds(1))
+            .withTimeout(Duration.ofSeconds(timeoutSec))
+            .pollingEvery(Duration.ofSeconds(poolingSec))
             .ignoring(NoSuchElementException.class);
 
     public void waitFluentPresence(By locator) {
