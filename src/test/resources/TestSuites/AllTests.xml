@@ -6,6 +6,7 @@
             <class name="eu.senla.tests.login.LoginTest">
                 <methods>
                     <include name="testLoginWithValidCredentials"/>
+                    <include name="testLoginWithIncorrectCredentials"/>
                 </methods>
             </class>
         </classes>

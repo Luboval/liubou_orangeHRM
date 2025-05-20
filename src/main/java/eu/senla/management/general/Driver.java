@@ -5,8 +5,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 
-public class Driver {
+public final class Driver {
     private static WebDriver driver;
+
+    //Private constructor to prevent creation a new instance from outside
+    private Driver() { }
 
 
     public static WebDriver driverRun() {

@@ -45,6 +45,11 @@ public class LoginPage  {
     return new SuccessfulLoginPage();
   }
 
+  public ErrorLoginPage loginWithIncorrectCredentials(String username, String password) {
+    loginUser(username, password);
+    return new ErrorLoginPage();
+  }
+
 
 
 }

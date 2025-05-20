@@ -1,7 +1,18 @@
 package eu.senla.pages;
 
+import eu.senla.management.general.Wait;
 import org.openqa.selenium.By;
 
 public class ErrorLoginPage {
-    private By errorMessageLocator;
+    private By errorMessageLocator = By.cssSelector("div[class='orangehrm-login-error']>div[role='alert']");
+    private By errorIconLocator = By.cssSelector("div[class='orangehrm-login-error']>div[role='alert']>*>i");
+
+    public String getErrorMessage() {
+        return Wait.waitFIsDisplayed(errorMessageLocator).getText();
+    }
+
+    public Boolean getErrorIconLocator() {
+        return Wait.waitFIsDisplayed(errorIconLocator).isDisplayed();
+    }
+
 }
