@@ -1,39 +1,50 @@
 package eu.senla.pages;
 
+import eu.senla.management.general.BaseActions;
+import eu.senla.management.dataactions.ReadPropertyFile;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
-public class LoginPage extends BasePage {
+public class LoginPage  {
   private By userNameInputLocator = By.name("username");
   private By passwordInputLocator = By.name("password");
   private By loginButonLocator = By.xpath("//button[@type='submit']");
-  private WaitsPage wait = new WaitsPage(driver);
+
 
  // private By loginTitlelocator = By.className("oxd-text oxd-text--h5 orangehrm-login-title");
 
-  public LoginPage(WebDriver driver) {
-    super(driver);
-  }
+//  public LoginPage(WebDriver driver) {
+//    super(driver);
+//  }
 
 
-  public void visitLoginPage() {
-    super.visit("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+  public LoginPage visitLoginPage() {
+    BaseActions.visit("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+    return new LoginPage();
   }
 
   public void enterUserName(String username) {
-    driver.findElement(userNameInputLocator).sendKeys(username);
+    BaseActions.fillInput(userNameInputLocator, username);
   }
 
   public  void enterPassword(String password) {
-    driver.findElement(passwordInputLocator).sendKeys(password);
+    BaseActions.fillInput(passwordInputLocator, password);
   }
 
   public void clickLoginButton() {
-    driver.findElement(loginButonLocator).click();
+    BaseActions.clickButton(loginButonLocator);
   }
 
-  public void waitForUserNamePresence() {
-    wait.waitFluentPresence(userNameInputLocator);
-
+  public void loginUser(String username, String password) {
+    enterUserName(username);
+    enterPassword(password);
+    clickLoginButton();
   }
+
+  public SuccessfulLoginPage loginWithValidCredentials() {
+    loginUser(ReadPropertyFile.getProperty("USERNAME"), ReadPropertyFile.getProperty("PASSWORD"));
+    return new SuccessfulLoginPage();
+  }
+
+
+
 }

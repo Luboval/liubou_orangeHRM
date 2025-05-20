@@ -5,22 +5,11 @@
         <classes>
             <class name="eu.senla.tests.login.LoginTest">
                 <methods>
-                    <include name="testLogin"/>
+                    <include name="testLoginWithValidCredentials"/>
                 </methods>
             </class>
         </classes>
     </test>
-
-    <test name="Open Admin Page Test">
-        <classes>
-            <class name="eu.senla.tests.login.OpenAdminUserManagementPageTest">
-                <methods>
-                    <include name="openAdminUserManagementPage"/>
-                </methods>
-            </class>
-        </classes>
-    </test>
-
     <test name="Create User Test">
         <classes>
             <class name="eu.senla.tests.login.CreateUserTest">

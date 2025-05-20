@@ -1,9 +1,11 @@
 package eu.senla.pages;
 
+import eu.senla.elements.Employee;
+import eu.senla.management.general.BaseActions;
+import eu.senla.management.general.Wait;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
-public class PimPage extends BasePage {
+public class PimPage  {
     private By pimMenuLocator = By.xpath("//span[text()='PIM']");
     private By pimLabelLocator = By.xpath("//span//h6[text()='PIM']");
     private By addButtonLocator = By.xpath("//button[text()=' Add ']");
@@ -13,41 +15,56 @@ public class PimPage extends BasePage {
     private By inputLastNameLocator = By.name("lastName");
     private By switchLocator = By.xpath("/html[1]/body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/form[1]/div[1]/div[2]/div[2]/div[1]/label[1]/span[1]");
     private By usernameInputLocator = By.xpath("/html[1]/body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/form[1]/div[1]/div[2]/div[3]/div[1]/div[1]/div[1]/div[2]/input[1]");
-    private By passwordInputLocator = By.xpath("/html[1]/body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/form[1]/div[1]/div[2]/div[3]/div[1]/div[1]/div[1]/div[2]/input[1]");
+    private By passwordInputLocator = By.xpath("/html[1]/body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/form[1]/div[1]/div[2]/div[4]/div[1]/div[1]/div[1]/div[2]/input[1]");
     private By confirmPasswordInputLocator = By.xpath("/html[1]/body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/form[1]/div[1]/div[2]/div[4]/div[1]/div[2]/div[1]/div[2]/input[1]");
     private By saveButtonLocator = By.xpath("//button[text()=' Save ']");
+    private By personalDetalesLocator = By.cssSelector("div[class='orangehrm-horizontal-padding orangehrm-vertical-padding']>h6");
 
-    private WaitsPage wait = new WaitsPage(driver);
-
-    public PimPage(WebDriver driver) {
-        super(driver);
-    }
+//    private Wait wait = new Wait(driver);
+//
+//    public PimPage(WebDriver driver) {
+//        super(driver);
+//    }
 
     public void switchToPimPage() {
-        super.clickButton(pimMenuLocator);
+        BaseActions.clickButton(pimMenuLocator);
     }
 
     public void waitForPimLabel() {
-        wait.waitFluentIsDisplayed(pimLabelLocator);
+        Wait.waitFIsDisplayed(pimLabelLocator);
     }
 
     public void clickAddButton() {
-        super.clickButton(addButtonLocator);
+        BaseActions.clickButton(addButtonLocator);
     }
 
     public void waitForAddEmployeeLabel() {
-        wait.waitFluentIsDisplayed(addEmployeeLabelLocator);
+        Wait.waitFIsDisplayed(addEmployeeLabelLocator);
     }
 
-    public void addEmployeeWithPassword() {
-        super.fillInput(inputFirstNameLocator, "AT1");
-        super.fillInput(inputMiddleNameLocator, "AT11");
-        super.fillInput(inputLastNameLocator, "AT111");
-        super.clickButton(switchLocator);
-        wait.waitFluentIsDisplayed(usernameInputLocator);
-        super.fillInput(usernameInputLocator, "AT1");
-        super.fillInput(passwordInputLocator, "Ql321jdfanki4#@");
-        super.fillInput(confirmPasswordInputLocator, "Ql321jdfanki4#@");
-        super.clickButton(saveButtonLocator);
+    public PimPage openAddEmployeeForm() {
+        switchToPimPage();
+        waitForPimLabel();
+        clickAddButton();
+        waitForAddEmployeeLabel();
+        waitForPimLabel();
+        return new PimPage();
+    }
+
+    public PimPage addEmployeeWithPassword(Employee employee) {
+        BaseActions.fillInput(inputFirstNameLocator, employee.getEmployeeFirstName());
+        BaseActions.fillInput(inputMiddleNameLocator, employee.getEmployeeMiddleName());
+        BaseActions.fillInput(inputLastNameLocator, employee.getEmployeeLastName());
+        BaseActions.clickButton(switchLocator);
+        Wait.waitFIsDisplayed(usernameInputLocator);
+        BaseActions.fillInput(usernameInputLocator, employee.getEmployeeUserName());
+        BaseActions.fillInput(passwordInputLocator, employee.getEmployeePassword());
+        BaseActions.fillInput(confirmPasswordInputLocator, employee.getEmployeePassword());
+        BaseActions.clickButton(saveButtonLocator);
+        return new PimPage();
+    }
+
+    public Boolean succsessfulCreateUser() {
+       return Wait.waitFIsDisplayed(personalDetalesLocator).isDisplayed();
     }
 }
