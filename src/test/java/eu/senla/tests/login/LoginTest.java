@@ -20,7 +20,7 @@ public class LoginTest extends BaseTest {
              .loginWithValidCredentials();
 
     //Title Validation;
-    Assert.assertEquals(successfulLogin.getPageUrl(), "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index", "Login failed");
+    Assert.assertEquals(successfulLogin.getSuccessfulLoginPageUrl(), "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index", "Login failed");
   }
 
   @Test (testName = "Test login with incorrect credentials", priority = 1, dataProvider = "getIncorrectCredentials", dataProviderClass = ProjectDataProvider.class)

@@ -6,10 +6,10 @@ import eu.senla.management.general.Wait;
 import org.openqa.selenium.By;
 
 public class PimPage  {
-    private By pimMenuLocator = By.xpath("//span[text()='PIM']");
-    private By pimLabelLocator = By.xpath("//span//h6[text()='PIM']");
-    private By addButtonLocator = By.xpath("//button[text()=' Add ']");
-    private By addEmployeeLabelLocator = By.xpath("//h6[text()='Add Employee']");
+    private By pimMenuLocator = By.xpath("//aside//ul//li[2]");
+    private By pimLabelLocator = By.xpath("//header//span/h6");
+    private By addButtonLocator = By.xpath("//div[@class='orangehrm-header-container']//button");
+    private By addEmployeeLabelLocator = By.xpath("//div[@class='orangehrm-card-container']//h6");
     private By inputFirstNameLocator = By.name("firstName");
     private By inputMiddleNameLocator = By.name("middleName");
     private By inputLastNameLocator = By.name("lastName");
@@ -19,12 +19,6 @@ public class PimPage  {
     private By confirmPasswordInputLocator = By.xpath("/html[1]/body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/form[1]/div[1]/div[2]/div[4]/div[1]/div[2]/div[1]/div[2]/input[1]");
     private By saveButtonLocator = By.xpath("//button[text()=' Save ']");
     private By personalDetalesLocator = By.cssSelector("div[class='orangehrm-horizontal-padding orangehrm-vertical-padding']>h6");
-
-//    private Wait wait = new Wait(driver);
-//
-//    public PimPage(WebDriver driver) {
-//        super(driver);
-//    }
 
     public void switchToPimPage() {
         BaseActions.clickButton(pimMenuLocator);
@@ -52,14 +46,14 @@ public class PimPage  {
     }
 
     public PimPage addEmployeeWithPassword(Employee employee) {
-        BaseActions.fillInput(inputFirstNameLocator, employee.getEmployeeFirstName());
-        BaseActions.fillInput(inputMiddleNameLocator, employee.getEmployeeMiddleName());
-        BaseActions.fillInput(inputLastNameLocator, employee.getEmployeeLastName());
+        BaseActions.fillInput(inputFirstNameLocator, employee.getFirstName());
+        BaseActions.fillInput(inputMiddleNameLocator, employee.getMiddleName());
+        BaseActions.fillInput(inputLastNameLocator, employee.getLastName());
         BaseActions.clickButton(switchLocator);
         Wait.waitFIsDisplayed(usernameInputLocator);
-        BaseActions.fillInput(usernameInputLocator, employee.getEmployeeUserName());
-        BaseActions.fillInput(passwordInputLocator, employee.getEmployeePassword());
-        BaseActions.fillInput(confirmPasswordInputLocator, employee.getEmployeePassword());
+        BaseActions.fillInput(usernameInputLocator, employee.getUserName());
+        BaseActions.fillInput(passwordInputLocator, employee.getPassword());
+        BaseActions.fillInput(confirmPasswordInputLocator, employee.getPassword());
         BaseActions.clickButton(saveButtonLocator);
         return new PimPage();
     }

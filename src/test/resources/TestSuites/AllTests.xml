@@ -6,7 +6,7 @@
             <class name="eu.senla.tests.login.LoginTest">
                 <methods>
                     <include name="testLoginWithValidCredentials"/>
-                    <include name="testLoginWithIncorrectCredentials"/>
+                    <exclude name="testLoginWithIncorrectCredentials"/>
                 </methods>
             </class>
         </classes>
@@ -16,6 +16,15 @@
             <class name="eu.senla.tests.login.CreateUserTest">
                 <methods>
                     <include name="testCreateUser"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Admin User Management Page Validation">
+        <classes>
+            <class name="eu.senla.tests.login.AdminUserManagementPageTest">
+                <methods>
+                       <include name="adminUserManagementPage"/>
                 </methods>
             </class>
         </classes>

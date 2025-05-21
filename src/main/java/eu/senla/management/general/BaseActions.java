@@ -1,6 +1,7 @@
 package eu.senla.management.general;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 public class BaseActions {
 
@@ -23,5 +24,10 @@ public class BaseActions {
 
   public static void fillInput(By locator, String value) {
     Driver.moveToElement(Wait.waitFInteractable(locator)).sendKeys(value);
+  }
+
+  public static WebElement displayAfterClick(By locatorToClick, By locatorToDisplay) {
+    Wait.waitFIsDisplayed(locatorToClick).click();
+   return Wait.waitFIsDisplayed(locatorToDisplay);
   }
 }

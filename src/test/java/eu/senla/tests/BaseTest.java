@@ -6,14 +6,10 @@ import org.testng.annotations.BeforeSuite;
 
 public class BaseTest {
 
-
-
     @BeforeSuite(alwaysRun = true)
     public void setup() {
         Driver.driverRun();
     }
-
-
 
     @AfterSuite(alwaysRun = true)
     public void tearDown() {

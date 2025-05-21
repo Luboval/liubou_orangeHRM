@@ -11,7 +11,6 @@ public final class Driver {
     //Private constructor to prevent creation a new instance from outside
     private Driver() { }
 
-
     public static WebDriver driverRun() {
         if (driver == null) {
             driver = new ChromeDriver();
@@ -30,6 +29,4 @@ public final class Driver {
         moveToElement.moveToElement(element).click().perform();
         return element;
     }
-
-
 }
