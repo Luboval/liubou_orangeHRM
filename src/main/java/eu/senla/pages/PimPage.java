@@ -13,10 +13,10 @@ public class PimPage  {
     private By inputFirstNameLocator = By.name("firstName");
     private By inputMiddleNameLocator = By.name("middleName");
     private By inputLastNameLocator = By.name("lastName");
-    private By switchLocator = By.xpath("/html[1]/body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/form[1]/div[1]/div[2]/div[2]/div[1]/label[1]/span[1]");
-    private By usernameInputLocator = By.xpath("/html[1]/body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/form[1]/div[1]/div[2]/div[3]/div[1]/div[1]/div[1]/div[2]/input[1]");
-    private By passwordInputLocator = By.xpath("/html[1]/body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/form[1]/div[1]/div[2]/div[4]/div[1]/div[1]/div[1]/div[2]/input[1]");
-    private By confirmPasswordInputLocator = By.xpath("/html[1]/body[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[1]/form[1]/div[1]/div[2]/div[4]/div[1]/div[2]/div[1]/div[2]/input[1]");
+    private By switchLocator = By.cssSelector("span[class~='oxd-switch-input']");
+    private By usernameInputLocator = By.xpath("//form[1]/div[1]/div[2]/div[3]//*//div[1]/div[2]/input[1]");
+    private By passwordInputLocator = By.xpath("//form[1]//*//div[4]//*//div[1]/div[1]/div[2]/input[1]");
+    private By confirmPasswordInputLocator = By.xpath("//form[1]//*//div[4]//*//div[2]/div[1]/div[2]/input[1]");
     private By saveButtonLocator = By.xpath("//button[text()=' Save ']");
     private By personalDetalesLocator = By.cssSelector("div[class='orangehrm-horizontal-padding orangehrm-vertical-padding']>h6");
 
