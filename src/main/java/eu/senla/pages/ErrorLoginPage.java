@@ -11,8 +11,7 @@ public class ErrorLoginPage {
         return Wait.waitFIsDisplayed(errorMessageLocator).getText();
     }
 
-    public Boolean getErrorIconLocator() {
-        return Wait.waitFIsDisplayed(errorIconLocator).isDisplayed();
+    public String getErrorIconColor() {
+        return Wait.waitFIsDisplayed(errorIconLocator).getCssValue("color");
     }
-
 }

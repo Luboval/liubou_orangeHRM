@@ -11,5 +11,4 @@ public class SuccessfulLoginPage {
         Wait.waitFPresence(dashboardLabelLocator);
         return BaseActions.getCurrentUrl();
     }
-
 }

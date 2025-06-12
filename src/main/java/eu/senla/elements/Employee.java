@@ -13,23 +13,4 @@ public class Employee {
     private String userName;
     private String password;
 
-
-//    public String getEmployeeFirstName() {
-//        return this.firstName;
-//    }
-//
-//    public String getEmployeeMiddleName() {
-//        return this.middleName;
-//    }
-//    public String getEmployeeLastName() {
-//        return this.lastName;
-//    }
-//    public String getEmployeeUserName() {
-//        return this.userName;
-//    }
-//    public String getEmployeePassword() {
-//        return this.password;
-//    }
-
-
 }

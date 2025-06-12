@@ -9,16 +9,8 @@ public class LoginPage  {
   private By passwordInputLocator = By.name("password");
   private By loginButonLocator = By.xpath("//button[@type='submit']");
 
-
- // private By loginTitlelocator = By.className("oxd-text oxd-text--h5 orangehrm-login-title");
-
-//  public LoginPage(WebDriver driver) {
-//    super(driver);
-//  }
-
-
   public LoginPage visitLoginPage() {
-    BaseActions.visit("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+    BaseActions.visit(ReadPropertyFile.getProperty("LOGINPAGEURL"));
     return new LoginPage();
   }
 
@@ -49,7 +41,4 @@ public class LoginPage  {
     loginUser(username, password);
     return new ErrorLoginPage();
   }
-
-
-
 }

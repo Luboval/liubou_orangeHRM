@@ -15,11 +15,11 @@ public class AdminUserManagementPage {
 
 
     public boolean findPageElements() {
-        boolean b = Wait.waitFIsDisplayed(userNameFieldLocator).isDisplayed()
-               && Wait.waitFIsDisplayed(searchButtonLocator).isDisplayed()
-               && Wait.waitFIsDisplayed(addButtonLocator).isDisplayed()
-               && BaseActions.displayAfterClick(dropDownUserRoleLocator, adminItemLocator).isDisplayed();
-        return b;
+        return Wait.waitFIsDisplayed(userNameFieldLocator).isEnabled()
+               && Wait.waitFIsDisplayed(searchButtonLocator).isEnabled()
+               && Wait.waitFIsDisplayed(addButtonLocator).isEnabled()
+               && BaseActions.displayAfterClick(dropDownUserRoleLocator, adminItemLocator).isEnabled();
+
    }
 
     public  AdminUserManagementPage switchToUserManagementPage() {
@@ -29,5 +29,4 @@ public class AdminUserManagementPage {
         return new AdminUserManagementPage();
 
     }
-
 }

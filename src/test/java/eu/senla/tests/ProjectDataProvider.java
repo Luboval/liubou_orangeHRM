@@ -13,5 +13,4 @@ public class ProjectDataProvider {
                 {RandomString.make(), RandomString.make()}
         };
     }
-
 }

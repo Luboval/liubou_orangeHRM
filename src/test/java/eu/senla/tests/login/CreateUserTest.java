@@ -31,6 +31,5 @@ public class CreateUserTest extends BaseTest {
             .succsessfulCreateUser();
 
         Assert.assertTrue(successfulCreateUser);
-
-  }
+    }
 }

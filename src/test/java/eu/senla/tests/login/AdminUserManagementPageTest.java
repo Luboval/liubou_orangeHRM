@@ -9,10 +9,10 @@ public class AdminUserManagementPageTest extends BaseTest {
 
 
   @Test (testName = "Admin User Management Page Validation")
-  public void adminUserManagementPage() {
-    boolean adminUserManagementPage = new AdminUserManagementPage()
-              .switchToUserManagementPage()
-              .findPageElements();
-      Assert.assertTrue(adminUserManagementPage, "Page does not contain all needed elements");
+  public void adminUserManagementPageElementsValidation() {
+      Assert.assertTrue(new AdminUserManagementPage()
+                        .switchToUserManagementPage()
+                        .findPageElements(),
+              "Page does not contain all needed elements");
   }
 }
