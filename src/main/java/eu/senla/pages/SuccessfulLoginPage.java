@@ -1,17 +1,14 @@
 package eu.senla.pages;
 
+import eu.senla.management.general.BaseActions;
+import eu.senla.management.general.Wait;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
-public class SuccessfulLoginPage extends BasePage {
+public class SuccessfulLoginPage {
     private By dashboardLabelLocator = By.xpath("//span//h6[text()='Dashboard']");
-    private WaitsPage wait = new WaitsPage(driver);
 
-    public SuccessfulLoginPage(WebDriver driver) {
-        super(driver);
-    }
-
-    public  void waitForDashboardLabelPresence() {
-        wait.waitFluentIsDisplayed(dashboardLabelLocator);
+    public String getSuccessfulLoginPageUrl() {
+        Wait.waitFPresence(dashboardLabelLocator);
+        return BaseActions.getCurrentUrl();
     }
 }

@@ -1,58 +1,32 @@
 package eu.senla.pages;
 
+import eu.senla.management.general.BaseActions;
+import eu.senla.management.general.Wait;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.locators.RelativeLocator;
 
-public class AdminUserManagementPage extends BasePage {
-    private By userNameFieldLocator = RelativeLocator.with(By.tagName("input")).below(By.xpath("//*[@class='oxd-label']"));
-    private By userManagementPageLocator = By.xpath("//*[@id=\"app\"]/div[1]/div[1]/aside/nav/div[2]/ul/li[1]/a");
-    private By expandLocator = By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[1]/div[1]/div[2]/div[3]/button/i");
-    private By searchButtonLocator = By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[2]/button[2]");
-    private By addButtonLocator = By.xpath("//button[text()=\" Add \"]");
-    private By dropDownUserRoleLocator = By.xpath("//*[@id=\"app\"]/div[1]/div[2]/div[2]/div/div[1]/div[2]/form/div[1]/div/div[2]/div/div[2]/div/div");
+public class AdminUserManagementPage {
+    private By userNameFieldLocator = By.xpath("//form//div[@class='oxd-grid-item oxd-grid-item--gutters'][1]//input");
+    private By userManagementPageLocator = By.xpath("//aside//ul//li[1]");
+    private By searchButtonLocator = By.xpath("//form//button[2]");
+    private By addButtonLocator = By.xpath("//div[@class='orangehrm-header-container']//button");
+    private By dropDownUserRoleLocator = By.xpath("//form//div[@class='oxd-select-text--after'][1]");
     private By adminItemLocator = By.xpath("//*[@role='listbox']//*[text()='Admin']");
-    private By userManagementLabelLocator = By.xpath("//span//h6[text()='User Management']");
-    private WaitsPage wait = new WaitsPage(driver);
+    private By userManagementLabelLocator = By.xpath("//header//span//h6[2]");
 
-    public AdminUserManagementPage(WebDriver driver) {
-        super(driver);
-    }
 
-    public void findElement() {
-        driver.findElement(userNameFieldLocator);
-    }
+    public boolean findPageElements() {
+        return Wait.waitFIsDisplayed(userNameFieldLocator).isEnabled()
+               && Wait.waitFIsDisplayed(searchButtonLocator).isEnabled()
+               && Wait.waitFIsDisplayed(addButtonLocator).isEnabled()
+               && BaseActions.displayAfterClick(dropDownUserRoleLocator, adminItemLocator).isEnabled();
 
-    public  void switchToUserManagementPage() {
+   }
 
-        driver.findElement(userManagementPageLocator).click();
+    public  AdminUserManagementPage switchToUserManagementPage() {
 
-    }
-
-    public void expandArea() {
-        driver.findElement(expandLocator).click();
-    }
-
-    public void findSearchButton() {
-        driver.findElement(searchButtonLocator);
-    }
-
-    public void findAddButton() {
-        driver.findElement(addButtonLocator);
-    }
-
-    public void findDropDownUserRole() {
-        wait.waitFluentInteractable(dropDownUserRoleLocator);
-        driver.findElement(dropDownUserRoleLocator).click();
-    }
-
-    public void findAdminItemLocator() {
-       driver.findElement(adminItemLocator).click();
-
-    }
-    public void waitForUserManagementLabelPresence() {
-
-        wait.waitFluentPresence(userManagementLabelLocator);
+        BaseActions.clickButton(userManagementPageLocator);
+        Wait.waitFPresence(userManagementLabelLocator);
+        return new AdminUserManagementPage();
 
     }
 }
