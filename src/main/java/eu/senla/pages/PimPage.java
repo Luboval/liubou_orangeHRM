@@ -1,6 +1,7 @@
 package eu.senla.pages;
 
 import eu.senla.elements.Employee;
+import eu.senla.management.dataactions.ReadPropertyFile;
 import eu.senla.management.general.BaseActions;
 import eu.senla.management.general.Wait;
 import org.openqa.selenium.By;
@@ -19,6 +20,11 @@ public class PimPage  {
     private By confirmPasswordInputLocator = By.xpath("//form[1]//*//div[4]//*//div[2]/div[1]/div[2]/input[1]");
     private By saveButtonLocator = By.xpath("//button[text()=' Save ']");
     private By personalDetalesLocator = By.cssSelector("div[class='orangehrm-horizontal-padding orangehrm-vertical-padding']>h6");
+
+    public static void visitPIMPage() {
+        BaseActions.visitWithCookie(ReadPropertyFile.getProperty("DASHBOARDPAGEURL"));
+
+    }
 
     public void switchToPimPage() {
         BaseActions.clickButton(pimMenuLocator);

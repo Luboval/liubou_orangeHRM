@@ -32,4 +32,16 @@ public class CreateUserTest extends BaseTest {
 
         Assert.assertTrue(successfulCreateUser);
     }
+
+    @Test (testName = "Create user with valid credentials using api")
+    public void testCreateUserApi() {
+        PimPage.visitPIMPage();
+
+        boolean successfulCreateUser = new PimPage()
+                .openAddEmployeeForm()
+                .addEmployeeWithPassword(employee)
+                .succsessfulCreateUser();
+
+        Assert.assertTrue(successfulCreateUser);
+    }
 }

@@ -1,6 +1,7 @@
 package eu.senla.tests.login;
 
 import eu.senla.management.dataactions.ReadPropertyFile;
+import eu.senla.management.rest.GetToken;
 import eu.senla.pages.ErrorLoginPage;
 import eu.senla.pages.LoginPage;
 import eu.senla.pages.SuccessfulLoginPage;
@@ -19,7 +20,7 @@ public class LoginTest extends BaseTest {
              .loginWithValidCredentials();
 
     //Url Validation;
-    Assert.assertEquals(successfulLogin.getSuccessfulLoginPageUrl(), ReadPropertyFile.getProperty("SUCCESSFULLOGINPAGEURL"), "Login failed");
+    Assert.assertEquals(successfulLogin.getSuccessfulLoginPageUrl(), ReadPropertyFile.getProperty("SUCCESSFULLOGINPAGEURL"), "GetCookie failed");
   }
 
   @Test (testName = "Test login with incorrect credentials", priority = 1, dataProvider = "getIncorrectCredentials", dataProviderClass = ProjectDataProvider.class)
@@ -32,5 +33,17 @@ public class LoginTest extends BaseTest {
             softAssert.assertEquals(errorLoginPage.getErrorMessage(), "Invalid credentials", "Message is not correct");
             softAssert.assertEquals(errorLoginPage.getErrorIconColor(), ReadPropertyFile.getProperty("ERRORICONCOLOR"));
             softAssert.assertAll();
+  }
+
+  @Test
+    public void loginApi() {
+
+    System.out.println("Token" + GetToken.getToken());
+
+
+
+      //String response = GetCookie.getCookie();
+      //System.out.println("Cookie is "+response);
+
   }
 }
