@@ -21,6 +21,7 @@
         <mvnsurefire.version>3.5.3</mvnsurefire.version>
         <jacson.version>3.0-rc5</jacson.version>
         <jsoup.version>1.21.1</jsoup.version>
+        <datafaker.version>2.4.3</datafaker.version>
     </properties>
 
     <dependencies>
@@ -62,6 +63,12 @@
             <groupId>org.jsoup</groupId>
             <artifactId>jsoup</artifactId>
             <version>${jsoup.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/net.datafaker/datafaker -->
+        <dependency>
+            <groupId>net.datafaker</groupId>
+            <artifactId>datafaker</artifactId>
+            <version>${datafaker.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
     </dependencies>

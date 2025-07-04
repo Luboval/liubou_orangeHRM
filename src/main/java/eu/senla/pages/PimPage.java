@@ -21,13 +21,12 @@ public class PimPage  {
     private By saveButtonLocator = By.xpath("//button[text()=' Save ']");
     private By personalDetalesLocator = By.cssSelector("div[class='orangehrm-horizontal-padding orangehrm-vertical-padding']>h6");
 
-    public static void visitPIMPage() {
-        BaseActions.visitWithCookie(ReadPropertyFile.getProperty("DASHBOARDPAGEURL"));
-
+    public void visitPIMPage() {
+        BaseActions.loginWithCookie(ReadPropertyFile.getProperty("DASHBOARDPAGEURL"));
     }
 
-    public void switchToPimPage() {
-        BaseActions.clickButton(pimMenuLocator);
+    public PimPage switchToPimPage() {
+        return new SidePanelPage().switchToPimPage();
     }
 
     public void waitForPimLabel() {
@@ -43,8 +42,8 @@ public class PimPage  {
     }
 
     public PimPage openAddEmployeeForm() {
-        switchToPimPage();
-        waitForPimLabel();
+        //switchToPimPage();
+       // waitForPimLabel();
         clickAddButton();
         waitForAddEmployeeLabel();
         waitForPimLabel();

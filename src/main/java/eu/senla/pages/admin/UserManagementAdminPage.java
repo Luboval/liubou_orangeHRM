@@ -1,10 +1,11 @@
-package eu.senla.pages;
+package eu.senla.pages.admin;
 
 import eu.senla.management.general.BaseActions;
 import eu.senla.management.general.Wait;
+import eu.senla.pages.SidePanelPage;
 import org.openqa.selenium.By;
 
-public class AdminUserManagementPage {
+public class UserManagementAdminPage {
     private By userNameFieldLocator = By.xpath("//form//div[@class='oxd-grid-item oxd-grid-item--gutters'][1]//input");
     private By userManagementPageLocator = By.xpath("//aside//ul//li[1]");
     private By searchButtonLocator = By.xpath("//form//button[2]");
@@ -22,11 +23,12 @@ public class AdminUserManagementPage {
 
    }
 
-    public  AdminUserManagementPage switchToUserManagementPage() {
+    public UserManagementAdminPage switchToUserManagementPage() {
 
-        BaseActions.clickButton(userManagementPageLocator);
-        Wait.waitFPresence(userManagementLabelLocator);
-        return new AdminUserManagementPage();
+//        BaseActions.clickButton(userManagementPageLocator);
+//        Wait.waitFPresence(userManagementLabelLocator);
+        return new SidePanelPage().switchToAdminPage();
+      //  return new UserManagementAdminPage();
 
     }
 }

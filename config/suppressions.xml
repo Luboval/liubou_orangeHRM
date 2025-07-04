@@ -12,4 +12,5 @@
     <suppress checks="DesignForExtension"/>
     <suppress checks="MagicNumber"/>
     <suppress checks="VisibilityModifier"/>
+    <suppress checks="EmptyStatement"/>
 </suppressions>

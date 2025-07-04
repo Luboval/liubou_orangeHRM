@@ -8,7 +8,7 @@ public class GetToken {
     public static String token;
     public static String cookie;
 
-    public static CookieRequest getToken(){
+    public static CookieRequest getToken() {
 //        String body =  RequestManager.tokenRequest(
 //                SpecConfig.requestTokenSpecification(),
 //                SpecConfig.responseTokenSpecification());
@@ -26,7 +26,7 @@ public class GetToken {
         cookie = response.extract().detailedCookie("orangehrm").getValue();
         System.out.println("First cookie " + cookie);
 
-        return new CookieRequest (token,cookie);
+        return new CookieRequest(token, cookie);
 
 
 

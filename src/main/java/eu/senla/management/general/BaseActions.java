@@ -8,16 +8,11 @@ import org.openqa.selenium.interactions.Actions;
 
 public class BaseActions {
 
-//
-//  public BaseActions(WebDriver driver) {
-//    this.driver = driver;
-//  }
-
   public static void visit(String url) {
     Driver.driverRun().get(url);
   }
 
-  public static void visitWithCookie(String url) {
+  public static void loginWithCookie(String url) {
     Cookie cookie = new Cookie.Builder("orangehrm", GetCookie.getCookie())
             .domain("opensource-demo.orangehrmlive.com")
             .path("/web")
@@ -54,5 +49,9 @@ public class BaseActions {
   public static WebElement displayAfterClick(By locatorToClick, By locatorToDisplay) {
     Wait.waitFIsDisplayed(locatorToClick).click();
    return Wait.waitFIsDisplayed(locatorToDisplay);
+  }
+
+  public static void submitButton(By locator) {
+    Wait.waitFInteractable(locator).submit();
   }
 }

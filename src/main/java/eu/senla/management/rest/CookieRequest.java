@@ -1,8 +1,6 @@
 package eu.senla.management.rest;
 
-public record CookieRequest (
+public record CookieRequest(
         String token,
-        String cookie)
-{
-
+        String cookie) {
 }

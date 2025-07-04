@@ -1,10 +1,11 @@
 package eu.senla.tests.login;
 
 import eu.senla.management.dataactions.ReadPropertyFile;
+import eu.senla.management.loginstrategy.UiLoginStrategy;
 import eu.senla.management.rest.GetToken;
-import eu.senla.pages.ErrorLoginPage;
-import eu.senla.pages.LoginPage;
-import eu.senla.pages.SuccessfulLoginPage;
+import eu.senla.pages.login.ErrorLoginPage;
+import eu.senla.pages.login.LoginPage;
+import eu.senla.pages.login.SuccessfulLoginPage;
 import eu.senla.tests.BaseTest;
 import eu.senla.tests.ProjectDataProvider;
 import org.testng.Assert;
@@ -12,6 +13,9 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 public class LoginTest extends BaseTest {
+  public LoginTest() {
+    super(new UiLoginStrategy());
+  }
 
   @Test (testName = "Test login with valid credentials", priority = 2)
   public void testLoginWithValidCredentials() {
