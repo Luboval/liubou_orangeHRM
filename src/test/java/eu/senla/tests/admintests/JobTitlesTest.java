@@ -1,13 +1,12 @@
 package eu.senla.tests.admintests;
 
 import eu.senla.elements.Title;
-import eu.senla.management.loginstrategy.UiLoginStrategy;
+import eu.senla.management.loginstrategy.ApiLoginStrategy;
 import eu.senla.pages.admin.JobAdminPage;
 import eu.senla.tests.BaseTest;
 import net.datafaker.Faker;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class JobTitlesTest extends BaseTest {
@@ -15,14 +14,7 @@ public class JobTitlesTest extends BaseTest {
     static Faker faker = new Faker();
 
     public JobTitlesTest() {
-        super(new UiLoginStrategy());
-    }
-
-
-    @BeforeTest
-    void loginBeforeTest() {
-        BaseTest login = new JobTitlesTest();
-        login.login();
+        super(new ApiLoginStrategy());
     }
 
     @BeforeClass
@@ -46,14 +38,11 @@ public class JobTitlesTest extends BaseTest {
 
     @Test
     public void deleteJobTitleTest() {
-        JobAdminPage page = new JobAdminPage()
-                .deleteTitle(title);
 
-        Assert.assertFalse(page.getAllTitles().contains(title.getJobTitle()), "JobTitle are removed");
-
-
-        System.out.println("delete test");
+        JobAdminPage page = new JobAdminPage();
+        Assert.assertTrue(page.getAllTitles().contains(title.getJobTitle()), "JobTitle is missing");
+        page.deleteTitle(title);
+        Assert.assertFalse(page.getAllTitles().contains(title.getJobTitle()), "JobTitle is not removed");
 
     }
-
 }

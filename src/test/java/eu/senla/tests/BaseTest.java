@@ -12,11 +12,13 @@ public class BaseTest {
         this.loginStrategy = loginStrategy;
     }
 
-    @BeforeSuite(alwaysRun = true)
-    public void setup() {
-       Driver.driverRun();
-    }
+ //   @BeforeSuite(alwaysRun = true)
+// не нужен т.к. логин идет
+//    public void setup() {
+//       Driver.driverRun();
+//    }
 
+    @BeforeSuite(alwaysRun = true)
     public void login() {
         loginStrategy.login();
     }

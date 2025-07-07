@@ -37,7 +37,11 @@ public class RequestManager {
                         .spec(requestSpecification)
                         .when()
                         .post()
-                        .getDetailedCookie("orangehrm").getValue();
+                        .then()
+                        .spec(responseSpecification)
+                        .extract()
+                        .detailedCookie("orangehrm").getValue();
+                        //.getDetailedCookie("orangehrm").getValue();
     }
 
     public static ValidatableResponse tokenRequest(
