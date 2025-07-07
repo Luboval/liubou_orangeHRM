@@ -29,11 +29,11 @@ public class CreateUserTest extends BaseTest {
 
     }
 
-    @BeforeTest
-    void loginBeforeTest() {
-        BaseTest login = new CreateUserTest();
-        login.login();
-    }
+//    @BeforeTest
+//    void loginBeforeTest() {
+//        BaseTest login = new CreateUserTest();
+//        login.login();
+//    }
 
     @Test (testName = "Create user with valid credentials")
     public void testCreateUser() {

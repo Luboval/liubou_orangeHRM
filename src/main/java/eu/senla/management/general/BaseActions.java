@@ -47,6 +47,11 @@ public class BaseActions {
     moveToElement(Wait.waitFInteractable(locator)).sendKeys(value);
   }
 
+//  public static void fillInput(By locator, int value) {
+//    String intValue = String.valueOf(value);
+//    moveToElement(Wait.waitFInteractable(locator)).sendKeys(intValue);
+//  }
+
   public static WebElement displayAfterClick(By locatorToClick, By locatorToDisplay) {
     Wait.waitFIsDisplayed(locatorToClick).click();
    return Wait.waitFIsDisplayed(locatorToDisplay);
@@ -54,5 +59,9 @@ public class BaseActions {
 
   public static void submitButton(By locator) {
     Wait.waitFInteractable(locator).submit();
+  }
+
+  public static String getValue(By locator) {
+    return Wait.waitFPresence(locator).getAttribute("value");
   }
 }
