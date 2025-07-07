@@ -15,7 +15,7 @@ public class BaseActions {
 
   public static void loginWithCookie(String url) {
 
-    Cookie cookie = new Cookie.Builder("orangehrm",GetCookie.getCookie())
+    Cookie cookie = new Cookie.Builder("orangehrm", GetCookie.getCookie())
             .domain("opensource-demo.orangehrmlive.com")
             .path("/web")
             .isSecure(true)
