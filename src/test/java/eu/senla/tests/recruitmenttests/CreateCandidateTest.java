@@ -26,6 +26,7 @@ public class CreateCandidateTest extends BaseTest {
                 .lastName(faker.name().lastName())
                 .email(faker.internet().emailAddress())
                 .contactNumber(faker.phoneNumber().phoneNumber())
+                .filePath("src/test/resources/files/Candidate.pdf")
                 .build();
     }
 
@@ -35,6 +36,6 @@ public class CreateCandidateTest extends BaseTest {
         RecruitmentCandidatesPage recruitmentCandidatesPage = new RecruitmentCandidatesPage()
                 .addCandidate(candidate);
 
-        Assert.assertEquals(recruitmentCandidatesPage.getProfileFirsName(), candidate.getFirstName(), "Incorrect");
+        Assert.assertEquals(recruitmentCandidatesPage.getProfileFirsName("value"), candidate.getFirstName(), "Incorrect");
     }
 }

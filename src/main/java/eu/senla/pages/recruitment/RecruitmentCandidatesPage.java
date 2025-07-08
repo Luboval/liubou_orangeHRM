@@ -20,6 +20,7 @@ public class RecruitmentCandidatesPage {
     private By contactNumberLocator = By.xpath("//*[@class= 'oxd-form-row'][3]/div/div[2]/*//input");
     private By saveButtonLocator = By.cssSelector("button[type= 'submit']");
     private By candidateProfileFormLocator = By.xpath("//*[@class='orangehrm-background-container']//form");
+    private By resumeInputLocator = By.cssSelector("input[type='file']");
 
     //Candidate Profile
     private By profileFirstNameLocator = By.cssSelector("[name='firstName']");
@@ -28,10 +29,11 @@ public class RecruitmentCandidatesPage {
         BaseActions.visit(ReadPropertyFile.getProperty("BASEURL") + ApiPoints.RECRUITMENTPAGE);
     }
 
-    public void openAddCandidateForm() {
+    public RecruitmentCandidatesPage openAddCandidateForm() {
         switchDirectlyToRecruitmentCandidatesPage();
         BaseActions.clickButton(addCandidateButtonLocator);
         Wait.waitFPresence(addCandidateFormTitleLocator);
+        return new RecruitmentCandidatesPage();
 
     }
 
@@ -42,14 +44,32 @@ public class RecruitmentCandidatesPage {
         BaseActions.fillInput(lastNameInputLocator, candidate.getLastName());
         BaseActions.fillInput(emailInputLocator, candidate.getEmail());
         BaseActions.fillInput(contactNumberLocator, candidate.getContactNumber());
+        BaseActions.uploadFile(resumeInputLocator, candidate.getFilePath());
         BaseActions.clickButton(saveButtonLocator);
         Wait.waitFPresence(candidateProfileFormLocator);
 
         return  new RecruitmentCandidatesPage();
     }
 
-    public String getProfileFirsName() {
-        return BaseActions.getValue(profileFirstNameLocator);
-
+    public String getProfileFirsName(String attribute) {
+        return BaseActions.getValue(profileFirstNameLocator, attribute);
     }
+
+    public String getFirstNameInputAttr(String attribute) {
+        return BaseActions.getValue(firstNameInputLocator, attribute);
+    }
+
+    public String getMiddleNameInputAttr(String attribute) {
+        return BaseActions.getValue(middleNameInputLocator, attribute);
+    }
+    public String getLastNameInputAttr(String attribute) {
+        return BaseActions.getValue(lastNameInputLocator, attribute);
+    }
+    public String getEmailInputAttr(String attribute) {
+        return BaseActions.getValue(emailInputLocator, attribute);
+    }
+    public String getContactNumberInputAttr(String attribute) {
+        return BaseActions.getValue(contactNumberLocator, attribute);
+    }
+
 }

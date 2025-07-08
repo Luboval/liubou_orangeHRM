@@ -7,6 +7,8 @@ import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
+import java.io.File;
+
 public class BaseActions {
 
   public static void visit(String url) {
@@ -47,11 +49,6 @@ public class BaseActions {
     moveToElement(Wait.waitFInteractable(locator)).sendKeys(value);
   }
 
-//  public static void fillInput(By locator, int value) {
-//    String intValue = String.valueOf(value);
-//    moveToElement(Wait.waitFInteractable(locator)).sendKeys(intValue);
-//  }
-
   public static WebElement displayAfterClick(By locatorToClick, By locatorToDisplay) {
     Wait.waitFIsDisplayed(locatorToClick).click();
    return Wait.waitFIsDisplayed(locatorToDisplay);
@@ -61,7 +58,14 @@ public class BaseActions {
     Wait.waitFInteractable(locator).submit();
   }
 
-  public static String getValue(By locator) {
-    return Wait.waitFPresence(locator).getAttribute("value");
+  public static String getValue(By locator, String attribute) {
+    return Wait.waitFPresence(locator).getAttribute(attribute);
+  }
+
+  public static void uploadFile(By locator, String filename) {
+    File file = new File(filename);
+    String path = file.getAbsolutePath();
+    Driver.driverRun().findElement(locator).sendKeys(path);
+    //Driver.driverRun().findElement(By.id("file-submit")).click();
   }
 }
