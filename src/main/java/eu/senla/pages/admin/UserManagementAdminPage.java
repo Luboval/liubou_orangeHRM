@@ -1,7 +1,7 @@
 package eu.senla.pages.admin;
 
-import eu.senla.management.general.BaseActions;
-import eu.senla.management.general.Wait;
+import eu.senla.management.common.BaseActions;
+import eu.senla.management.common.Wait;
 import eu.senla.pages.SidePanelPage;
 import org.openqa.selenium.By;
 

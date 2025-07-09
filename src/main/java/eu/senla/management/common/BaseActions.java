@@ -1,4 +1,4 @@
-package eu.senla.management.general;
+package eu.senla.management.common;
 
 import eu.senla.management.dataactions.ReadPropertyFile;
 import eu.senla.management.auth.GetCookie;
@@ -38,6 +38,10 @@ public class BaseActions {
 
   public static void clickButton(By locator) {
      Wait.waitFInteractable(locator).click();
+  }
+
+  public static void clickElement(By locator) {
+    Wait.waitFPresence(locator).click();
   }
 
   public static WebElement moveToElement(WebElement element) {

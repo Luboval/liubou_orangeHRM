@@ -1,4 +1,4 @@
-package eu.senla.tests.login;
+package eu.senla.tests.admin;
 
 import eu.senla.management.loginstrategy.UiLoginStrategy;
 import eu.senla.pages.admin.UserManagementAdminPage;

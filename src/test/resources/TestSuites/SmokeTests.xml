@@ -12,7 +12,7 @@
     </test>
     <test name="Create User Test">
         <classes>
-            <class name="eu.senla.tests.login.CreateUserTest">
+            <class name="eu.senla.tests.pim.CreateEmployeeTest">
                 <methods>
                     <include name="testCreateUser"/>
                 </methods>

@@ -1,6 +1,6 @@
 package eu.senla.tests;
 
-import eu.senla.management.general.Driver;
+import eu.senla.management.common.Driver;
 import eu.senla.management.loginstrategy.LoginStrategy;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;

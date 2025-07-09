@@ -1,9 +1,10 @@
-package eu.senla.pages;
+package eu.senla.pages.pim;
 
 import eu.senla.elements.Employee;
 import eu.senla.management.dataactions.ReadPropertyFile;
-import eu.senla.management.general.BaseActions;
-import eu.senla.management.general.Wait;
+import eu.senla.management.common.BaseActions;
+import eu.senla.management.common.Wait;
+import eu.senla.pages.SidePanelPage;
 import org.openqa.selenium.By;
 
 public class PimPage  {
@@ -63,7 +64,7 @@ public class PimPage  {
         return new PimPage();
     }
 
-    public Boolean succsessfulCreateUser() {
+    public Boolean successfulCreateUser() {
        return Wait.waitFIsDisplayed(personalDetalesLocator).isDisplayed();
     }
 }

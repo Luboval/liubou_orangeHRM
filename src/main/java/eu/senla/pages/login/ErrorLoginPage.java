@@ -1,6 +1,6 @@
 package eu.senla.pages.login;
 
-import eu.senla.management.general.Wait;
+import eu.senla.management.common.Wait;
 import org.openqa.selenium.By;
 
 public class ErrorLoginPage {

@@ -42,7 +42,7 @@ public class CreateAssignLeaveTest extends BaseTest {
     public void createAssignLeave() {
 
        AssignLeavePage assignLeavePage = new AssignLeavePage()
-                .assignleave(assigneLeave);
+                .assignLeave(assigneLeave);
 
     }
 }

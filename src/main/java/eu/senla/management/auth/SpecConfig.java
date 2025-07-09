@@ -1,7 +1,7 @@
 package eu.senla.management.auth;
 
 import eu.senla.management.dataactions.ReadPropertyFile;
-import eu.senla.management.general.Driver;
+import eu.senla.management.common.Driver;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.filter.log.LogDetail;

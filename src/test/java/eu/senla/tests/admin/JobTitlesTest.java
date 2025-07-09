@@ -1,4 +1,4 @@
-package eu.senla.tests.admintests;
+package eu.senla.tests.admin;
 
 import eu.senla.elements.Title;
 import eu.senla.management.loginstrategy.ApiLoginStrategy;

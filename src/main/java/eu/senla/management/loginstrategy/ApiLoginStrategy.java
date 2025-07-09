@@ -1,7 +1,7 @@
 package eu.senla.management.loginstrategy;
 
 import eu.senla.management.dataactions.ReadPropertyFile;
-import eu.senla.management.general.BaseActions;
+import eu.senla.management.common.BaseActions;
 
 public class ApiLoginStrategy implements LoginStrategy {
 
