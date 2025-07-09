@@ -9,15 +9,21 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>23</maven.compiler.source>
-        <maven.compiler.target>23</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.release>17</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <testng.version>7.11.0</testng.version>
         <checkstyle.version>3.6.0</checkstyle.version>
         <spotless.version>2.44.4</spotless.version>
-        <selenium.version>4.31.0</selenium.version>
+        <selenium.version>4.32.0</selenium.version>
         <lombok.version>1.18.38</lombok.version>
+        <rest.assured.version>5.5.5</rest.assured.version>
         <mvnsurefire.version>3.5.3</mvnsurefire.version>
+        <jacson.version>3.0-rc5</jacson.version>
+        <jsoup.version>1.21.1</jsoup.version>
+        <datafaker.version>2.4.3</datafaker.version>
+        <jackson.version>2.19.1</jackson.version>
     </properties>
 
     <dependencies>
@@ -34,6 +40,7 @@
             <artifactId>selenium-java</artifactId>
             <version>${selenium.version}</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-chrome-driver -->
         <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -41,6 +48,37 @@
             <version>${lombok.version}</version>
             <scope>provided</scope>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>${rest.assured.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jacson.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.jsoup/jsoup -->
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>${jsoup.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/net.datafaker/datafaker -->
+        <dependency>
+            <groupId>net.datafaker</groupId>
+            <artifactId>datafaker</artifactId>
+            <version>${datafaker.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
     </dependencies>
 
@@ -48,17 +86,17 @@
         <plugins>
             <plugin>
                 <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-checkstyle-plugin -->
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-checkstyle-plugin</artifactId>
-                    <version>${checkstyle.version}</version>
-                    <configuration>
-                        <configLocation>/config/checkstyle.xml</configLocation>
-                        <suppressionsLocation>/config/suppressions.xml</suppressionsLocation>
-                        <!-- ✅ This enables test checks -->
-                        <includeTestSourceDirectory>true</includeTestSourceDirectory>
-                        <failOnViolation>true</failOnViolation>
-                        <linkXRef>false</linkXRef>
-                    </configuration>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${checkstyle.version}</version>
+                <configuration>
+                    <configLocation>/config/checkstyle.xml</configLocation>
+                    <suppressionsLocation>/config/suppressions.xml</suppressionsLocation>
+                    <!-- ✅ This enables test checks -->
+                    <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                    <failOnViolation>true</failOnViolation>
+                    <linkXRef>false</linkXRef>
+                </configuration>
             </plugin>
             <!-- https://mvnrepository.com/artifact/com.diffplug.spotless/spotless-maven-plugin -->
             <plugin>

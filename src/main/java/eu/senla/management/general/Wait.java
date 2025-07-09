@@ -21,6 +21,14 @@ public class Wait {
                 .until(expectedConditions);
     }
 
+    public static boolean waitBool(ExpectedCondition<Boolean> expectedConditions) {
+        return new FluentWait<>(Driver.driverRun())
+                .withTimeout(Duration.ofSeconds(timeoutSec))
+                .pollingEvery(Duration.ofSeconds(poolingSec))
+                .ignoring(NoSuchElementException.class)
+                .until(expectedConditions);
+    }
+
     public static WebElement waitFPresence(By locator) {
 
         return wait(ExpectedConditions.presenceOfElementLocated(locator));
@@ -35,5 +43,12 @@ public class Wait {
     public static WebElement waitFInteractable(By locator) {
 
         return wait(ExpectedConditions.elementToBeClickable(locator));
+    }
+
+    public static WebElement waitFChanged(By locator, String attr, String value) {
+
+        waitBool(ExpectedConditions.attributeContains(locator, attr, value));
+
+        return wait(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 }

@@ -1,4 +1,4 @@
-package eu.senla.pages;
+package eu.senla.pages.login;
 
 import eu.senla.management.general.BaseActions;
 import eu.senla.management.dataactions.ReadPropertyFile;

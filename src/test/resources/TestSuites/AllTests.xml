@@ -22,7 +22,7 @@
     </test>
     <test name="Admin User Management Page Validation">
         <classes>
-            <class name="eu.senla.tests.login.AdminUserManagementPageTest">
+            <class name="eu.senla.tests.login.UserManagementAdminPageTest">
                 <methods>
                        <include name="adminUserManagementPage"/>
                 </methods>
