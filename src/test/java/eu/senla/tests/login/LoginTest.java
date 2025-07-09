@@ -2,7 +2,7 @@ package eu.senla.tests.login;
 
 import eu.senla.management.dataactions.ReadPropertyFile;
 import eu.senla.management.loginstrategy.UiLoginStrategy;
-import eu.senla.management.rest.GetToken;
+import eu.senla.management.auth.GetToken;
 import eu.senla.pages.login.ErrorLoginPage;
 import eu.senla.pages.login.LoginPage;
 import eu.senla.pages.login.SuccessfulLoginPage;

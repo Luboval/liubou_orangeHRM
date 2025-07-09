@@ -1,9 +1,10 @@
 package eu.senla.management.general;
 
 import eu.senla.management.dataactions.ReadPropertyFile;
-import eu.senla.management.rest.GetCookie;
+import eu.senla.management.auth.GetCookie;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
@@ -68,4 +69,12 @@ public class BaseActions {
     Driver.driverRun().findElement(locator).sendKeys(path);
     //Driver.driverRun().findElement(By.id("file-submit")).click();
   }
+
+  public static WebElement clearWithKeys(By locator) {
+    WebElement webElement = moveToElement(Wait.waitFInteractable(locator));
+    webElement.sendKeys(Keys.CONTROL + "a");
+    webElement.sendKeys(Keys.DELETE);
+    return webElement;
+  }
+
 }

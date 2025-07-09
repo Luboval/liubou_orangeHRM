@@ -26,7 +26,7 @@ public class RecruitmentCandidatesPage {
     private By profileFirstNameLocator = By.cssSelector("[name='firstName']");
 
     public void switchDirectlyToRecruitmentCandidatesPage() {
-        BaseActions.visit(ReadPropertyFile.getProperty("BASEURL") + ApiPoints.RECRUITMENTPAGE);
+        BaseActions.visit(ReadPropertyFile.getProperty("BASEURL") + ApiPoints.RECRUITMENT_PAGE);
     }
 
     public RecruitmentCandidatesPage openAddCandidateForm() {

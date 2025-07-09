@@ -1,4 +1,4 @@
-package eu.senla.management.rest;
+package eu.senla.management.auth;
 
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
@@ -15,7 +15,8 @@ public class RequestManager {
             String path,
             Object request,
             Class<T> clazz) {
-        return
+
+            return
                 given()
                         .spec(requestSpecification)
                         .basePath(path)
@@ -41,7 +42,7 @@ public class RequestManager {
                         .spec(responseSpecification)
                         .extract()
                         .detailedCookie("orangehrm").getValue();
-                        //.getDetailedCookie("orangehrm").getValue();
+
     }
 
     public static ValidatableResponse tokenRequest(

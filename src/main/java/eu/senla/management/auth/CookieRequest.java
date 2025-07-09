@@ -1,4 +1,4 @@
-package eu.senla.management.rest;
+package eu.senla.management.auth;
 
 public record CookieRequest(
         String token,

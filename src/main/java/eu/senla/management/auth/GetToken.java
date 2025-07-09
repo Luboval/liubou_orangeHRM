@@ -1,4 +1,4 @@
-package eu.senla.management.rest;
+package eu.senla.management.auth;
 
 import io.restassured.response.ValidatableResponse;
 import org.jsoup.Jsoup;

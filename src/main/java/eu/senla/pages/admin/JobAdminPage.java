@@ -32,7 +32,7 @@ public class JobAdminPage {
 
 
     public void switchDirectlyToJobTitlesPage() {
-        BaseActions.visit(ReadPropertyFile.getProperty("BASEURL") + ApiPoints.JOBTITLESPAGE);
+        BaseActions.visit(ReadPropertyFile.getProperty("BASEURL") + ApiPoints.JOB_TITLES_PAGE);
     }
 
     public void clickAddTitleButton() {
