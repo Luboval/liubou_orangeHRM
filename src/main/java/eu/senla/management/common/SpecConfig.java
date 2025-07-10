@@ -1,7 +1,8 @@
-package eu.senla.management.auth;
+package eu.senla.management.common;
 
+import eu.senla.management.auth.CookieRequest;
+import eu.senla.management.auth.GetToken;
 import eu.senla.management.dataactions.ReadPropertyFile;
-import eu.senla.management.common.Driver;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.filter.log.LogDetail;

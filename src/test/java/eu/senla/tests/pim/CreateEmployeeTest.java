@@ -2,7 +2,7 @@ package eu.senla.tests.pim;
 
 import eu.senla.elements.Employee;
 import eu.senla.management.loginstrategy.ApiLoginStrategy;
-import eu.senla.pages.pim.PimPage;
+import eu.senla.pages.pimpages.PimPage;
 import eu.senla.tests.BaseTest;
 import net.bytebuddy.utility.RandomString;
 import net.datafaker.Faker;

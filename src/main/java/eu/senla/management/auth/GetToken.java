@@ -1,5 +1,7 @@
 package eu.senla.management.auth;
 
+import eu.senla.management.common.RequestManager;
+import eu.senla.management.common.SpecConfig;
 import io.restassured.response.ValidatableResponse;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

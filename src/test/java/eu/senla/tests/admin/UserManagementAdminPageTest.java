@@ -1,23 +1,15 @@
 package eu.senla.tests.admin;
 
-import eu.senla.management.loginstrategy.UiLoginStrategy;
-import eu.senla.pages.admin.UserManagementAdminPage;
+import eu.senla.management.loginstrategy.ApiLoginStrategy;
+import eu.senla.pages.adminpages.UserManagementAdminPage;
 import eu.senla.tests.BaseTest;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class UserManagementAdminPageTest extends BaseTest {
     public UserManagementAdminPageTest() {
-        super(new UiLoginStrategy());
+        super(new ApiLoginStrategy());
     }
-
-    @BeforeTest
-    void loginBeforeTest() {
-        BaseTest login = new UserManagementAdminPageTest();
-        login.login();
-    }
-
 
   @Test (testName = "Admin User Management Page Validation")
   public void adminUserManagementPageElementsValidation() {

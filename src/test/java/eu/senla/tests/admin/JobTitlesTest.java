@@ -2,7 +2,7 @@ package eu.senla.tests.admin;
 
 import eu.senla.elements.Title;
 import eu.senla.management.loginstrategy.ApiLoginStrategy;
-import eu.senla.pages.admin.JobAdminPage;
+import eu.senla.pages.adminpages.JobAdminPage;
 import eu.senla.tests.BaseTest;
 import net.datafaker.Faker;
 import org.testng.Assert;

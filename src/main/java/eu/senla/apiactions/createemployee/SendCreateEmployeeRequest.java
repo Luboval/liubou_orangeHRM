@@ -1,8 +1,8 @@
 package eu.senla.apiactions.createemployee;
 
 import eu.senla.management.common.Constants;
-import eu.senla.management.auth.RequestManager;
-import eu.senla.management.auth.SpecConfig;
+import eu.senla.management.common.RequestManager;
+import eu.senla.management.common.SpecConfig;
 
 public class SendCreateEmployeeRequest {
 

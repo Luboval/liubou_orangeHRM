@@ -1,4 +1,4 @@
-package eu.senla.pages.admin;
+package eu.senla.pages.adminpages;
 
 import eu.senla.management.common.Constants;
 import eu.senla.elements.Title;

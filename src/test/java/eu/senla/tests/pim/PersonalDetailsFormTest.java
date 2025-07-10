@@ -6,7 +6,7 @@ import eu.senla.apiactions.createemployee.EmployeeRequest;
 import eu.senla.apiactions.createemployee.SendCreateEmployeeRequest;
 import eu.senla.management.common.Constants;
 import eu.senla.management.loginstrategy.ApiLoginStrategy;
-import eu.senla.pages.pim.PersonalDetailsPage;
+import eu.senla.pages.pimpages.PersonalDetailsPage;
 import eu.senla.tests.BaseTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
