@@ -1,4 +1,4 @@
-package eu.senla.pages.pim;
+package eu.senla.pages.pimpages;
 
 import eu.senla.management.common.BaseActions;
 import eu.senla.management.common.Constants;

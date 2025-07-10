@@ -3,7 +3,7 @@ package eu.senla.tests;
 import eu.senla.management.common.Driver;
 import eu.senla.management.loginstrategy.LoginStrategy;
 import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.BeforeTest;
 
 public class BaseTest {
     private LoginStrategy loginStrategy;
@@ -12,13 +12,7 @@ public class BaseTest {
         this.loginStrategy = loginStrategy;
     }
 
- //   @BeforeSuite(alwaysRun = true)
-// не нужен т.к. логин идет
-//    public void setup() {
-//       Driver.driverRun();
-//    }
-
-    @BeforeSuite(alwaysRun = true)
+    @BeforeTest(alwaysRun = true)
     public void login() {
         loginStrategy.login();
     }

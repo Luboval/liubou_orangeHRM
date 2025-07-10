@@ -2,9 +2,8 @@ package eu.senla.pages;
 
 import eu.senla.management.common.BaseActions;
 import eu.senla.management.common.Wait;
-import eu.senla.pages.admin.UserManagementAdminPage;
-import eu.senla.pages.login.LoginPage;
-import eu.senla.pages.pim.PimPage;
+import eu.senla.pages.adminpages.UserManagementAdminPage;
+import eu.senla.pages.pimpages.PimPage;
 import org.openqa.selenium.By;
 
 public class SidePanelPage {
@@ -33,11 +32,10 @@ public class SidePanelPage {
 
     }
 
-    public LoginPage executeLogout() {
+    public String executeLogout() {
         BaseActions.clickElement(userDropDowmLocator);
         BaseActions.clickElement(logoutMenuItemLocator);
         Wait.waitFPresence(loginLableLocator);
-        return new LoginPage();
+        return BaseActions.getCurrentUrl();
     }
-
-}
+ }

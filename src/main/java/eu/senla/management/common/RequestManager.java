@@ -1,4 +1,4 @@
-package eu.senla.management.auth;
+package eu.senla.management.common;
 
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
@@ -27,6 +27,15 @@ public class RequestManager {
                         .spec(responseSpecification)
                         .extract()
                         .as(clazz);
+    }
+    public static ValidatableResponse getRequest(
+            RequestSpecification requestSpecification, String path) {
+        return given()
+                .spec(requestSpecification)
+                .basePath(path)
+                .when()
+                .get()
+                .then();
     }
 
     public static String cookieRequest(
