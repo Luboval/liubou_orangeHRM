@@ -3,7 +3,7 @@
 <suite name="Some Tests Suite" verbose="1">
     <test name="Login Test">
         <classes>
-            <class name="eu.senla.tests.login.UserManagementAdminPageTest">
+            <class name="eu.senla.tests.admin.UserManagementAdminPageTest">
                 <methods>
                     <include name="adminUserManagementPageElementsValidation()"/>
                 </methods>

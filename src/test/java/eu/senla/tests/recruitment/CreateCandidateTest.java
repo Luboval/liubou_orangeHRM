@@ -1,4 +1,4 @@
-package eu.senla.tests.recruitmenttests;
+package eu.senla.tests.recruitment;
 
 import eu.senla.elements.Candidate;
 import eu.senla.management.loginstrategy.ApiLoginStrategy;

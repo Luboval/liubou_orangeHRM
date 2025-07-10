@@ -1,4 +1,4 @@
-package eu.senla.management.general;
+package eu.senla.management.common;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;

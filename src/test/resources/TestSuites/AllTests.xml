@@ -13,7 +13,7 @@
     </test>
     <test name="Create User Test">
         <classes>
-            <class name="eu.senla.tests.login.CreateUserTest">
+            <class name="eu.senla.tests.pim.CreateEmployeeTest">
                 <methods>
                     <include name="testCreateUser"/>
                 </methods>
@@ -22,7 +22,7 @@
     </test>
     <test name="Admin User Management Page Validation">
         <classes>
-            <class name="eu.senla.tests.login.UserManagementAdminPageTest">
+            <class name="eu.senla.tests.admin.UserManagementAdminPageTest">
                 <methods>
                        <include name="adminUserManagementPage"/>
                 </methods>

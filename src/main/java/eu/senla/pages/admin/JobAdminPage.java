@@ -1,11 +1,11 @@
 package eu.senla.pages.admin;
 
-import eu.senla.elements.ApiPoints;
+import eu.senla.management.common.Constants;
 import eu.senla.elements.Title;
 import eu.senla.management.dataactions.ReadPropertyFile;
-import eu.senla.management.general.BaseActions;
-import eu.senla.management.general.Driver;
-import eu.senla.management.general.Wait;
+import eu.senla.management.common.BaseActions;
+import eu.senla.management.common.Driver;
+import eu.senla.management.common.Wait;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -32,7 +32,7 @@ public class JobAdminPage {
 
 
     public void switchDirectlyToJobTitlesPage() {
-        BaseActions.visit(ReadPropertyFile.getProperty("BASEURL") + ApiPoints.JOB_TITLES_PAGE);
+        BaseActions.visit(ReadPropertyFile.getProperty("BASEURL") + Constants.JOB_TITLES_PAGE);
     }
 
     public void clickAddTitleButton() {

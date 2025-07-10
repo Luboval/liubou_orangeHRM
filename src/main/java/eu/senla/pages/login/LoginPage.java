@@ -1,6 +1,6 @@
 package eu.senla.pages.login;
 
-import eu.senla.management.general.BaseActions;
+import eu.senla.management.common.BaseActions;
 import eu.senla.management.dataactions.ReadPropertyFile;
 import org.openqa.selenium.By;
 

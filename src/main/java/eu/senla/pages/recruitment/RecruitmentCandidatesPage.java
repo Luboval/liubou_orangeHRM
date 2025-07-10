@@ -1,10 +1,10 @@
 package eu.senla.pages.recruitment;
 
-import eu.senla.elements.ApiPoints;
+import eu.senla.management.common.Constants;
 import eu.senla.elements.Candidate;
 import eu.senla.management.dataactions.ReadPropertyFile;
-import eu.senla.management.general.BaseActions;
-import eu.senla.management.general.Wait;
+import eu.senla.management.common.BaseActions;
+import eu.senla.management.common.Wait;
 import org.openqa.selenium.By;
 
 public class RecruitmentCandidatesPage {
@@ -26,7 +26,7 @@ public class RecruitmentCandidatesPage {
     private By profileFirstNameLocator = By.cssSelector("[name='firstName']");
 
     public void switchDirectlyToRecruitmentCandidatesPage() {
-        BaseActions.visit(ReadPropertyFile.getProperty("BASEURL") + ApiPoints.RECRUITMENT_PAGE);
+        BaseActions.visit(ReadPropertyFile.getProperty("BASEURL") + Constants.RECRUITMENT_PAGE);
     }
 
     public RecruitmentCandidatesPage openAddCandidateForm() {
