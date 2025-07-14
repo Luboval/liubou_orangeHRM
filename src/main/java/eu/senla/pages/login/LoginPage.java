@@ -10,6 +10,7 @@ public class LoginPage  {
   private By loginButonLocator = By.xpath("//button[@type='submit']");
 
   public LoginPage visitLoginPage() {
+   // Driver.driverRun().switchTo().newWindow(WindowType.TAB);
     BaseActions.visit(ReadPropertyFile.getProperty("LOGINPAGEURL"));
     return new LoginPage();
   }

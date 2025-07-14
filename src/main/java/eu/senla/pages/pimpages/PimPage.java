@@ -1,4 +1,4 @@
-package eu.senla.pages.pim;
+package eu.senla.pages.pimpages;
 
 import eu.senla.elements.Employee;
 import eu.senla.management.dataactions.ReadPropertyFile;
@@ -7,7 +7,7 @@ import eu.senla.management.common.Wait;
 import eu.senla.pages.SidePanelPage;
 import org.openqa.selenium.By;
 
-public class PimPage  {
+public class PimPage {
     private By pimMenuLocator = By.xpath("//aside//ul//li[2]");
     private By pimLabelLocator = By.xpath("//header//span/h6");
     private By addButtonLocator = By.xpath("//div[@class='orangehrm-header-container']//button");

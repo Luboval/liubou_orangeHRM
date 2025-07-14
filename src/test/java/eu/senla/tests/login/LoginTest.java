@@ -1,33 +1,39 @@
 package eu.senla.tests.login;
 
-import eu.senla.management.dataactions.ReadPropertyFile;
-import eu.senla.management.loginstrategy.UiLoginStrategy;
-import eu.senla.management.auth.GetToken;
+import eu.senla.management.auth.Logout;
+import eu.senla.management.common.Constants;
+import eu.senla.management.loginstrategy.ApiLoginStrategy;
 import eu.senla.pages.login.ErrorLoginPage;
 import eu.senla.pages.login.LoginPage;
 import eu.senla.pages.login.SuccessfulLoginPage;
 import eu.senla.tests.BaseTest;
 import eu.senla.tests.ProjectDataProvider;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 public class LoginTest extends BaseTest {
   public LoginTest() {
-    super(new UiLoginStrategy());
+    super(new ApiLoginStrategy());
   }
 
-  @Test (testName = "Test login with valid credentials", priority = 2)
+  @BeforeMethod
+  void logout() {
+    Logout.logout();
+  }
+
+  @Test (testName = "Test login with valid credentials")
   public void testLoginWithValidCredentials() {
     SuccessfulLoginPage successfulLogin = new LoginPage()
              .visitLoginPage()
              .loginWithValidCredentials();
 
     //Url Validation;
-    Assert.assertEquals(successfulLogin.getSuccessfulLoginPageUrl(), ReadPropertyFile.getProperty("SUCCESSFULLOGINPAGEURL"), "GetCookie failed");
+    Assert.assertEquals(successfulLogin.getSuccessfulLoginPageUrl(), Constants.SUCCESSFUL_LOGIN_PAGE_URL, "GetCookie failed");
   }
 
-  @Test (testName = "Test login with incorrect credentials", priority = 1, dataProvider = "getIncorrectCredentials", dataProviderClass = ProjectDataProvider.class)
+  @Test (testName = "Test login with incorrect credentials",  dataProvider = "getIncorrectCredentials", dataProviderClass = ProjectDataProvider.class)
   public void testLoginWithIncorrectCredentials(String username, String password) {
     ErrorLoginPage errorLoginPage = new LoginPage()
             .visitLoginPage()
@@ -35,19 +41,7 @@ public class LoginTest extends BaseTest {
 
     SoftAssert softAssert = new SoftAssert();
             softAssert.assertEquals(errorLoginPage.getErrorMessage(), "Invalid credentials", "Message is not correct");
-            softAssert.assertEquals(errorLoginPage.getErrorIconColor(), ReadPropertyFile.getProperty("ERRORICONCOLOR"));
+            softAssert.assertEquals(errorLoginPage.getErrorIconColor(), Constants.ERROR_ICON_COLOR);
             softAssert.assertAll();
-  }
-
-  @Test
-    public void loginApi() {
-
-    System.out.println("Token" + GetToken.getToken());
-
-
-
-      //String response = GetCookie.getCookie();
-      //System.out.println("Cookie is "+response);
-
   }
 }

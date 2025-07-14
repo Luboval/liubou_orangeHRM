@@ -1,4 +1,4 @@
-package eu.senla.pages.admin;
+package eu.senla.pages.adminpages;
 
 import eu.senla.management.common.BaseActions;
 import eu.senla.management.common.Wait;
