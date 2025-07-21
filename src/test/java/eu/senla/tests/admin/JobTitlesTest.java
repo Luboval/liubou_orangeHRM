@@ -1,42 +1,26 @@
 package eu.senla.tests.admin;
 
 import eu.senla.elements.Title;
-import eu.senla.management.loginstrategy.ApiLoginStrategy;
+import eu.senla.management.dataactions.CreateEntity;
 import eu.senla.pages.adminpages.JobAdminPage;
 import eu.senla.tests.BaseTest;
-import net.datafaker.Faker;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class JobTitlesTest extends BaseTest {
-    private Title title;
-    static Faker faker = new Faker();
+    private final Title title = CreateEntity.createTitle();;
 
-    public JobTitlesTest() {
-        super(new ApiLoginStrategy());
-    }
-
-    @BeforeClass
-    void createTitle() {
-        title = Title.builder()
-                .jobTitle(faker.name().title())
-                .jobDescription(faker.text().text(20))
-                .note(faker.text().text(10))
-                .build();
-        System.out.println(title.getJobTitle());
-
-    }
-
-    @Test
+    @Test (testName = "Create Job Title", groups = {"smoke", "regression"})
     public void addJobTitleTest() {
+        System.out.println("Create Job Title");
         JobAdminPage page = new JobAdminPage()
                 .createTitle(title);
         Assert.assertEquals(title.getJobTitle(), page.getJobsCreated(title.getJobTitle()), "JobTitle are not found");
+        System.out.println("Create Job Title is completed");
 
     }
 
-    @Test
+    @Test (testName = "Delete Job Title", groups = {"regression"})
     public void deleteJobTitleTest() {
 
         JobAdminPage page = new JobAdminPage();

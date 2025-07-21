@@ -33,9 +33,9 @@ public class GetToken {
 
 
         token = document.select("auth-login").attr(":token");
-        System.out.println("Полученный токен" + token);
+        //System.out.println("Полученный токен" + token);
         cookie = response.extract().detailedCookie("orangehrm").getValue();
-        System.out.println("First cookie " + cookie);
+       // System.out.println("First cookie " + cookie);
 
         return new CookieRequest(token, cookie);
 

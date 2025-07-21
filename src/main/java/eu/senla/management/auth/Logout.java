@@ -11,8 +11,8 @@ public class Logout {
          RequestManager.getRequest(
                 SpecConfig.requestSpecification(),
                 Constants.LOGOUT_URL
-        );
+         );
          Driver.driverRun().manage().deleteAllCookies();
-        Driver.driverRun().navigate().refresh();
+         Driver.driverRun().navigate().refresh();
     }
 }
