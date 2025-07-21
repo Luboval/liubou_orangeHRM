@@ -2,7 +2,6 @@ package eu.senla.tests.login;
 
 import eu.senla.management.auth.Logout;
 import eu.senla.management.common.Constants;
-import eu.senla.management.loginstrategy.ApiLoginStrategy;
 import eu.senla.pages.login.ErrorLoginPage;
 import eu.senla.pages.login.LoginPage;
 import eu.senla.pages.login.SuccessfulLoginPage;
@@ -14,27 +13,28 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 public class LoginTest extends BaseTest {
-  public LoginTest() {
-    super(new ApiLoginStrategy());
-  }
 
-  @BeforeMethod
-  void logout() {
+  @BeforeMethod (alwaysRun = true)
+  public void logout() {
     Logout.logout();
   }
 
-  @Test (testName = "Test login with valid credentials")
+  @Test (testName = "Test login with valid credentials", groups = {"smoke", "regression"})
   public void testLoginWithValidCredentials() {
+    System.out.println("starting Test login with valid credentials");
     SuccessfulLoginPage successfulLogin = new LoginPage()
              .visitLoginPage()
              .loginWithValidCredentials();
 
     //Url Validation;
     Assert.assertEquals(successfulLogin.getSuccessfulLoginPageUrl(), Constants.SUCCESSFUL_LOGIN_PAGE_URL, "GetCookie failed");
+
+    System.out.println("Finish Test login with valid credentials");
   }
 
-  @Test (testName = "Test login with incorrect credentials",  dataProvider = "getIncorrectCredentials", dataProviderClass = ProjectDataProvider.class)
+  @Test (testName = "Test login with incorrect credentials", groups = {"regression"}, dataProvider = "getIncorrectCredentials", dataProviderClass = ProjectDataProvider.class)
   public void testLoginWithIncorrectCredentials(String username, String password) {
+    System.out.println("Start Test login with incorrect credentials");
     ErrorLoginPage errorLoginPage = new LoginPage()
             .visitLoginPage()
             .loginWithIncorrectCredentials(username, password);
@@ -43,5 +43,6 @@ public class LoginTest extends BaseTest {
             softAssert.assertEquals(errorLoginPage.getErrorMessage(), "Invalid credentials", "Message is not correct");
             softAssert.assertEquals(errorLoginPage.getErrorIconColor(), Constants.ERROR_ICON_COLOR);
             softAssert.assertAll();
+    System.out.println("Finish Test login with incorrect credentials");
   }
 }

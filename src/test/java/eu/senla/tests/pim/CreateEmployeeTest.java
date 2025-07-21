@@ -1,44 +1,18 @@
 package eu.senla.tests.pim;
 
 import eu.senla.elements.Employee;
-import eu.senla.management.loginstrategy.ApiLoginStrategy;
+import eu.senla.management.dataactions.CreateEntity;
 import eu.senla.pages.pimpages.PimPage;
 import eu.senla.tests.BaseTest;
-import net.bytebuddy.utility.RandomString;
-import net.datafaker.Faker;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 public class CreateEmployeeTest extends BaseTest {
-    private Employee employee;
-    Faker faker = new Faker();
+    private final Employee employee = CreateEntity.generateEmployee();
 
-    public CreateEmployeeTest() {
-        super(new ApiLoginStrategy());
-    }
-
-
-    @BeforeTest
-    void generateEmployee() {
-        employee = Employee.builder()
-                .firstName(faker.name().firstName())
-                .middleName(faker.name().nameWithMiddle())
-                .lastName(faker.name().lastName())
-                .userName(faker.internet().username())
-                .password(RandomString.make() + "#*" + Math.random())
-                .build();
-
-    }
-
-//    @BeforeTest
-//    void loginBeforeTest() {
-//        BaseTest login = new CreateEmployeeTest();
-//        login.login();
-//    }
-
-    @Test (testName = "Create employee with valid credentials")
+    @Test (testName = "Create employee with valid credentials", groups = {"smoke", "regression"})
     public void testCreateEmployee() {
+        System.out.println("Start Create employee with valid credentials");
         boolean successfulCreateEmployee = new PimPage()
                 .switchToPimPage()
                 .openAddEmployeeForm()
@@ -46,6 +20,6 @@ public class CreateEmployeeTest extends BaseTest {
                 .successfulCreateUser();
 
         Assert.assertTrue(successfulCreateEmployee);
+        System.out.println("Finish Create employee with valid credentials");
     }
-
 }

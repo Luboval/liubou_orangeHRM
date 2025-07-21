@@ -19,6 +19,7 @@ public class AssignLeavePage {
     private By assignButtonLocator = By.cssSelector("button[type='submit']");
     private By confirmFormLocator = By.xpath("//*[@role='document']");
     private By okButtonLocator = By.xpath("//*[@role='document']//button[2]");
+    private By successMessageLocator = By.cssSelector("[aria-live='assertive']");
 
 
 
@@ -62,5 +63,9 @@ public class AssignLeavePage {
 
     public String getLeaveTypeLabelAttr(String attribute) {
         return BaseActions.getValue(leaveTypeLabelLocator, attribute);
+    }
+
+    public String getSuccessMessageText(String attribute) {
+        return BaseActions.getValue(successMessageLocator, attribute);
     }
 }

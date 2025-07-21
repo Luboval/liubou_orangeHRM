@@ -12,6 +12,7 @@ public class Constants {
     public static final String PERSONAL_DETAILS_FORM = "/pim/viewPersonalDetails/empNumber/";
     public static final String ATTRIBUTE_PLACEHOLDER = "placeholder";
     public static final String ATTRIBUTE_VALUE = "_value";
+    public static final String ATTRIBUTE_TEXTCONTENT = "textContent";
     public static final String DATE_PLACEHOLDER = "yyyy-dd-mm";
     public static final String ERROR_ICON_COLOR = "rgba(235, 9, 16, 1)";
     public static final String LOGOUT_URL = "/auth/logout";

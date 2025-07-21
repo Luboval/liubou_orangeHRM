@@ -1,41 +1,23 @@
 package eu.senla.tests.recruitment;
 
 import eu.senla.elements.Candidate;
-import eu.senla.management.loginstrategy.ApiLoginStrategy;
+import eu.senla.management.dataactions.CreateEntity;
 import eu.senla.pages.recruitment.RecruitmentCandidatesPage;
 import eu.senla.tests.BaseTest;
-import net.datafaker.Faker;
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 public class CreateCandidateTest extends BaseTest {
-    private Candidate candidate;
+    private final Candidate candidate = CreateEntity.generateCandidate();
 
-    public CreateCandidateTest() {
-        super(new ApiLoginStrategy());
-    }
-
-
-    @BeforeClass
-    void generateCandidate() {
-        Faker faker = new Faker();
-        candidate = Candidate.builder()
-                .firstName(faker.name().firstName())
-                .middleName(faker.name().nameWithMiddle())
-                .lastName(faker.name().lastName())
-                .email(faker.internet().emailAddress())
-                .contactNumber(faker.phoneNumber().phoneNumber())
-                .filePath("src/test/resources/files/Candidate.pdf")
-                .build();
-    }
-
-
-    @Test (testName = "Create Candidate")
+    @Test (testName = "Create Candidate", groups = {"smoke", "regression"})
     public void createCandidateTest() {
+        System.out.println("Start Create Candidate");
         RecruitmentCandidatesPage recruitmentCandidatesPage = new RecruitmentCandidatesPage()
                 .addCandidate(candidate);
 
         Assert.assertEquals(recruitmentCandidatesPage.getProfileFirsName("value"), candidate.getFirstName(), "Incorrect");
+
+        System.out.println("Finish Create Candidate");
     }
 }
