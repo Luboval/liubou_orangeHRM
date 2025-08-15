@@ -2,6 +2,7 @@ package eu.senla.management.common;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 public final class Driver {
     private static WebDriver driver;
@@ -11,7 +12,11 @@ public final class Driver {
 
     public static WebDriver driverRun() {
         if (driver == null) {
-            driver = new ChromeDriver();
+            switch (System.getProperty("browser").toLowerCase()) {
+                case "chrome" -> driver = new ChromeDriver();
+                case "firefox" -> driver = new FirefoxDriver();
+                default -> throw new IllegalArgumentException("Unknown browser");
+            }
             driver.manage().window().maximize();
         }
         return driver;

@@ -13,4 +13,5 @@
     <suppress checks="MagicNumber"/>
     <suppress checks="VisibilityModifier"/>
     <suppress checks="EmptyStatement"/>
+    <suppress checks="InnerAssignment"/>
 </suppressions>
