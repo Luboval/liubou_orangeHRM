@@ -3,6 +3,7 @@
 <suite name="All Test Suite" parallel="classes" thread-count="3">
     <listeners>
         <listener class-name="eu.senla.listeners.SuiteXmlTransformer"/>
+        <listener class-name="eu.senla.listeners.ScreenshotListener"/>
     </listeners>
 
 

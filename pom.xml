@@ -27,7 +27,7 @@
         <jackson.version>2.19.1</jackson.version>
         <!-- test run properties -->
         <browser.name>chrome</browser.name>
-        <thread.count.value>5</thread.count.value>
+        <thread.count.value>2</thread.count.value>
         <parallel.value>classes</parallel.value>
 
     </properties>
