@@ -6,7 +6,7 @@ import org.testng.xml.XmlSuite;
 import java.util.List;
 
 
-public class SuiteXmlTransformer implements IAlterSuiteListener{
+public class SuiteXmlTransformer implements IAlterSuiteListener {
     @Override
     public void alter(List<XmlSuite> suites) {
         String threadCount = System.getProperty("thread-count", "1");
