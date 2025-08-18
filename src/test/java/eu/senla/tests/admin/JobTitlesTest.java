@@ -8,7 +8,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class JobTitlesTest extends BaseTest {
-    private final Title title = CreateEntity.createTitle();;
+    private final Title title = CreateEntity.createTitle();
 
     @Test (testName = "Create Job Title", groups = {"smoke", "regression"})
     public void addJobTitleTest() {
@@ -22,7 +22,6 @@ public class JobTitlesTest extends BaseTest {
 
     @Test (testName = "Delete Job Title", groups = {"regression"})
     public void deleteJobTitleTest() {
-
         JobAdminPage page = new JobAdminPage();
         Assert.assertTrue(page.getAllTitles().contains(title.getJobTitle()), "JobTitle is missing");
         page.deleteTitle(title);
