@@ -19,7 +19,7 @@ public class LoginTest extends BaseTest {
     Logout.logout();
   }
 
-  @Test (testName = "Test login with valid credentials", groups = {"smoke", "regression"})
+  @Test (testName = "Test login with valid credentials", groups = {"smoke", "regression", "sm"})
   public void testLoginWithValidCredentials() {
     System.out.println("starting Test login with valid credentials");
     SuccessfulLoginPage successfulLogin = new LoginPage()

@@ -9,6 +9,7 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
+        <!-- versions-->
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <maven.compiler.release>17</maven.compiler.release>
@@ -24,6 +25,11 @@
         <jsoup.version>1.21.1</jsoup.version>
         <datafaker.version>2.4.3</datafaker.version>
         <jackson.version>2.19.1</jackson.version>
+        <!-- test run properties -->
+        <browser.name>chrome</browser.name>
+        <thread.count.value>2</thread.count.value>
+        <parallel.value>classes</parallel.value>
+
     </properties>
 
     <dependencies>
@@ -32,7 +38,7 @@
             <groupId>org.testng</groupId>
             <artifactId>testng</artifactId>
             <version>${testng.version}</version>
-            <scope>test</scope>
+            <!--scope>test</scope -->
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
         <dependency>
@@ -143,6 +149,13 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${mvnsurefire.version}</version>
+                <configuration>
+                    <systemPropertyVariables>
+                        <browser>${browser.name}</browser>
+                        <thread-count>${thread.count.value}</thread-count>
+                        <parallel>${parallel.value}</parallel>
+                    </systemPropertyVariables>
+                </configuration>
             </plugin>
         </plugins>
     </build>

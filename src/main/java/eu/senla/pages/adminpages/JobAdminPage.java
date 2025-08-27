@@ -57,7 +57,7 @@ public class JobAdminPage {
     }
 
     public List<String> getAllTitles() {
-
+        switchDirectlyToJobTitlesPage();
         waitForJobTable();
 
         List<WebElement> webElement = Driver.driverRun().findElements(jobTitleListLocator);

@@ -5,8 +5,8 @@ import eu.senla.management.common.Driver;
 import eu.senla.management.loginstrategy.ApiLoginStrategy;
 import eu.senla.management.loginstrategy.LoginStrategy;
 import org.testng.annotations.AfterClass;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 
 public class BaseTest {
@@ -21,20 +21,24 @@ public class BaseTest {
         this.loginStrategy = loginStrategy;
     }
 
-    @BeforeClass(alwaysRun = true)
+    @BeforeMethod(alwaysRun = true)
     public void login() {
         loginStrategy.login();
         System.out.println("Login");
     }
 
-    @AfterClass(alwaysRun = true)
+    @AfterMethod(alwaysRun = true)
     public void logout() {
         Logout.logout();
         System.out.println("Logout");
+
+
     }
 
-    @AfterSuite(alwaysRun = true)
+    @AfterClass(alwaysRun = true)
     public void tearDown() {
-        Driver.driverTearDown();
+        if (Driver.driverRun() != null) {
+            Driver.driverTearDown();
+        }
     }
 }

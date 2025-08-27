@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite" parallel="classes" thread-count="3">
+    <listeners>
+        <listener class-name="eu.senla.listeners.SuiteXmlTransformer"/>
+        <listener class-name="eu.senla.listeners.ScreenshotListener"/>
+    </listeners>
+
+
+    <test name="Test1">
+        <classes>
+            <class name="eu.senla.tests.pim.CreateEmployeeTest"/>
+            <class name="eu.senla.tests.admin.JobTitlesTest"/>
+            <class name="eu.senla.tests.admin.UserManagementAdminPageTest"/>
+        </classes>
+    </test>
+</suite>
