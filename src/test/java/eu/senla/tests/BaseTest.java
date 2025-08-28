@@ -4,11 +4,12 @@ import eu.senla.management.auth.Logout;
 import eu.senla.management.common.Driver;
 import eu.senla.management.loginstrategy.ApiLoginStrategy;
 import eu.senla.management.loginstrategy.LoginStrategy;
+import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-
+@Slf4j
 public class BaseTest {
     private final LoginStrategy loginStrategy;
 
@@ -24,13 +25,13 @@ public class BaseTest {
     @BeforeMethod(alwaysRun = true)
     public void login() {
         loginStrategy.login();
-        System.out.println("Login");
+        log.info("Login");
     }
 
     @AfterMethod(alwaysRun = true)
     public void logout() {
         Logout.logout();
-        System.out.println("Logout");
+        log.info("Logout");
 
 
     }

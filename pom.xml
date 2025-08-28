@@ -25,10 +25,17 @@
         <jsoup.version>1.21.1</jsoup.version>
         <datafaker.version>2.4.3</datafaker.version>
         <jackson.version>2.19.1</jackson.version>
+        <slf4j.version>2.0.17</slf4j.version>
+        <selenide.version>7.10.0</selenide.version>
         <!-- test run properties -->
         <browser.name>chrome</browser.name>
         <thread.count.value>2</thread.count.value>
         <parallel.value>classes</parallel.value>
+        <selenoidEnable.value>true</selenoidEnable.value>
+        <selenoidUrl.value>http://localhost:4444/wd/hub</selenoidUrl.value>
+        <headless.value>false</headless.value>
+        <videoTestName.value>test</videoTestName.value>
+
 
     </properties>
 
@@ -89,6 +96,18 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>33.4.8-jre</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-simple -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.codeborne/selenide -->
+        <dependency>
+            <groupId>com.codeborne</groupId>
+            <artifactId>selenide</artifactId>
+            <version>${selenide.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
@@ -154,6 +173,10 @@
                         <browser>${browser.name}</browser>
                         <thread-count>${thread.count.value}</thread-count>
                         <parallel>${parallel.value}</parallel>
+                        <selenoidEnable>${selenoidEnable.value}</selenoidEnable>
+                        <selenoidUrl>${selenoidUrl.value}</selenoidUrl>
+                        <headless>${headless.value}</headless>
+                        <videoTestName>${videoTestName.value}</videoTestName>
                     </systemPropertyVariables>
                 </configuration>
             </plugin>
