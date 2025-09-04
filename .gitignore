@@ -15,8 +15,8 @@ target/
 *.ipr
 
 ### Allure ###
-.allure
-allure-results
+.allure/
+allure-results/
 
 ### Eclipse ###
 .apt_generated
