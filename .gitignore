@@ -15,12 +15,8 @@ target/
 *.ipr
 
 ### Allure ###
-.allure
-allure-results
 .allure/
-allure-results/*.json
-.allure/allure-2.30.0
-.allure/allure-2.30.0/*
+allure-results/
 
 ### Eclipse ###
 .apt_generated

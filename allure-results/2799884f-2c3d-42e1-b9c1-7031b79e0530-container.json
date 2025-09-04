@@ -1,1 +1,0 @@
-{"uuid":"2799884f-2c3d-42e1-b9c1-7031b79e0530","name":"eu.senla.tests.pim.CreateEmployeeTest","children":["85481e80-14d1-48ed-8b69-4481f0a6ec68"],"befores":[],"afters":[{"name":"tearDown","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1756905631515,"stop":1756905631798}],"start":1756905607992,"stop":1756905641315}

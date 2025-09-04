@@ -1,1 +1,0 @@
-{"uuid":"b67e018f-6893-42b4-b92e-5f82f39fbbfb","name":"eu.senla.tests.BaseTest.login","children":["30632bc9-6b51-47ff-af5e-16da521cd842"],"description":"","befores":[{"name":"login","status":"passed","stage":"finished","description":"","steps":[],"attachments":[],"parameters":[],"start":1756905631801,"stop":1756905637099}],"afters":[],"start":1756905631801,"stop":1756905637099}
