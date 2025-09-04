@@ -8,7 +8,7 @@ pipeline {
             steps {
                 echo 'Starting build...'
                 // Сборка проекта (компиляция и упаковка без запуска тестов):
-                sh 'mvn clean package -DskipTests'
+                powershell 'mvn clean package -DskipTests'
             }
         }
         stage('Test') {
