@@ -10,7 +10,7 @@ import org.openqa.selenium.support.ui.FluentWait;
 import java.time.Duration;
 
 public class Wait {
-    private static int timeoutSec = 300;
+    private static int timeoutSec = 60;
     private static int poolingSec = 1;
 
     public static WebElement wait(ExpectedCondition<WebElement> expectedConditions) {

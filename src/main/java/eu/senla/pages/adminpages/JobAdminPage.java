@@ -6,6 +6,7 @@ import eu.senla.management.dataactions.ReadPropertyFile;
 import eu.senla.management.common.BaseActions;
 import eu.senla.management.common.Driver;
 import eu.senla.management.common.Wait;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -31,6 +32,7 @@ public class JobAdminPage {
 
 
 
+    @Step("Open page")
     public void switchDirectlyToJobTitlesPage() {
         BaseActions.visit(ReadPropertyFile.getProperty("BASEURL") + Constants.JOB_TITLES_PAGE);
     }
@@ -75,6 +77,7 @@ public class JobAdminPage {
         return new JobAdminPage();
     }
 
+    @Step("Create title")
     public JobAdminPage createTitle(Title title) {
         switchDirectlyToJobTitlesPage();
         clickAddTitleButton();

@@ -4,6 +4,7 @@
     <listeners>
         <listener class-name="eu.senla.listeners.SuiteXmlTransformer"/>
         <listener class-name="eu.senla.listeners.ScreenshotListener"/>
+        <listener class-name="eu.senla.listeners.SelenideVideoNameListener"/>
     </listeners>
 
 
