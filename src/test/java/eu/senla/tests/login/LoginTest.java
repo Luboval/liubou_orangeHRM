@@ -16,11 +16,10 @@ import org.testng.asserts.SoftAssert;
 @Slf4j
 public class LoginTest extends BaseTest {
 
-  @BeforeMethod (alwaysRun = true)
+  @BeforeMethod(alwaysRun = true)
   public void logout() {
     Logout.logout();
   }
-
   @Test (testName = "Test login with valid credentials", groups = {"smoke", "regression", "sm"})
   public void testLoginWithValidCredentials() {
     log.info("Starting Test login with valid credentials");
