@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Slf4j
 public class ScreenshotListener implements ITestListener {

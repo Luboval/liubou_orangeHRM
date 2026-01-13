@@ -1,5 +1,6 @@
 package eu.senla.tests.login;
 
+import eu.senla.management.auth.Logout;
 import eu.senla.management.common.Constants;
 import eu.senla.pages.login.ErrorLoginPage;
 import eu.senla.pages.login.LoginPage;
@@ -8,14 +9,17 @@ import eu.senla.tests.BaseTest;
 import eu.senla.tests.ProjectDataProvider;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 @Slf4j
 public class LoginTest extends BaseTest {
 
-
-
+  @BeforeMethod(alwaysRun = true)
+  public void logout() {
+    Logout.logout();
+  }
   @Test (testName = "Test login with valid credentials", groups = {"smoke", "regression", "sm"})
   public void testLoginWithValidCredentials() {
     log.info("Starting Test login with valid credentials");
