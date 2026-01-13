@@ -65,8 +65,4 @@ public class RequestManager {
                 //.getCookie("orangehrm")
                 //.getBody().asString();
     }
-
-
-
-
 }
