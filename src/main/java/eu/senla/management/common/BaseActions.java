@@ -1,6 +1,6 @@
 package eu.senla.management.common;
 
-import eu.senla.management.dataactions.ReadPropertyFile;
+import eu.senla.management.utils.ReadPropertyFile;
 import eu.senla.management.auth.GetCookie;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Cookie;
@@ -9,6 +9,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 import java.io.File;
+
+import static eu.senla.management.common.Wait.*;
 
 public class BaseActions {
 
@@ -37,11 +39,11 @@ public class BaseActions {
   }
 
   public static void clickButton(By locator) {
-     Wait.waitFInteractable(locator).click();
+     waitFInteractable(locator).click();
   }
 
   public static void clickElement(By locator) {
-    Wait.waitFPresence(locator).click();
+    waitFPresence(locator).click();
   }
 
   public static WebElement moveToElement(WebElement element) {
@@ -55,16 +57,22 @@ public class BaseActions {
   }
 
   public static WebElement displayAfterClick(By locatorToClick, By locatorToDisplay) {
-    Wait.waitFIsDisplayed(locatorToClick).click();
-   return Wait.waitFIsDisplayed(locatorToDisplay);
+    waitFIsDisplayed(locatorToClick).click();
+   return waitFIsDisplayed(locatorToDisplay);
+  }
+
+  public static void clickAfterClick(By firstLocatorToClick, By secondLocatorToClick) {
+    waitFIsDisplayed(firstLocatorToClick).click();
+    waitFIsDisplayed(secondLocatorToClick).click();
+
   }
 
   public static void submitButton(By locator) {
-    Wait.waitFInteractable(locator).submit();
+    waitFInteractable(locator).submit();
   }
 
   public static String getValue(By locator, String attribute) {
-    return Wait.waitFPresence(locator).getAttribute(attribute);
+    return waitFPresence(locator).getAttribute(attribute);
   }
 
   public static void uploadFile(By locator, String filename) {

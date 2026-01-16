@@ -3,7 +3,7 @@ package eu.senla.pages.pimpages;
 import eu.senla.management.common.BaseActions;
 import eu.senla.management.common.Constants;
 import eu.senla.management.common.Wait;
-import eu.senla.management.dataactions.ReadPropertyFile;
+import eu.senla.management.utils.ReadPropertyFile;
 import org.openqa.selenium.By;
 
 public class PersonalDetailsPage {

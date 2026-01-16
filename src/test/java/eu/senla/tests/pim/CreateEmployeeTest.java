@@ -1,7 +1,7 @@
 package eu.senla.tests.pim;
 
 import eu.senla.elements.Employee;
-import eu.senla.management.dataactions.CreateEntity;
+import eu.senla.management.dataactions.create.CreateEntity;
 import eu.senla.pages.pimpages.PimPage;
 import eu.senla.tests.BaseTest;
 import lombok.extern.slf4j.Slf4j;

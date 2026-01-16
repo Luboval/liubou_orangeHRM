@@ -1,11 +1,12 @@
 package eu.senla.pages.recruitment;
 
-import eu.senla.management.common.Constants;
 import eu.senla.elements.Candidate;
-import eu.senla.management.dataactions.ReadPropertyFile;
-import eu.senla.management.common.BaseActions;
-import eu.senla.management.common.Wait;
+import eu.senla.management.common.Constants;
+import eu.senla.management.utils.ReadPropertyFile;
 import org.openqa.selenium.By;
+
+import static eu.senla.management.common.BaseActions.*;
+import static eu.senla.management.common.Wait.waitFPresence;
 
 public class RecruitmentCandidatesPage {
     //common
@@ -26,50 +27,73 @@ public class RecruitmentCandidatesPage {
     private By profileFirstNameLocator = By.cssSelector("[name='firstName']");
 
     public void switchDirectlyToRecruitmentCandidatesPage() {
-        BaseActions.visit(ReadPropertyFile.getProperty("BASEURL") + Constants.RECRUITMENT_PAGE);
+        visit(ReadPropertyFile.getProperty("BASEURL") + Constants.RECRUITMENT_PAGE);
     }
 
     public RecruitmentCandidatesPage openAddCandidateForm() {
         switchDirectlyToRecruitmentCandidatesPage();
-        BaseActions.clickButton(addCandidateButtonLocator);
-        Wait.waitFPresence(addCandidateFormTitleLocator);
+        clickButton(addCandidateButtonLocator);
+        waitFPresence(addCandidateFormTitleLocator);
         return new RecruitmentCandidatesPage();
 
     }
 
-    public RecruitmentCandidatesPage addCandidate(Candidate candidate) {
+    public RecruitmentCandidatesPage addCandidateWithFile(Candidate candidate) {
         openAddCandidateForm();
-        BaseActions.fillInput(firstNameInputLocator, candidate.getFirstName());
-        BaseActions.fillInput(middleNameInputLocator, candidate.getMiddleName());
-        BaseActions.fillInput(lastNameInputLocator, candidate.getLastName());
-        BaseActions.fillInput(emailInputLocator, candidate.getEmail());
-        BaseActions.fillInput(contactNumberLocator, candidate.getContactNumber());
-        BaseActions.uploadFile(resumeInputLocator, candidate.getFilePath());
-        BaseActions.clickButton(saveButtonLocator);
-        Wait.waitFPresence(candidateProfileFormLocator);
+        fillInput(firstNameInputLocator, candidate.getFirstName());
+        fillInput(middleNameInputLocator, candidate.getMiddleName());
+        fillInput(lastNameInputLocator, candidate.getLastName());
+        fillInput(emailInputLocator, candidate.getEmail());
+        fillInput(contactNumberLocator, candidate.getContactNumber());
+        uploadFile(resumeInputLocator, candidate.getFilePath());
+        clickButton(saveButtonLocator);
+        waitFPresence(candidateProfileFormLocator);
 
         return  new RecruitmentCandidatesPage();
     }
 
+    public RecruitmentCandidatesPage addCandidateWithoutFile(Candidate candidate) {
+        openAddCandidateForm();
+        fillInput(firstNameInputLocator, candidate.getFirstName());
+        fillInput(middleNameInputLocator, candidate.getMiddleName());
+        fillInput(lastNameInputLocator, candidate.getLastName());
+        fillInput(emailInputLocator, candidate.getEmail());
+        fillInput(contactNumberLocator, candidate.getContactNumber());
+        clickButton(saveButtonLocator);
+        waitFPresence(candidateProfileFormLocator);
+        return  new RecruitmentCandidatesPage();
+    }
+
+    public ErrorRecruitmentCandidatesPage errorAddCandidateWithoutFile(Candidate candidate) {
+        openAddCandidateForm();
+        fillInput(firstNameInputLocator, candidate.getFirstName());
+        fillInput(middleNameInputLocator, candidate.getMiddleName());
+        fillInput(lastNameInputLocator, candidate.getLastName());
+        fillInput(emailInputLocator, candidate.getEmail());
+        fillInput(contactNumberLocator, candidate.getContactNumber());
+        clickButton(saveButtonLocator);
+        return  new ErrorRecruitmentCandidatesPage();
+    }
+
     public String getProfileFirsName(String attribute) {
-        return BaseActions.getValue(profileFirstNameLocator, attribute);
+        return getValue(profileFirstNameLocator, attribute);
     }
 
     public String getFirstNameInputAttr(String attribute) {
-        return BaseActions.getValue(firstNameInputLocator, attribute);
+        return getValue(firstNameInputLocator, attribute);
     }
 
     public String getMiddleNameInputAttr(String attribute) {
-        return BaseActions.getValue(middleNameInputLocator, attribute);
+        return getValue(middleNameInputLocator, attribute);
     }
     public String getLastNameInputAttr(String attribute) {
-        return BaseActions.getValue(lastNameInputLocator, attribute);
+        return getValue(lastNameInputLocator, attribute);
     }
     public String getEmailInputAttr(String attribute) {
-        return BaseActions.getValue(emailInputLocator, attribute);
+        return getValue(emailInputLocator, attribute);
     }
     public String getContactNumberInputAttr(String attribute) {
-        return BaseActions.getValue(contactNumberLocator, attribute);
+        return getValue(contactNumberLocator, attribute);
     }
 
 }

@@ -1,11 +1,10 @@
-package eu.senla.management.dataactions;
+package eu.senla.management.dataactions.create;
 
 import eu.senla.apiactions.createemployee.CreateEmployeeRequest;
 import eu.senla.apiactions.createemployee.CreateEmployeeResponse;
 import eu.senla.apiactions.createemployee.EmployeeRequest;
 import eu.senla.apiactions.createemployee.SendCreateEmployeeRequest;
 import eu.senla.elements.AssignLeave;
-import eu.senla.elements.Candidate;
 import eu.senla.elements.Employee;
 import eu.senla.elements.Title;
 import net.bytebuddy.utility.RandomString;
@@ -59,17 +58,6 @@ public class CreateEntity {
 
         return Pair.of(assigneLeave, employeeName);
 
-    }
-
-    public static Candidate generateCandidate() {
-        return Candidate.builder()
-                .firstName(faker.name().firstName())
-                .middleName(faker.name().nameWithMiddle())
-                .lastName(faker.name().lastName())
-                .email(faker.internet().emailAddress())
-                .contactNumber(faker.phoneNumber().phoneNumber())
-                .filePath("src/test/resources/files/Candidate.pdf")
-                .build();
     }
 
     public static HashMap<String, String> createEmployee() {

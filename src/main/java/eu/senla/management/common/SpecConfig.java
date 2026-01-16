@@ -2,9 +2,10 @@ package eu.senla.management.common;
 
 import eu.senla.management.auth.CookieRequest;
 import eu.senla.management.auth.GetToken;
-import eu.senla.management.dataactions.ReadPropertyFile;
+import eu.senla.management.utils.ReadPropertyFile;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
+import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
@@ -45,8 +46,8 @@ public class SpecConfig {
     public static ResponseSpecification responseTokenSpecification() {
         return new ResponseSpecBuilder()
                 .expectContentType("text/html")
-               // .log(LogDetail.ALL)
                 .expectStatusCode(200)
+                //.log(LogDetail.ALL)
                 .build();
     }
 
@@ -55,13 +56,13 @@ public class SpecConfig {
                 .setBaseUri(ReadPropertyFile.getProperty("BASEURL"))
                 .addCookie(String.valueOf(Driver.driverRun().manage().getCookieNamed("orangehrm")))
                 .setContentType(ContentType.JSON)
-                //.log(LogDetail.ALL)
+                .log(LogDetail.ALL)
                 .build();
     }
 
     public static ResponseSpecification responseSpecification() {
         return new ResponseSpecBuilder()
-               // .log(LogDetail.ALL)
+                .log(LogDetail.ALL)
                 .expectStatusCode(200)
                 .build();
     }

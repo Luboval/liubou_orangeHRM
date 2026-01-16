@@ -1,7 +1,7 @@
 package eu.senla.pages.login;
 
 import eu.senla.management.common.BaseActions;
-import eu.senla.management.dataactions.ReadPropertyFile;
+import eu.senla.management.utils.ReadPropertyFile;
 import org.openqa.selenium.By;
 
 public class LoginPage  {

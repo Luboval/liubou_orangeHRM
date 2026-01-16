@@ -2,7 +2,7 @@ package eu.senla.pages.adminpages;
 
 import eu.senla.management.common.Constants;
 import eu.senla.elements.Title;
-import eu.senla.management.dataactions.ReadPropertyFile;
+import eu.senla.management.utils.ReadPropertyFile;
 import eu.senla.management.common.BaseActions;
 import eu.senla.management.common.Driver;
 import eu.senla.management.common.Wait;

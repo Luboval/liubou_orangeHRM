@@ -1,0 +1,26 @@
+{
+ "CandidateWithWrongName": {
+        "firstName" : "",
+        "middleName" : "some middle name",
+        "lastName" : "some last name",
+        "email" : "some@email.ru",
+        "contactNumber" : "1111111",
+        "filePath" : null
+ },
+  "CandidateWithWrongEmail": {
+    "firstName" : "some first name",
+    "middleName" : "some middle name",
+    "lastName" : "some last name",
+    "email" : "some.email.ru",
+    "contactNumber" : "1111111",
+    "filePath" : null
+  },
+  "CandidateWithWrongFirstNameAndEmail": {
+    "firstName" : "",
+    "middleName" : "some middle name",
+    "lastName" : "some last name",
+    "email" : "",
+    "contactNumber" : "1111111",
+    "filePath" : null
+  }
+}

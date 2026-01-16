@@ -1,19 +1,20 @@
-package eu.senla.elements;
+package eu.senla.elements.api.users;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
 @Builder
-@Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Candidate {
+public class UserDataEmployee {
+    private int empNumber;
+    private String employeeId;
     private String firstName;
     private String middleName;
     private String lastName;
-    private String email;
-    private String contactNumber;
-    private String filePath;
+    private Object terminationId;
 }

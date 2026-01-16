@@ -1,7 +1,7 @@
 package eu.senla.tests.assignleave;
 
 import eu.senla.management.common.Constants;
-import eu.senla.management.dataactions.CreateEntity;
+import eu.senla.management.dataactions.create.CreateEntity;
 import eu.senla.pages.leave.AssignLeavePage;
 import eu.senla.tests.BaseTest;
 import org.testng.Assert;

@@ -5,6 +5,8 @@ import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 import lombok.experimental.UtilityClass;
 
+import java.util.Map;
+
 import static io.restassured.RestAssured.given;
 
 @UtilityClass
@@ -36,6 +38,25 @@ public class RequestManager {
                 .when()
                 .get()
                 .then();
+    }
+
+    public static <T> T getRequestWithQueryParameters(
+            RequestSpecification requestSpecification,
+            ResponseSpecification responseSpecification,
+            String path,
+
+            Map<String,?> queryParametersMap,
+            Class<T> clazz) {
+        return given()
+                .spec(requestSpecification)
+                .basePath(path)
+                .queryParams(queryParametersMap)
+                .when()
+                .get()
+                .then()
+                .spec(responseSpecification)
+                .extract()
+                .as(clazz);
     }
 
     public static String cookieRequest(

@@ -1,7 +1,7 @@
 package eu.senla.pages.pimpages;
 
 import eu.senla.elements.Employee;
-import eu.senla.management.dataactions.ReadPropertyFile;
+import eu.senla.management.utils.ReadPropertyFile;
 import eu.senla.management.common.BaseActions;
 import eu.senla.management.common.Wait;
 import eu.senla.pages.SidePanelPage;

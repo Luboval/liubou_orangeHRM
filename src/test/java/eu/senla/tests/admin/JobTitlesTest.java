@@ -1,7 +1,7 @@
 package eu.senla.tests.admin;
 
 import eu.senla.elements.Title;
-import eu.senla.management.dataactions.CreateEntity;
+import eu.senla.management.dataactions.create.CreateEntity;
 import eu.senla.pages.adminpages.JobAdminPage;
 import eu.senla.tests.BaseTest;
 import lombok.extern.slf4j.Slf4j;

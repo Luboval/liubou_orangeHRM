@@ -18,5 +18,13 @@ public class Constants {
     public static final String LOGOUT_URL = "/auth/logout";
     public static final String SUCCESSFUL_LOGIN_PAGE_URL = "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index";
     public static final String LOGIN_PAGE_URL = "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login";
+    public static final String GET_USERS_API_POINT = "/api/v2/admin/users";
+    public static final String ERROR_FIELD_BORDER_COLOR = "rgba(235, 9, 16, 1)";
+    public static final String ATTRIBUTE_BORDER_TOP_COLOR = "border-top-color";
+    public static final String ATTRIBUTE_BORDER_RIGHT_COLOR = "border-right-color";
+    public static final String ATTRIBUTE_BORDER_BOTTOM_COLOR = "border-bottom-color";
+    public static final String ATTRIBUTE_BORDER_LEFT_COLOR = "border-left-color";
+    public static final String ATTRIBUTE_CSS_COLOR = "color";
+
 
 }

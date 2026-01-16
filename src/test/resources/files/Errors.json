@@ -1,0 +1,8 @@
+{
+  "required": {
+    "message" : "Required"
+  },
+  "wrongEmailFormat" : {
+    "message" : "Expected format: admin@example.com"
+  }
+}
