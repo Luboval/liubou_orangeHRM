@@ -1,7 +1,9 @@
 package eu.senla.pages.adminpages;
 
+import eu.senla.elements.UserManagementTable;
 import eu.senla.management.common.BaseActions;
 import eu.senla.management.common.Wait;
+import eu.senla.management.utils.table.Table;
 import eu.senla.pages.SidePanelPage;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
@@ -57,6 +59,21 @@ public class UserManagementAdminPage {
          String[] value = getValue(recordFoundLocator, ATTRIBUTE_TEXTCONTENT).split("\\)");
 
         return Integer.parseInt(value[0].trim().substring(1));
+
+     }
+
+     public Table<UserManagementTable> userManagementAdminPageTable() {
+        return   new Table<>(
+                Wait.waitFPresence(By.cssSelector(".oxd-table")),
+                cells -> new UserManagementTable(
+                        cells.get(0).getText(),
+                        cells.get(1).getText(),
+                        cells.get(2).getText(),
+                        cells.get(3).getText(),
+                        cells.get(4).getText(),
+                        cells.get(5).getText()
+                )
+        );
 
      }
 }

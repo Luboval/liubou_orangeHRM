@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public class Wait {
     private static int timeoutSec = 60;
@@ -21,6 +22,15 @@ public class Wait {
                 .until(expectedConditions);
     }
 
+    public static List<WebElement> waitAll(ExpectedCondition<List<WebElement>> expectedConditions) {
+        return new FluentWait<>(Driver.driverRun())
+                .withTimeout(Duration.ofSeconds(timeoutSec))
+                .pollingEvery(Duration.ofSeconds(poolingSec))
+                .ignoring(NoSuchElementException.class)
+                .until(expectedConditions);
+    }
+
+
     public static boolean waitBool(ExpectedCondition<Boolean> expectedConditions) {
         return new FluentWait<>(Driver.driverRun())
                 .withTimeout(Duration.ofSeconds(timeoutSec))
@@ -33,6 +43,12 @@ public class Wait {
 
         return wait(ExpectedConditions.presenceOfElementLocated(locator));
     }
+
+    public static List<WebElement> waitFPresenceAll(By locator) {
+
+        return waitAll(ExpectedConditions.presenceOfAllElementsLocatedBy(locator));
+    }
+
 
 
     public static WebElement waitFIsDisplayed(By locator) {

@@ -7,10 +7,10 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
-public class ReadFromJson {
+public class ReadFromJsonFile {
     private static final ObjectMapper mapper = new ObjectMapper();
 
-    public static <K,V> Map<K, V> readFromJsonToMap(File file, TypeReference<Map<K, V>> typeRef) throws IOException {
+    public static <K,V> Map<K, V> readFromJsonFileToMap(File file, TypeReference<Map<K, V>> typeRef) throws IOException {
         return  mapper.readValue(file,typeRef);
     }
     // Parse a single object
@@ -20,14 +20,14 @@ public class ReadFromJson {
 
 
     // Parse a list of objects
-    public static <T> T readFromJsonToList(File file, TypeReference<T> typeRef) throws IOException {
+    public static <T> T readFromJsonFileToList(File file, TypeReference<T> typeRef) throws IOException {
         return mapper.readValue(file, typeRef);
     }
 
     //Usage
     // Single object User user = JReadFromJson.readFromJsonToObject(new File("user.json"), User.class);
-    // List of objects List<User> users = ReadFromJson.readFromJsonToList( new File("users.json"), new TypeReference<List<User>>() {} );
-    // Map Map<String, User> userMap = ReadFromJson.readFromJsonToMap( new File("usersMap.json"), new TypeReference<Map<String, User>>() {} );
+    // List of objects List<User> users = ReadFromJsonFile.readFromJsonToList( new File("users.json"), new TypeReference<List<User>>() {} );
+    // Map Map<String, User> userMap = ReadFromJsonFile.readFromJsonToMap( new File("usersMap.json"), new TypeReference<Map<String, User>>() {} );
 
 
 
