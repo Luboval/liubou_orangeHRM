@@ -63,8 +63,31 @@ public class RecruitmentCandidatesPage {
         waitFPresence(candidateProfileFormLocator);
         return  new RecruitmentCandidatesPage();
     }
+    public RecruitmentCandidatesPage addCandidateFromCsv(Candidate candidate) {
+    openAddCandidateForm();
+    fillInput(firstNameInputLocator, candidate.getFirstName());
+    fillInput(middleNameInputLocator, candidate.getMiddleName());
+    fillInput(lastNameInputLocator, candidate.getLastName());
+    fillInput(emailInputLocator, candidate.getEmail());
+    fillInput(contactNumberLocator, candidate.getContactNumber());
+    clickButton(saveButtonLocator);
+    waitFPresence(candidateProfileFormLocator);
+        return  new RecruitmentCandidatesPage();
+    }
 
-    public ErrorRecruitmentCandidatesPage errorAddCandidateWithoutFile(Candidate candidate) {
+    public RecruitmentCandidatesPage addCandidateFromXls(Candidate candidate) {
+        openAddCandidateForm();
+        fillInput(firstNameInputLocator, candidate.getFirstName());
+        fillInput(middleNameInputLocator, candidate.getMiddleName());
+        fillInput(lastNameInputLocator, candidate.getLastName());
+        fillInput(emailInputLocator, candidate.getEmail());
+        fillInput(contactNumberLocator, candidate.getContactNumber());
+        clickButton(saveButtonLocator);
+        waitFPresence(candidateProfileFormLocator);
+        return  new RecruitmentCandidatesPage();
+    }
+
+    public ErrorRecruitmentCandidatesPage errorAddCandidateFromJsonFile(Candidate candidate) {
         openAddCandidateForm();
         fillInput(firstNameInputLocator, candidate.getFirstName());
         fillInput(middleNameInputLocator, candidate.getMiddleName());
