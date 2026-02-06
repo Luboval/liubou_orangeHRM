@@ -11,7 +11,11 @@ import org.openqa.selenium.interactions.Actions;
 import java.io.File;
 import java.util.stream.Stream;
 
-import static eu.senla.management.common.Wait.*;
+import static eu.senla.management.common.Wait.waitFInteractable;
+import static eu.senla.management.common.Wait.waitFIsDisplayed;
+import static eu.senla.management.common.Wait.waitFPresence;
+import static eu.senla.management.common.Wait.waitFPresenceAll;
+
 
 public class BaseActions {
 
@@ -54,7 +58,7 @@ public class BaseActions {
   }
 
   public static void fillInput(By locator, String value) {
-    moveToElement(Wait.waitFInteractable(locator)).sendKeys(value);
+    moveToElement(waitFInteractable(locator)).sendKeys(value);
   }
 
   public static WebElement displayAfterClick(By locatorToClick, By locatorToDisplay) {
@@ -90,7 +94,7 @@ public class BaseActions {
   }
 
   public static WebElement clearWithKeys(By locator) {
-    WebElement webElement = moveToElement(Wait.waitFInteractable(locator));
+    WebElement webElement = moveToElement(waitFInteractable(locator));
     webElement.sendKeys(Keys.CONTROL + "a");
     webElement.sendKeys(Keys.DELETE);
     return webElement;

@@ -28,7 +28,7 @@ public class CreateCandidate {
     }
 
     public static Candidate createCandidateWithWrongAttributesAndNoFileToUpload(String typeOfWrongCandidate) throws IOException {
-         Map<String, Candidate> map = ReadFromJsonFile.readFromJsonFileToMap(new File("src/test/resources/files/CandidateData.json"), new TypeReference<Map<String, Candidate>>() {});
+         Map<String, Candidate> map = ReadFromJsonFile.readFromJsonFileToMap(new File("src/test/resources/files/CandidateData.json"), new TypeReference<Map<String, Candidate>>() { });
         return map.get(typeOfWrongCandidate);
     }
 

@@ -22,7 +22,7 @@ public class UserManagementTable extends DomainBase {
 
     @Override
     public String toString() {
-        return "new UserManagementTable("+checkbox + ", \"" + userName + ", \"" + userRole + ", \"" +employeeName + ", \"" +status + ", \"" + actions + "\")\n";
+        return "new UserManagementTable(" + checkbox + ", \"" + userName + ", \"" + userRole + ", \"" + employeeName + ", \"" + status + ", \"" + actions + "\")\n";
     }
 
 }

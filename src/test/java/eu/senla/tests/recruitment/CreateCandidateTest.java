@@ -12,7 +12,13 @@ import org.testng.asserts.SoftAssert;
 
 import java.io.IOException;
 
-import static eu.senla.management.common.Constants.*;
+
+import static eu.senla.management.common.Constants.ATTRIBUTE_BORDER_BOTTOM_COLOR;
+import static eu.senla.management.common.Constants.ATTRIBUTE_BORDER_LEFT_COLOR;
+import static eu.senla.management.common.Constants.ATTRIBUTE_BORDER_RIGHT_COLOR;
+import static eu.senla.management.common.Constants.ATTRIBUTE_BORDER_TOP_COLOR;
+import static eu.senla.management.common.Constants.ERROR_FIELD_BORDER_COLOR;
+import static eu.senla.management.common.Constants.ERROR_ICON_COLOR;
 import static eu.senla.management.dataactions.create.candidate.CreateCandidate.createCandidateWithWrongAttributesAndNoFileToUpload;
 import static eu.senla.management.dataactions.create.candidate.CreateCandidate.createCorrectCandidate;
 
@@ -38,7 +44,7 @@ public class CreateCandidateTest extends BaseTest {
         Candidate candidateFromCsv = CreateCandidate.createCorrectCandidateFromCsv();
 log.info("candidat" + candidateFromCsv.toString());
         RecruitmentCandidatesPage recruitmentCandidatesPage = new RecruitmentCandidatesPage()
-                .addCandidateFromCsv(candidateFromCsv);
+                .addCandidateWithoutFile(candidateFromCsv);
         Assert.assertEquals(recruitmentCandidatesPage.getProfileFirsName("value"), candidateFromCsv.getFirstName(), "Incorrect");
         log.info("Finishing create candidate from csv test");
     }
@@ -46,11 +52,11 @@ log.info("candidat" + candidateFromCsv.toString());
     @Test(testName = "Create candidate from xls", groups = {"smoke", "regression"})
     public void createCandidateFromXlsTest() throws Exception {
         log.info("Starting create candidate from xls test");
-        Candidate candidateFromCsv = CreateCandidate.createCorrectCandidateFromXls();
-        log.info("candidat" + candidateFromCsv.toString());
+        Candidate candidateFromXls = CreateCandidate.createCorrectCandidateFromXls();
+        log.info("candidat" + candidateFromXls.toString());
         RecruitmentCandidatesPage recruitmentCandidatesPage = new RecruitmentCandidatesPage()
-                .addCandidateFromCsv(candidateFromCsv);
-        Assert.assertEquals(recruitmentCandidatesPage.getProfileFirsName("value"), candidateFromCsv.getFirstName(), "Incorrect");
+                .addCandidateWithoutFile(candidateFromXls);
+        Assert.assertEquals(recruitmentCandidatesPage.getProfileFirsName("value"), candidateFromXls.getFirstName(), "Incorrect");
         log.info("Finishing create candidate from xls test");
     }
 

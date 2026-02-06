@@ -50,6 +50,6 @@ public class BaseTest {
 
     public Map<String, ErrorMessages> getErrors() throws IOException {
        return ReadFromJsonFile.readFromJsonFileToMap(new File("src/test/resources/files/Errors.json"),
-                new TypeReference<Map<String, ErrorMessages>>() {});
+                new TypeReference<Map<String, ErrorMessages>>() { });
     }
 }

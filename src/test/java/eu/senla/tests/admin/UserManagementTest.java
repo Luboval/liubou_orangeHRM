@@ -35,7 +35,7 @@ public class UserManagementTest extends BaseTest {
                 requestSpecification(),
                 responseSpecification(),
                 Constants.GET_USERS_API_POINT,
-                Map.of("limit",50,
+                Map.of("limit", 50,
                         "offset", 0,
                         "sortField", "u.userName",
                         "sortOrder", "ASC",
@@ -59,7 +59,7 @@ public class UserManagementTest extends BaseTest {
         ValidatableResponse response = RequestManager.getRequest(
                 requestSpecification(),
                 Constants.GET_USERS_API_POINT,
-                Map.of("limit",50,
+                Map.of("limit", 50,
                         "offset", 0,
                         "sortField", "u.userName",
                         "sortOrder", "ASC")
@@ -117,7 +117,7 @@ public class UserManagementTest extends BaseTest {
         ValidatableResponse response = RequestManager.getRequest(
                 requestSpecification(),
                 Constants.GET_USERS_API_POINT,
-                Map.of("limit",50,
+                Map.of("limit", 50,
                         "offset", 0,
                         "sortField", "u.userName",
                         "sortOrder", "ASC")

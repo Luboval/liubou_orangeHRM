@@ -5,7 +5,12 @@ import eu.senla.management.common.Constants;
 import eu.senla.management.utils.ReadPropertyFile;
 import org.openqa.selenium.By;
 
-import static eu.senla.management.common.BaseActions.*;
+
+import static eu.senla.management.common.BaseActions.clickButton;
+import static eu.senla.management.common.BaseActions.fillInput;
+import static eu.senla.management.common.BaseActions.getValue;
+import static eu.senla.management.common.BaseActions.uploadFile;
+import static eu.senla.management.common.BaseActions.visit;
 import static eu.senla.management.common.Wait.waitFPresence;
 
 public class RecruitmentCandidatesPage {
@@ -53,29 +58,6 @@ public class RecruitmentCandidatesPage {
     }
 
     public RecruitmentCandidatesPage addCandidateWithoutFile(Candidate candidate) {
-        openAddCandidateForm();
-        fillInput(firstNameInputLocator, candidate.getFirstName());
-        fillInput(middleNameInputLocator, candidate.getMiddleName());
-        fillInput(lastNameInputLocator, candidate.getLastName());
-        fillInput(emailInputLocator, candidate.getEmail());
-        fillInput(contactNumberLocator, candidate.getContactNumber());
-        clickButton(saveButtonLocator);
-        waitFPresence(candidateProfileFormLocator);
-        return  new RecruitmentCandidatesPage();
-    }
-    public RecruitmentCandidatesPage addCandidateFromCsv(Candidate candidate) {
-    openAddCandidateForm();
-    fillInput(firstNameInputLocator, candidate.getFirstName());
-    fillInput(middleNameInputLocator, candidate.getMiddleName());
-    fillInput(lastNameInputLocator, candidate.getLastName());
-    fillInput(emailInputLocator, candidate.getEmail());
-    fillInput(contactNumberLocator, candidate.getContactNumber());
-    clickButton(saveButtonLocator);
-    waitFPresence(candidateProfileFormLocator);
-        return  new RecruitmentCandidatesPage();
-    }
-
-    public RecruitmentCandidatesPage addCandidateFromXls(Candidate candidate) {
         openAddCandidateForm();
         fillInput(firstNameInputLocator, candidate.getFirstName());
         fillInput(middleNameInputLocator, candidate.getMiddleName());

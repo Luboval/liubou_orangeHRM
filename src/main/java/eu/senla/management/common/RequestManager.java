@@ -42,7 +42,7 @@ public class RequestManager {
     }
 
     public static ValidatableResponse getRequest(
-            RequestSpecification requestSpecification, String path,  Map<String,?> queryParametersMap) {
+            RequestSpecification requestSpecification, String path,  Map<String, ?> queryParametersMap) {
         return given()
                 .spec(requestSpecification)
                 .basePath(path)
@@ -59,8 +59,7 @@ public class RequestManager {
             RequestSpecification requestSpecification,
             ResponseSpecification responseSpecification,
             String path,
-
-            Map<String,?> queryParametersMap,
+            Map<String, ?> queryParametersMap,
             Class<T> clazz) {
         return given()
                 .spec(requestSpecification)

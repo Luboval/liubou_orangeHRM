@@ -8,7 +8,10 @@ import eu.senla.pages.SidePanelPage;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.By;
 
-import static eu.senla.management.common.BaseActions.*;
+
+import static eu.senla.management.common.BaseActions.clickAfterClick;
+import static eu.senla.management.common.BaseActions.clickButton;
+import static eu.senla.management.common.BaseActions.getValue;
 import static eu.senla.management.common.Constants.ATTRIBUTE_TEXTCONTENT;
 
 @Slf4j

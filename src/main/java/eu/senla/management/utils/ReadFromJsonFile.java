@@ -8,20 +8,20 @@ import java.io.IOException;
 import java.util.Map;
 
 public class ReadFromJsonFile {
-    private static final ObjectMapper mapper = new ObjectMapper();
+    private static final ObjectMapper JSON_MAPPER = new ObjectMapper();
 
-    public static <K,V> Map<K, V> readFromJsonFileToMap(File file, TypeReference<Map<K, V>> typeRef) throws IOException {
-        return  mapper.readValue(file,typeRef);
+    public static <K, V> Map<K, V> readFromJsonFileToMap(File file, TypeReference<Map<K, V>> typeRef) throws IOException {
+        return  JSON_MAPPER.readValue(file, typeRef);
     }
     // Parse a single object
     public static <T> T readFromJsonToObject(File file, Class<T> clazz) throws IOException {
-        return mapper.readValue(file, clazz);
+        return JSON_MAPPER.readValue(file, clazz);
     }
 
 
     // Parse a list of objects
     public static <T> T readFromJsonFileToList(File file, TypeReference<T> typeRef) throws IOException {
-        return mapper.readValue(file, typeRef);
+        return JSON_MAPPER.readValue(file, typeRef);
     }
 
     //Usage

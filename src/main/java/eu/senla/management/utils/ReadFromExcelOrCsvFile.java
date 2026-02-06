@@ -1,6 +1,11 @@
 package eu.senla.management.utils;
 
-import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -21,12 +26,14 @@ public class ReadFromExcelOrCsvFile<T> {
         this.type = type;
     }
 
-    //Чтение csv
+    // Чтение csv
     public List<T> readCsv(String path) throws Exception {
         List<T> result = new ArrayList<>();
         try (BufferedReader br = Files.newBufferedReader(Paths.get(path))) {
             String headerLine = br.readLine();
-            if (headerLine == null) return result;
+            if (headerLine == null) {
+                return result;
+            }
 
             String[] headers = headerLine.split(";");
 
@@ -44,7 +51,7 @@ public class ReadFromExcelOrCsvFile<T> {
     public List<T> readExcel(String path) throws Exception {
         List<T> result = new ArrayList<>();
         try (InputStream is = new FileInputStream(path);
-        Workbook workbook = WorkbookFactory.create(is)) {
+             Workbook workbook = WorkbookFactory.create(is)) {
             Sheet sheet = workbook.getSheetAt(0);
             Iterator<Row> rowIterator = sheet.iterator();
 
@@ -69,9 +76,6 @@ public class ReadFromExcelOrCsvFile<T> {
         return result;
     }
 
-
-    
-    
     private T mapRow(String[] headers, String[] values) throws Exception {
         T obj = type.getDeclaredConstructor().newInstance();
 
@@ -82,30 +86,33 @@ public class ReadFromExcelOrCsvFile<T> {
 //
         for (Field field : type.getDeclaredFields()) {
             Column col = field.getAnnotation(Column.class);
-            if (col == null) continue;
+            if (col == null) {
+                continue;
+            }
 
             String columnName = col.value();
             int idx = Arrays.asList(headers).indexOf(columnName);
-            if (idx == -1) continue;
+            if (idx == -1) {
+                continue;
+            }
 
             field.setAccessible(true);
             String raw = values[idx];
-            if (raw == null) raw = ""; // защита от null;
+            if (raw == null) {
+                raw = "";
+            } // защита от null;
 
             if (field.getType() == int.class || field.getType() == Integer.class) {
                 field.set(obj, raw.isEmpty() ? 0 : Integer.parseInt(raw));
-            }else if (field.getType() == long.class || field.getType() == Long.class) {
+            } else if (field.getType() == long.class || field.getType() == Long.class) {
                 field.set(obj, raw.isEmpty() ? 0L : Long.parseLong(raw));
-            }
-            else if (field.getType() == double.class || field.getType() == Double.class) {
+            } else if (field.getType() == double.class || field.getType() == Double.class) {
                 field.set(obj, raw.isEmpty() ? 0.0 : Double.parseDouble(raw));
-            } else field.set(obj, raw);
+            } else {
+                field.set(obj, raw);
+            }
+
         }
-
-
         return obj;
     }
-
-
-    
 }

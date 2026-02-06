@@ -27,7 +27,7 @@ public class ReadFromJsonResponse {
          return getJsonNode(response, path, List.class);
      }
 
-     public static Map<?,?> getMap(ValidatableResponse response, String path) {
+     public static Map<?, ?> getMap(ValidatableResponse response, String path) {
          return getJsonNode(response, path, Map.class);
      }
 }
