@@ -1,6 +1,7 @@
 package eu.senla.tests.recruitment;
 
 import eu.senla.elements.Candidate;
+import eu.senla.management.dataactions.create.candidate.CreateCandidate;
 import eu.senla.pages.recruitment.ErrorRecruitmentCandidatesPage;
 import eu.senla.pages.recruitment.RecruitmentCandidatesPage;
 import eu.senla.tests.BaseTest;
@@ -11,8 +12,14 @@ import org.testng.asserts.SoftAssert;
 
 import java.io.IOException;
 
-import static eu.senla.management.common.Constants.*;
-import static eu.senla.management.dataactions.create.candidate.CreateCandidate.createCandidateWithWrongAttributes;
+
+import static eu.senla.management.common.Constants.ATTRIBUTE_BORDER_BOTTOM_COLOR;
+import static eu.senla.management.common.Constants.ATTRIBUTE_BORDER_LEFT_COLOR;
+import static eu.senla.management.common.Constants.ATTRIBUTE_BORDER_RIGHT_COLOR;
+import static eu.senla.management.common.Constants.ATTRIBUTE_BORDER_TOP_COLOR;
+import static eu.senla.management.common.Constants.ERROR_FIELD_BORDER_COLOR;
+import static eu.senla.management.common.Constants.ERROR_ICON_COLOR;
+import static eu.senla.management.dataactions.create.candidate.CreateCandidate.createCandidateWithWrongAttributesAndNoFileToUpload;
 import static eu.senla.management.dataactions.create.candidate.CreateCandidate.createCorrectCandidate;
 
 
@@ -31,13 +38,38 @@ public class CreateCandidateTest extends BaseTest {
         System.out.println("Finish Create Candidate");
     }
 
+    @Test(testName = "Create candidate from csv", groups = {"smoke", "regression"})
+    public void createCandidateFromCsvTest() throws Exception {
+        log.info("Starting create candidate from csv test");
+        Candidate candidateFromCsv = CreateCandidate.createCorrectCandidateFromCsv();
+log.info("candidat" + candidateFromCsv.toString());
+        RecruitmentCandidatesPage recruitmentCandidatesPage = new RecruitmentCandidatesPage()
+                .addCandidateWithoutFile(candidateFromCsv);
+        Assert.assertEquals(recruitmentCandidatesPage.getProfileFirsName("value"), candidateFromCsv.getFirstName(), "Incorrect");
+        log.info("Finishing create candidate from csv test");
+    }
+
+    @Test(testName = "Create candidate from xls", groups = {"smoke", "regression"})
+    public void createCandidateFromXlsTest() throws Exception {
+        log.info("Starting create candidate from xls test");
+        Candidate candidateFromXls = CreateCandidate.createCorrectCandidateFromXls();
+        log.info("candidat" + candidateFromXls.toString());
+        RecruitmentCandidatesPage recruitmentCandidatesPage = new RecruitmentCandidatesPage()
+                .addCandidateWithoutFile(candidateFromXls);
+        Assert.assertEquals(recruitmentCandidatesPage.getProfileFirsName("value"), candidateFromXls.getFirstName(), "Incorrect");
+        log.info("Finishing create candidate from xls test");
+    }
+
+
+
+
     @Test (testName = "Create candidate with wrong First Name", groups = {"smoke", "regression"})
     public void createCandidateWithWrongFirstName() throws IOException {
         log.info("Start Test Create candidate with wrong First Name");
         //Candidate wrongCandidate = createCandidateWithWrongAttributes();
        // log.info(wrongCandidate.getLastName());
         ErrorRecruitmentCandidatesPage errorRecruitmentCandidatesPage = new RecruitmentCandidatesPage()
-                .errorAddCandidateWithoutFile(createCandidateWithWrongAttributes("CandidateWithWrongName"));
+                .errorAddCandidateFromJsonFile(createCandidateWithWrongAttributesAndNoFileToUpload("CandidateWithWrongName"));
 
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(errorRecruitmentCandidatesPage.getFirstNameFieldBordersColor(ATTRIBUTE_BORDER_TOP_COLOR), ERROR_FIELD_BORDER_COLOR);
@@ -57,7 +89,7 @@ public class CreateCandidateTest extends BaseTest {
         log.info("Start Test Create candidate with wrong Email");
        // Candidate wrongCandidate = createCandidateWithWrongAttributes();
         ErrorRecruitmentCandidatesPage errorRecruitmentCandidatesPage = new RecruitmentCandidatesPage()
-                .errorAddCandidateWithoutFile(createCandidateWithWrongAttributes("CandidateWithWrongEmail"));
+                .errorAddCandidateFromJsonFile(createCandidateWithWrongAttributesAndNoFileToUpload("CandidateWithWrongEmail"));
 
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(errorRecruitmentCandidatesPage.getEmailInputBordersColor(ATTRIBUTE_BORDER_TOP_COLOR), ERROR_FIELD_BORDER_COLOR);
@@ -77,7 +109,7 @@ public class CreateCandidateTest extends BaseTest {
         log.info("Start Test Create candidate with wrong First Name and Email");
         // Candidate wrongCandidate = createCandidateWithWrongAttributes();
         ErrorRecruitmentCandidatesPage errorRecruitmentCandidatesPage = new RecruitmentCandidatesPage()
-                .errorAddCandidateWithoutFile(createCandidateWithWrongAttributes("CandidateWithWrongFirstNameAndEmail"));
+                .errorAddCandidateFromJsonFile(createCandidateWithWrongAttributesAndNoFileToUpload("CandidateWithWrongFirstNameAndEmail"));
 
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(errorRecruitmentCandidatesPage.getFirstNameFieldBordersColor(ATTRIBUTE_BORDER_TOP_COLOR), ERROR_FIELD_BORDER_COLOR);

@@ -6,7 +6,7 @@ import eu.senla.management.auth.Logout;
 import eu.senla.management.common.Driver;
 import eu.senla.management.loginstrategy.ApiLoginStrategy;
 import eu.senla.management.loginstrategy.LoginStrategy;
-import eu.senla.management.utils.ReadFromJson;
+import eu.senla.management.utils.ReadFromJsonFile;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
@@ -49,7 +49,7 @@ public class BaseTest {
     }
 
     public Map<String, ErrorMessages> getErrors() throws IOException {
-       return ReadFromJson.readFromJsonToMap(new File("src/test/resources/files/Errors.json"),
-                new TypeReference<Map<String, ErrorMessages>>() {});
+       return ReadFromJsonFile.readFromJsonFileToMap(new File("src/test/resources/files/Errors.json"),
+                new TypeReference<Map<String, ErrorMessages>>() { });
     }
 }

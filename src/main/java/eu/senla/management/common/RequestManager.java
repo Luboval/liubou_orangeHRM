@@ -30,6 +30,7 @@ public class RequestManager {
                         .extract()
                         .as(clazz);
     }
+
     public static ValidatableResponse getRequest(
             RequestSpecification requestSpecification, String path) {
         return given()
@@ -40,12 +41,25 @@ public class RequestManager {
                 .then();
     }
 
+    public static ValidatableResponse getRequest(
+            RequestSpecification requestSpecification, String path,  Map<String, ?> queryParametersMap) {
+        return given()
+                .spec(requestSpecification)
+                .basePath(path)
+                .queryParams(queryParametersMap)
+                .when()
+                .get()
+                .then();
+    }
+
+
+
+
     public static <T> T getRequestWithQueryParameters(
             RequestSpecification requestSpecification,
             ResponseSpecification responseSpecification,
             String path,
-
-            Map<String,?> queryParametersMap,
+            Map<String, ?> queryParametersMap,
             Class<T> clazz) {
         return given()
                 .spec(requestSpecification)
