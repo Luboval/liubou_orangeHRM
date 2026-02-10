@@ -1,4 +1,4 @@
-package eu.senla.apiactions.createemployee;
+package eu.senla.api.createemployee;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;

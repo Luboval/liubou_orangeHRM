@@ -9,8 +9,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 import java.io.File;
-import java.util.stream.Stream;
+import java.util.List;
+import java.util.stream.Collectors;
 
+import static eu.senla.management.common.Wait.waitFAttrToBeNotNull;
 import static eu.senla.management.common.Wait.waitFInteractable;
 import static eu.senla.management.common.Wait.waitFIsDisplayed;
 import static eu.senla.management.common.Wait.waitFPresence;
@@ -77,13 +79,14 @@ public class BaseActions {
   }
 
   public static String getValue(By locator, String attribute) {
-    return waitFPresence(locator).getAttribute(attribute);
+    return waitFAttrToBeNotNull(locator, attribute).getAttribute(attribute);
   }
 
-  public static Stream<String> getValueAll(By locator) {
+  public static List<String> getValueAll(By locator) {
     return waitFPresenceAll(locator)
             .stream().
-            map(WebElement::getText);
+            map(WebElement::getText)
+            .collect(Collectors.toList());
   }
 
   public static void uploadFile(By locator, String filename) {

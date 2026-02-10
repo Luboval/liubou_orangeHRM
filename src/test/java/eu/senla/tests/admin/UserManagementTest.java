@@ -1,8 +1,7 @@
 package eu.senla.tests.admin;
 
 import eu.senla.elements.UserManagementTable;
-import eu.senla.elements.api.users.UsersRoot;
-import eu.senla.management.common.Constants;
+import eu.senla.api.apielements.users.UsersRoot;
 import eu.senla.management.common.RequestManager;
 import eu.senla.management.utils.table.Table;
 import eu.senla.management.utils.table.TableContents;
@@ -22,6 +21,7 @@ import java.util.stream.Collectors;
 
 import static eu.senla.management.common.SpecConfig.requestSpecification;
 import static eu.senla.management.common.SpecConfig.responseSpecification;
+import static eu.senla.management.common.constants.ApiPaths.GET_USERS_API_POINT;
 import static eu.senla.management.utils.ReadFromJsonResponse.getList;
 
 @Slf4j
@@ -34,7 +34,7 @@ public class UserManagementTest extends BaseTest {
         UsersRoot response = RequestManager.getRequestWithQueryParameters(
                 requestSpecification(),
                 responseSpecification(),
-                Constants.GET_USERS_API_POINT,
+                GET_USERS_API_POINT,
                 Map.of("limit", 50,
                         "offset", 0,
                         "sortField", "u.userName",
@@ -58,7 +58,7 @@ public class UserManagementTest extends BaseTest {
 
         ValidatableResponse response = RequestManager.getRequest(
                 requestSpecification(),
-                Constants.GET_USERS_API_POINT,
+                GET_USERS_API_POINT,
                 Map.of("limit", 50,
                         "offset", 0,
                         "sortField", "u.userName",
@@ -116,7 +116,7 @@ public class UserManagementTest extends BaseTest {
     public void checkTableAndApiResponse() {
         ValidatableResponse response = RequestManager.getRequest(
                 requestSpecification(),
-                Constants.GET_USERS_API_POINT,
+                GET_USERS_API_POINT,
                 Map.of("limit", 50,
                         "offset", 0,
                         "sortField", "u.userName",

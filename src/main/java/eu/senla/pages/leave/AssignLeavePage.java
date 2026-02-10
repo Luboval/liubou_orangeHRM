@@ -1,11 +1,13 @@
 package eu.senla.pages.leave;
 
-import eu.senla.management.common.Constants;
 import eu.senla.elements.AssignLeave;
-import eu.senla.management.utils.ReadPropertyFile;
 import eu.senla.management.common.BaseActions;
 import eu.senla.management.common.Wait;
+import eu.senla.management.utils.ReadPropertyFile;
 import org.openqa.selenium.By;
+
+import static eu.senla.management.common.constants.AttributesForUITests.ATTRIBUTE_VALUE;
+import static eu.senla.management.common.constants.PagesPaths.ASSIGN_LEAVE_FORM;
 
 public class AssignLeavePage {
     private By formLocator = By.cssSelector("form");
@@ -24,7 +26,7 @@ public class AssignLeavePage {
 
 
     public void switchDirectlyToAssignLeavePage() {
-        BaseActions.visit(ReadPropertyFile.getProperty("BASEURL") + Constants.ASSIGN_LEAVE_FORM);
+        BaseActions.visit(ReadPropertyFile.getProperty("BASEURL") + ASSIGN_LEAVE_FORM);
     }
 
     public AssignLeavePage openAssignLeaveForm() {
@@ -41,7 +43,7 @@ public class AssignLeavePage {
         BaseActions.displayAfterClick(leaveTypeArrowLocator, leaveTypeItemLocator).click();
         BaseActions.fillInput(fromDateLocator, assignLeave.getFromDate());
         BaseActions.clickButton(toDateLocator);
-        Wait.waitFChanged(toDateLocator, Constants.ATTRIBUTE_VALUE, assignLeave.getFromDate());
+        Wait.waitFChanged(toDateLocator, ATTRIBUTE_VALUE, assignLeave.getFromDate());
         BaseActions.clearWithKeys(toDateLocator);
         BaseActions.fillInput(toDateLocator, assignLeave.getToDate());
         BaseActions.clickButton(assignButtonLocator);

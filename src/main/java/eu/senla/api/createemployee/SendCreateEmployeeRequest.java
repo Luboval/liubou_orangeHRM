@@ -1,8 +1,10 @@
-package eu.senla.apiactions.createemployee;
+package eu.senla.api.createemployee;
 
-import eu.senla.management.common.Constants;
+
 import eu.senla.management.common.RequestManager;
 import eu.senla.management.common.SpecConfig;
+
+import static eu.senla.management.common.constants.ApiPaths.CREATE_EMPLOYEE_API;
 
 public class SendCreateEmployeeRequest {
 
@@ -10,7 +12,7 @@ public class SendCreateEmployeeRequest {
         return RequestManager.postRequest(
                 SpecConfig.requestSpecification(),
                 SpecConfig.responseSpecification(),
-                Constants.CREATE_EMPLOYEE_API,
+                CREATE_EMPLOYEE_API,
                 employeeRequest,
                 CreateEmployeeResponse.class);
     }
