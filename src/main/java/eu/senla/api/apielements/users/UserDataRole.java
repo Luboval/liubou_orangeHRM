@@ -1,4 +1,4 @@
-package eu.senla.elements.api.users;
+package eu.senla.api.apielements.users;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserMeta {
-    private int total;
+public class UserDataRole {
+    private int id;
+    private String name;
+    private String displayName;
 }

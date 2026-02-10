@@ -21,8 +21,7 @@ public class Table<T> {
     }
 
     private List<String> getHeaders() {
-        return BaseActions.getValueAll(By.cssSelector("[role='columnheader']"))
-                .collect(Collectors.toList());
+        return BaseActions.getValueAll(By.cssSelector("[role='columnheader']"));
 
     }
 

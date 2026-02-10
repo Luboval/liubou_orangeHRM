@@ -1,4 +1,4 @@
-package eu.senla.apiactions.createemployee;
+package eu.senla.api.createemployee;
 
 import net.datafaker.Faker;
 

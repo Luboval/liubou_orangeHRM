@@ -3,6 +3,12 @@ pipeline {
     tools { 
         maven "apache-maven-3.9.9"   // Указываем установленный Maven (имя должно совпадать с настроенным в Global Tools)
     }
+    parameters {
+        gitParameter branch: 'BRANCH',
+        type: 'BRANCH',
+        defaultValue: 'main',
+        description: 'Выберите ветку для сборки'
+        }
     stages {
         stage('Build') {
             steps {

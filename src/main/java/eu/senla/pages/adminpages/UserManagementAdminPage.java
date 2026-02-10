@@ -12,7 +12,8 @@ import org.openqa.selenium.By;
 import static eu.senla.management.common.BaseActions.clickAfterClick;
 import static eu.senla.management.common.BaseActions.clickButton;
 import static eu.senla.management.common.BaseActions.getValue;
-import static eu.senla.management.common.Constants.ATTRIBUTE_TEXTCONTENT;
+import static eu.senla.management.common.constants.AttributesForUITests.ATTRIBUTE_TEXTCONTENT;
+
 
 @Slf4j
 public class UserManagementAdminPage {

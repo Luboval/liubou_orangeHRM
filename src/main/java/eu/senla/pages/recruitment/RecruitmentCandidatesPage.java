@@ -1,10 +1,8 @@
 package eu.senla.pages.recruitment;
 
 import eu.senla.elements.Candidate;
-import eu.senla.management.common.Constants;
 import eu.senla.management.utils.ReadPropertyFile;
 import org.openqa.selenium.By;
-
 
 import static eu.senla.management.common.BaseActions.clickButton;
 import static eu.senla.management.common.BaseActions.fillInput;
@@ -12,6 +10,7 @@ import static eu.senla.management.common.BaseActions.getValue;
 import static eu.senla.management.common.BaseActions.uploadFile;
 import static eu.senla.management.common.BaseActions.visit;
 import static eu.senla.management.common.Wait.waitFPresence;
+import static eu.senla.management.common.constants.PagesPaths.RECRUITMENT_PAGE;
 
 public class RecruitmentCandidatesPage {
     //common
@@ -32,7 +31,7 @@ public class RecruitmentCandidatesPage {
     private By profileFirstNameLocator = By.cssSelector("[name='firstName']");
 
     public void switchDirectlyToRecruitmentCandidatesPage() {
-        visit(ReadPropertyFile.getProperty("BASEURL") + Constants.RECRUITMENT_PAGE);
+        visit(ReadPropertyFile.getProperty("BASEURL") + RECRUITMENT_PAGE);
     }
 
     public RecruitmentCandidatesPage openAddCandidateForm() {

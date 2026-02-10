@@ -1,4 +1,4 @@
-package eu.senla.elements.api.users;
+package eu.senla.api.apielements.users;
 
 
 import lombok.AllArgsConstructor;

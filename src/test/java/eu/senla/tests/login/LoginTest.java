@@ -1,7 +1,7 @@
 package eu.senla.tests.login;
 
 import eu.senla.management.auth.Logout;
-import eu.senla.management.common.Constants;
+import eu.senla.management.utils.ReadPropertyFile;
 import eu.senla.pages.login.ErrorLoginPage;
 import eu.senla.pages.login.LoginPage;
 import eu.senla.pages.login.SuccessfulLoginPage;
@@ -12,6 +12,9 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
+
+import static eu.senla.management.common.constants.AttributesForUITests.ERROR_ICON_COLOR;
+import static eu.senla.management.common.constants.PagesPaths.SUCCESSFUL_LOGIN_PAGE;
 
 @Slf4j
 public class LoginTest extends BaseTest {
@@ -28,7 +31,7 @@ public class LoginTest extends BaseTest {
              .loginWithValidCredentials();
 
     //Url Validation;
-    Assert.assertEquals(successfulLogin.getSuccessfulLoginPageUrl(), Constants.SUCCESSFUL_LOGIN_PAGE_URL, "GetCookie failed");
+    Assert.assertEquals(successfulLogin.getSuccessfulLoginPageUrl(), ReadPropertyFile.getProperty("BASEURL") + SUCCESSFUL_LOGIN_PAGE, "GetCookie failed");
 
     log.info("Finish Test login with valid credentials");
   }
@@ -42,7 +45,7 @@ public class LoginTest extends BaseTest {
 
     SoftAssert softAssert = new SoftAssert();
             softAssert.assertEquals(errorLoginPage.getErrorMessage(), "Invalid credentials", "Message is not correct");
-            softAssert.assertEquals(errorLoginPage.getErrorIconColor(), Constants.ERROR_ICON_COLOR);
+            softAssert.assertEquals(errorLoginPage.getErrorIconColor(), ERROR_ICON_COLOR);
             softAssert.assertAll();
     log.info("Finish Test login with incorrect credentials");
   }

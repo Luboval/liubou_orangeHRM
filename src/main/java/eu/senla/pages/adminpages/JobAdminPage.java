@@ -1,17 +1,18 @@
 package eu.senla.pages.adminpages;
 
-import eu.senla.management.common.Constants;
 import eu.senla.elements.Title;
-import eu.senla.management.utils.ReadPropertyFile;
 import eu.senla.management.common.BaseActions;
 import eu.senla.management.common.Driver;
 import eu.senla.management.common.Wait;
+import eu.senla.management.utils.ReadPropertyFile;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static eu.senla.management.common.constants.PagesPaths.JOB_TITLES_PAGE;
 
 public class JobAdminPage {
     private String name;
@@ -34,7 +35,7 @@ public class JobAdminPage {
 
     @Step("Open page")
     public void switchDirectlyToJobTitlesPage() {
-        BaseActions.visit(ReadPropertyFile.getProperty("BASEURL") + Constants.JOB_TITLES_PAGE);
+        BaseActions.visit(ReadPropertyFile.getProperty("BASEURL") + JOB_TITLES_PAGE);
     }
 
     public void clickAddTitleButton() {

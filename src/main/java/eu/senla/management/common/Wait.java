@@ -67,4 +67,9 @@ public class Wait {
 
         return wait(ExpectedConditions.visibilityOfElementLocated(locator));
     }
+
+    public static WebElement waitFAttrToBeNotNull(By locator, String attr) {
+        waitBool(ExpectedConditions.attributeToBeNotEmpty(waitFPresence(locator), attr));
+        return wait(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
 }

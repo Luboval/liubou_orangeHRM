@@ -1,5 +1,6 @@
 package eu.senla.management.common;
 
+import io.restassured.common.mapper.TypeRef;
 import io.restassured.response.ValidatableResponse;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
@@ -99,5 +100,23 @@ public class RequestManager {
                 .then();
                 //.getCookie("orangehrm")
                 //.getBody().asString();
+    }
+
+    public static <T> T getRequestWithQueryParametersTypeRef(
+            RequestSpecification requestSpecification,
+            ResponseSpecification responseSpecification,
+            String path,
+            Map<String, ?> queryParametersMap,
+            TypeRef<T> typeRef) {
+        return given()
+                .spec(requestSpecification)
+                .basePath(path)
+                .queryParams(queryParametersMap)
+                .when()
+                .get()
+                .then()
+                .spec(responseSpecification)
+                .extract()
+                .as(typeRef);
     }
 }

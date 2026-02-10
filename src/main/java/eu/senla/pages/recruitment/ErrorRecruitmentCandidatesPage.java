@@ -2,8 +2,8 @@ package eu.senla.pages.recruitment;
 
 import org.openqa.selenium.By;
 
-import static eu.senla.management.common.Constants.ATTRIBUTE_CSS_COLOR;
 import static eu.senla.management.common.Wait.waitFIsDisplayed;
+import static eu.senla.management.common.constants.AttributesForUITests.ATTRIBUTE_CSS_COLOR;
 
 
 public class ErrorRecruitmentCandidatesPage {

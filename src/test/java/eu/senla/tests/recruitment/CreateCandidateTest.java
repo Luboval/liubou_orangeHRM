@@ -13,12 +13,12 @@ import org.testng.asserts.SoftAssert;
 import java.io.IOException;
 
 
-import static eu.senla.management.common.Constants.ATTRIBUTE_BORDER_BOTTOM_COLOR;
-import static eu.senla.management.common.Constants.ATTRIBUTE_BORDER_LEFT_COLOR;
-import static eu.senla.management.common.Constants.ATTRIBUTE_BORDER_RIGHT_COLOR;
-import static eu.senla.management.common.Constants.ATTRIBUTE_BORDER_TOP_COLOR;
-import static eu.senla.management.common.Constants.ERROR_FIELD_BORDER_COLOR;
-import static eu.senla.management.common.Constants.ERROR_ICON_COLOR;
+import static eu.senla.management.common.constants.AttributesForUITests.ATTRIBUTE_BORDER_BOTTOM_COLOR;
+import static eu.senla.management.common.constants.AttributesForUITests.ATTRIBUTE_BORDER_LEFT_COLOR;
+import static eu.senla.management.common.constants.AttributesForUITests.ATTRIBUTE_BORDER_RIGHT_COLOR;
+import static eu.senla.management.common.constants.AttributesForUITests.ATTRIBUTE_BORDER_TOP_COLOR;
+import static eu.senla.management.common.constants.AttributesForUITests.ERROR_FIELD_BORDER_COLOR;
+import static eu.senla.management.common.constants.AttributesForUITests.ERROR_ICON_COLOR;
 import static eu.senla.management.dataactions.create.candidate.CreateCandidate.createCandidateWithWrongAttributesAndNoFileToUpload;
 import static eu.senla.management.dataactions.create.candidate.CreateCandidate.createCorrectCandidate;
 
