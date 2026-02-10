@@ -17,7 +17,7 @@
         <testng.version>7.11.0</testng.version>
         <checkstyle.version>3.6.0</checkstyle.version>
         <spotless.version>2.44.4</spotless.version>
-        <selenium.version>4.32.0</selenium.version>
+        <selenium.version>4.40.0</selenium.version>
         <lombok.version>1.18.38</lombok.version>
         <rest.assured.version>5.5.5</rest.assured.version>
         <mvnsurefire.version>3.5.3</mvnsurefire.version>
@@ -56,8 +56,13 @@
             <artifactId>selenium-java</artifactId>
             <version>${selenium.version}</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-chrome-driver -->
-        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <!-- Source: https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-devtools-v144 -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-devtools-v144</artifactId>
+            <version>${selenium.version}</version>
+            <scope>compile</scope>
+        </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
