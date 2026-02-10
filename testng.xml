@@ -2,9 +2,11 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite" parallel="classes" thread-count="3">
     <listeners>
-        <listener class-name="eu.senla.listeners.SuiteXmlTransformer"/>
-        <listener class-name="eu.senla.listeners.ScreenshotListener"/>
-        <listener class-name="eu.senla.listeners.SelenideVideoNameListener"/>
+        <listener class-name="eu.senla.management.setuputill.listeners.SuiteXmlTransformer"/>
+        <listener class-name="eu.senla.management.setuputill.listeners.ScreenshotListener"/>
+        <listener class-name="eu.senla.management.setuputill.listeners.SelenideVideoNameListener"/>
+        <listener class-name="eu.senla.management.setuputill.listeners.RetryListener"/>
+        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
     </listeners>
 
 

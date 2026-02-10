@@ -1,7 +1,7 @@
-package eu.senla.listeners;
+package eu.senla.management.setuputill.listeners;
 
 import eu.senla.management.common.Driver;
-import eu.senla.management.common.ScreenshotUtil;
+import eu.senla.management.setuputill.ScreenshotUtil;
 import io.qameta.allure.Attachment;
 import lombok.extern.slf4j.Slf4j;
 import org.openqa.selenium.OutputType;
