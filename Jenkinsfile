@@ -6,7 +6,7 @@ pipeline {
     parameters {
         gitParameter branch: 'BRANCH',
         type: 'BRANCH',
-        defaultValue: 'main',
+        defaultValue: 'master',
         description: 'Выберите ветку для сборки'
         }
     stages {
