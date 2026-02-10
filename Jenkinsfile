@@ -8,7 +8,7 @@ pipeline {
         name: 'BRANCH',
         type: 'BRANCH',
         defaultValue: 'master',
-        description: 'Выберите ветку для сборки'
+        description: 'Select target branch for build'
         )
         }
     stages {
@@ -23,9 +23,8 @@ pipeline {
             steps {
                 echo 'Running tests...'
                 // Запускаем тесты Maven (TestNG + RestAssured):
-                retry(3) {
-                    powershell 'mvn clean test'
-                }
+                powershell 'mvn clean test'
+
             }
             // Мы добавим блок post чуть позже для публикации отчёта Allure
             post {

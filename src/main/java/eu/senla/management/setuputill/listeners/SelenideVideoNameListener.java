@@ -1,4 +1,4 @@
-package eu.senla.listeners;
+package eu.senla.management.setuputill.listeners;
 
 import org.testng.ITestListener;
 import org.testng.ITestResult;
