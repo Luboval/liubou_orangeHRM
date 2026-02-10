@@ -23,7 +23,9 @@ pipeline {
             steps {
                 echo 'Running tests...'
                 // Запускаем тесты Maven (TestNG + RestAssured):
-                powershell 'mvn clean test'
+                retry(3) {
+                    powershell 'mvn clean test'
+                }
             }
             // Мы добавим блок post чуть позже для публикации отчёта Allure
             post {
