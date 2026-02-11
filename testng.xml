@@ -6,7 +6,9 @@
         <listener class-name="eu.senla.management.setuputill.listeners.ScreenshotListener"/>
         <listener class-name="eu.senla.management.setuputill.listeners.SelenideVideoNameListener"/>
         <listener class-name="eu.senla.management.setuputill.listeners.RetryListener"/>
+        <!--
         <listener class-name="io.qameta.allure.testng.AllureTestNg"/>
+        -->
     </listeners>
 
 
