@@ -11,10 +11,15 @@
 
 
     <test name="Test1">
+        <!--
         <classes>
             <class name="eu.senla.tests.pim.CreateEmployeeTest"/>
             <class name="eu.senla.tests.admin.JobTitlesTest"/>
             <class name="eu.senla.tests.admin.UserManagementAdminPageTest"/>
         </classes>
+        -->
+        <packages>
+            <package name="eu/senla/tests"/>
+        </packages>
     </test>
 </suite>
