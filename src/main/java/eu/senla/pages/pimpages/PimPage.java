@@ -55,6 +55,7 @@ public class PimPage {
         BaseActions.fillInput(inputFirstNameLocator, employee.getFirstName());
         BaseActions.fillInput(inputMiddleNameLocator, employee.getMiddleName());
         BaseActions.fillInput(inputLastNameLocator, employee.getLastName());
+        Wait.waitFIsDisplayed(switchLocator);
         BaseActions.clickButton(switchLocator);
         Wait.waitFIsDisplayed(usernameInputLocator);
         BaseActions.fillInput(usernameInputLocator, employee.getUserName());
