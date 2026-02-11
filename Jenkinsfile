@@ -25,7 +25,6 @@ pipeline {
                 // Запускаем тесты Maven (TestNG + RestAssured):
                 //powershell 'mvn clean test -DsuiteXmlFile="testng.xml"'
                 powershell 'mvn clean test'
-
             }
             // Мы добавим блок post чуть позже для публикации отчёта Allure
             post {
