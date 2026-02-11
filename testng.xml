@@ -19,7 +19,7 @@
         </classes>
         -->
         <packages>
-            <package name="eu/senla/tests"/>
+            <package name="eu.senla.tests"/>
         </packages>
     </test>
 </suite>
