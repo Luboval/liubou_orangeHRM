@@ -31,6 +31,10 @@ public class UserManagementTest extends BaseTest {
     public void getByUserRoleAndStatusTest() {
         log.info("Start get with parameters Validation");
 
+        UserManagementAdminPage adminPage = new UserManagementAdminPage()
+                .switchToUserManagementPage()
+                .executeSearchByUserRoleAndStatus();
+
         UsersRoot response = RequestManager.getRequestWithQueryParameters(
                 requestSpecification(),
                 responseSpecification(),
@@ -43,10 +47,6 @@ public class UserManagementTest extends BaseTest {
                         "status", 1),
                 UsersRoot.class
         );
-
-        UserManagementAdminPage adminPage = new UserManagementAdminPage()
-                .switchToUserManagementPage()
-                .executeSearchByUserRoleAndStatus();
 
         log.info("api " + response.getMeta().getTotal());
         log.info("web " + adminPage.getRecordFound());
@@ -116,6 +116,12 @@ public class UserManagementTest extends BaseTest {
 
     @Test
     public void checkTableAndApiResponse() {
+
+        UserManagementAdminPage adminPage = new UserManagementAdminPage()
+                .switchToUserManagementPage();
+
+        Table<UserManagementTable> actual = adminPage.userManagementAdminPageTable();
+
         ValidatableResponse response = RequestManager.getRequest(
                 requestSpecification(),
                 GET_USERS_API_POINT,
@@ -124,12 +130,6 @@ public class UserManagementTest extends BaseTest {
                         "sortField", "u.userName",
                         "sortOrder", "ASC")
         );
-
-
-        UserManagementAdminPage adminPage = new UserManagementAdminPage()
-                .switchToUserManagementPage();
-
-        Table<UserManagementTable> actual = adminPage.userManagementAdminPageTable();
 
         List<Map<String, Object>> responseRows = response.extract()
                 .jsonPath()
