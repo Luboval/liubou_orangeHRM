@@ -23,7 +23,11 @@ public class VacanciesTest extends BaseTest {
 
     @Test
     public void jobTitleListTest() {
-        log.info("Start get with parameters Validation");
+        log.info("Start JobTitle Test on Vacancies Page");
+
+        List<String> recruitmentVacanciesPage = new RecruitmentVacanciesPage().getJobTitlesList();
+
+        log.info(recruitmentVacanciesPage.toString());
 
         ApiResponse<JobTitleApiResponse> response = RequestManager.getRequestWithQueryParametersTypeRef(
                 requestSpecification(),
@@ -35,20 +39,11 @@ public class VacanciesTest extends BaseTest {
 
         log.info(response.toString());
 
-        List<String> recruitmentVacanciesPage = new RecruitmentVacanciesPage().getJobTitlesList();
-
-        log.info(recruitmentVacanciesPage.toString());
-
         Assertions.assertThat(recruitmentVacanciesPage)
                 .isEqualTo(response
                         .data()
                         .stream()
                         .map(JobTitleApiResponse::title)
                         .collect(Collectors.toList()));
-
-
-
     }
-
-
 }
