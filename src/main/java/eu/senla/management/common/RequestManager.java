@@ -119,4 +119,24 @@ public class RequestManager {
                 .extract()
                 .as(typeRef);
     }
+
+    public static <T> T postRequestTypeRef(
+            RequestSpecification requestSpecification,
+            ResponseSpecification responseSpecification,
+            String path,
+            Object request,
+            TypeRef<T> typeRef) {
+
+        return
+                given()
+                        .spec(requestSpecification)
+                        .basePath(path)
+                        .body(request)
+                        .when()
+                        .post()
+                        .then()
+                        .spec(responseSpecification)
+                        .extract()
+                        .as(typeRef);
+    }
 }
