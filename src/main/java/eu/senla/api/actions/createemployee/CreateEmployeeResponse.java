@@ -1,4 +1,4 @@
-package eu.senla.api.createemployee;
+package eu.senla.api.actions.createemployee;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

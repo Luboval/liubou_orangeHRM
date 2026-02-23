@@ -1,9 +1,9 @@
 package eu.senla.management.dataactions.create;
 
-import eu.senla.api.createemployee.CreateEmployeeRequest;
-import eu.senla.api.createemployee.CreateEmployeeResponse;
-import eu.senla.api.createemployee.EmployeeRequest;
-import eu.senla.api.createemployee.SendCreateEmployeeRequest;
+import eu.senla.api.actions.createemployee.CreateEmployeeRequest;
+import eu.senla.api.actions.createemployee.CreateEmployeeResponse;
+import eu.senla.api.apielements.employee.EmployeeRequest;
+import eu.senla.api.actions.createemployee.SendCreateEmployeeRequest;
 import eu.senla.elements.AssignLeave;
 import eu.senla.elements.Employee;
 import eu.senla.elements.Title;
@@ -44,7 +44,7 @@ public class CreateEntity {
 
     }
 
-    public static Pair<AssignLeave, String> createassignLeave() {
+    public static Pair<AssignLeave, String> createAssignLeave() {
 
         EmployeeRequest employeeRequest = CreateEmployeeRequest.createEmployeeRequest();
         CreateEmployeeResponse createEmployeeResponse = SendCreateEmployeeRequest.sendCreateEmployeeRequest(employeeRequest);
