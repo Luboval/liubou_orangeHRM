@@ -15,7 +15,7 @@ public class CreateAssignLeaveTest extends BaseTest {
         System.out.println("Start Create Assign Leave Test");
 
        AssignLeavePage assignLeavePage = new AssignLeavePage()
-                .assignLeave(CreateEntity.createassignLeave().getKey());
+                .assignLeave(CreateEntity.createAssignLeave().getKey());
 
         Assert.assertEquals(assignLeavePage.getSuccessMessageText(ATTRIBUTE_TEXTCONTENT), "SuccessSuccessfully Saved×", "Message is incorrect");
 

@@ -50,6 +50,7 @@ public final class Driver {
                     chromeOptions.addArguments("--no-sandbox");
                     chromeOptions.addArguments("--disable-dev-shm-usage");
                     if (Boolean.parseBoolean(System.getProperty("headless"))) {
+                        chromeOptions.addArguments("--window-size=1920,1080");
                         chromeOptions.addArguments("--headless=new");
                     }
                     chromeOptions.setCapability("selenoid:options", Map.of(

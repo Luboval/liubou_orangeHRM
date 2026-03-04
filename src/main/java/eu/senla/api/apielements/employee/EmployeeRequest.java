@@ -1,4 +1,4 @@
-package eu.senla.api.createemployee;
+package eu.senla.api.apielements.employee;
 
 public record EmployeeRequest(
         String employeeId,

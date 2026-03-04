@@ -1,4 +1,4 @@
-package eu.senla.api.createemployee;
+package eu.senla.api.actions.createemployee;
 
 
 import eu.senla.management.common.RequestManager;

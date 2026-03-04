@@ -4,10 +4,12 @@ pipeline {
         maven "apache-maven-3.9.9"   // Указываем установленный Maven (имя должно совпадать с настроенным в Global Tools)
     }
     parameters {
-        gitParameter branch: 'BRANCH',
+        gitParameter(
+        name: 'BRANCH',
         type: 'BRANCH',
         defaultValue: 'master',
-        description: 'Выберите ветку для сборки'
+        description: 'Select target branch for build'
+        )
         }
     stages {
         stage('Build') {
@@ -21,6 +23,7 @@ pipeline {
             steps {
                 echo 'Running tests...'
                 // Запускаем тесты Maven (TestNG + RestAssured):
+                //powershell 'mvn clean test -DsuiteXmlFile="testng.xml"'
                 powershell 'mvn clean test'
             }
             // Мы добавим блок post чуть позже для публикации отчёта Allure

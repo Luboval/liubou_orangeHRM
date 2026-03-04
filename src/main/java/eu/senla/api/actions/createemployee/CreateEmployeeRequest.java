@@ -1,5 +1,6 @@
-package eu.senla.api.createemployee;
+package eu.senla.api.actions.createemployee;
 
+import eu.senla.api.apielements.employee.EmployeeRequest;
 import net.datafaker.Faker;
 
 public class CreateEmployeeRequest {

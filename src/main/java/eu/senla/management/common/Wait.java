@@ -11,7 +11,7 @@ import java.time.Duration;
 import java.util.List;
 
 public class Wait {
-    private static int timeoutSec = 60;
+    private static int timeoutSec = 180;
     private static int poolingSec = 1;
 
     public static WebElement wait(ExpectedCondition<WebElement> expectedConditions) {
