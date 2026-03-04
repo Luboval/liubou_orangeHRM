@@ -28,7 +28,7 @@ public class DashboardTest extends BaseTest {
     }
 
     @Test (testName = "MyAction widget validation", groups = {"smoke", "regression", "ext"})
-    public void TestMyActionWidget() {
+    public void testMyActionWidget() {
         log.info("Start MyAction widget validation");
 
         Map<String, Integer> myActions = new DashboardPage()
