@@ -15,6 +15,7 @@ public class AttributesForUITests {
     public static final String ATTRIBUTE_BORDER_BOTTOM_COLOR = "border-bottom-color";
     public static final String ATTRIBUTE_BORDER_LEFT_COLOR = "border-left-color";
     public static final String ATTRIBUTE_CSS_COLOR = "color";
+    public static final String ATTRIBUTE_TITLE = "title";
 
 
 }

@@ -3,6 +3,7 @@ package eu.senla.tests.recruitment;
 import eu.senla.api.actions.createcandidate.CreateCandidateRequest;
 import eu.senla.api.actions.createcandidate.SendCreateCandidateRequest;
 import eu.senla.api.apielements.ApiResponse;
+import eu.senla.api.apielements.Meta;
 import eu.senla.api.apielements.candidate.CandidateApiRequest;
 import eu.senla.api.apielements.candidate.CandidateApiResponse;
 import eu.senla.tests.BaseTest;
@@ -18,7 +19,7 @@ public class CreateCandidateApiTest  extends BaseTest {
     public void createCandidateApiTest() {
         log.info("Starting create Candidate Api Test");
         CandidateApiRequest candidateApiRequest = CreateCandidateRequest.createCandidateRequest();
-        ApiResponse<CandidateApiResponse> candidateApiResponse = SendCreateCandidateRequest
+        ApiResponse<CandidateApiResponse, Meta> candidateApiResponse = SendCreateCandidateRequest
                 .sendCreateCandidateRequest(candidateApiRequest);
 
         log.info(candidateApiResponse.toString());

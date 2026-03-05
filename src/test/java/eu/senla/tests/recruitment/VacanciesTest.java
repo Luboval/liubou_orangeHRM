@@ -1,6 +1,7 @@
 package eu.senla.tests.recruitment;
 
 import eu.senla.api.apielements.ApiResponse;
+import eu.senla.api.apielements.Meta;
 import eu.senla.api.apielements.jobtitles.JobTitleApiResponse;
 import eu.senla.management.common.RequestManager;
 import eu.senla.pages.recruitment.RecruitmentVacanciesPage;
@@ -29,12 +30,12 @@ public class VacanciesTest extends BaseTest {
 
         log.info(recruitmentVacanciesPage.toString());
 
-        ApiResponse<JobTitleApiResponse> response = RequestManager.getRequestWithQueryParametersTypeRef(
+        ApiResponse<JobTitleApiResponse, Meta> response = RequestManager.getRequestWithQueryParametersTypeRef(
                 requestSpecification(),
                 responseSpecification(),
                 GET_JOB_TITLES_API,
                 Map.of("limit", 0),
-                new TypeRef<ApiResponse<JobTitleApiResponse>>() { }
+                new TypeRef<ApiResponse<JobTitleApiResponse, Meta>>() { }
         );
 
         log.info(response.toString());

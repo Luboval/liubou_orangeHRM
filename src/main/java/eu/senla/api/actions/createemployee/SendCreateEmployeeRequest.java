@@ -1,6 +1,7 @@
 package eu.senla.api.actions.createemployee;
 
 
+import eu.senla.api.apielements.employee.CreateEmployeeResponse;
 import eu.senla.management.common.RequestManager;
 import eu.senla.management.common.SpecConfig;
 

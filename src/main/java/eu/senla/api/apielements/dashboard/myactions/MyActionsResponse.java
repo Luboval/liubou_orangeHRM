@@ -1,4 +1,4 @@
-package eu.senla.api.actions.dashboardwidgets.myactions;
+package eu.senla.api.apielements.dashboard.myactions;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

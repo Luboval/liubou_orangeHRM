@@ -9,4 +9,6 @@ public class ApiPaths {
     public static final String GET_JOB_TITLES_API = "/api/v2/admin/job-titles";
     public static final String POST_CREATE_CANDIDATE_API = "api/v2/recruitment/candidates";
     public static final String GET_MY_ACTIONS_API = "/api/v2/dashboard/employees/action-summary";
+    public static final String GET_TIME_AT_WORK_API = "/api/v2/dashboard/employees/time-at-work";
+    public static final String GET_QUICK_LAUNCH_API = "/api/v2/dashboard/shortcuts";
 }

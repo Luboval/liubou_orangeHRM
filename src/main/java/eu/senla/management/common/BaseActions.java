@@ -89,6 +89,13 @@ public class BaseActions {
             .collect(Collectors.toList());
   }
 
+  public static List<String> getValueAll(By locator, String attribute) {
+    return waitFPresenceAll(locator)
+            .stream()
+                    .map(element -> element.getAttribute(attribute))
+                    .collect(Collectors.toList());
+  }
+
   public static void uploadFile(By locator, String filename) {
     File file = new File(filename);
     String path = file.getAbsolutePath();

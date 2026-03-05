@@ -1,7 +1,7 @@
 package eu.senla.management.dataactions.create;
 
 import eu.senla.api.actions.createemployee.CreateEmployeeRequest;
-import eu.senla.api.actions.createemployee.CreateEmployeeResponse;
+import eu.senla.api.apielements.employee.CreateEmployeeResponse;
 import eu.senla.api.apielements.employee.EmployeeRequest;
 import eu.senla.api.actions.createemployee.SendCreateEmployeeRequest;
 import eu.senla.elements.AssignLeave;
