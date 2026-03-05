@@ -15,11 +15,18 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import static eu.senla.management.common.constants.AttributesForUITests.ATTRIBUTE_TITLE;
+
 public class DashboardPage {
 
    private By widgetTitleLocator = By.xpath("//div[@class='orangehrm-dashboard-widget-header']//p");
    private By dashboardWidgetGridLocator = By.cssSelector("[class~='orangehrm-dashboard-grid']");
    private By myActionListItemsLocator = By.cssSelector(".orangehrm-todo-list-item p");
+   private By quickLaunchButtonsLocator = By.cssSelector(".orangehrm-quick-launch-icon");
+   private By timeAtWorkPunchedInStateLocator = By.cssSelector(".orangehrm-attendance-card-state");
+   private By timeAtWorkPunchedInDetailsLocator = By.cssSelector(".orangehrm-attendance-card-details");
+   private By timeAtWorkPuncedInTimeLocator = By.cssSelector(".orangehrm-attendance-card-bar .orangehrm-attendance-card-fulltime b");
+
 
    public DashboardPage waitForDashboardGrid() {
       Wait.waitFPresence(dashboardWidgetGridLocator);
@@ -60,5 +67,9 @@ public class DashboardPage {
                       Map.Entry::getValue
               ));
 
+   }
+
+   public  List<String> getAllQuickLaunchButtonsTitles() {
+       return BaseActions.getValueAll(quickLaunchButtonsLocator, ATTRIBUTE_TITLE);
    }
 }

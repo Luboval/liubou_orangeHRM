@@ -1,4 +1,4 @@
-package eu.senla.elements;
+package eu.senla.elements.dashboard;
 
 import java.util.ArrayList;
 import java.util.List;
