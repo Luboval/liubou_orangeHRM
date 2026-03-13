@@ -9,13 +9,15 @@ import com.fasterxml.jackson.databind.JsonDeserializer;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.deser.ContextualDeserializer;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class EmptyArrayAsNullDeserializer extends JsonDeserializer<Object> implements ContextualDeserializer {
     private JavaType type;
+    private JavaType elementType;
 
     public EmptyArrayAsNullDeserializer() {
         // Пустой конструктор для Jackson
@@ -23,6 +25,9 @@ public class EmptyArrayAsNullDeserializer extends JsonDeserializer<Object> imple
 
     public EmptyArrayAsNullDeserializer(JavaType type) {
         this.type = type;
+        if (type != null && type.isCollectionLikeType()) {
+            this.elementType = type.getContentType();
+        }
     }
 
     @Override
@@ -45,38 +50,48 @@ public class EmptyArrayAsNullDeserializer extends JsonDeserializer<Object> imple
 
 
     @Override
-    public Object deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
+    @SuppressWarnings("unchecked")
+    public List<?> deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
         JsonNode node = p.readValueAsTree();
 
-        // Случай 1: Если это пустой массив - возвращаем null
+        // Случай 1: Пустой массив -> пустой список
         if (node.isArray() && node.isEmpty()) {
-            return null;
+            return Collections.emptyList();
         }
 
-        // Случай 2: Объект -> преобразуем в массив с одним элементом
+        // Случай 2: Объект -> список с одним элементом
         if (node.isObject()) {
-            // Создаем новый массив
-            ObjectCodec codec = p.getCodec();
-            if (codec instanceof ObjectMapper) {
-                ObjectMapper mapper = (ObjectMapper) codec;
-                ArrayNode arrayNode = mapper.createArrayNode(); // Здесь используем ObjectMapper
-                arrayNode.add((ObjectNode) node);
-
-                // Десериализуем как массив
-                if (type != null) {
-                    return codec.treeToValue(arrayNode, type.getRawClass());
-                }
-            }
+            return Collections.singletonList(convertElement(p.getCodec(), node));
         }
 
-        // Случай 3: Обычный массив
+        // Случай 3: Массив с элементами
         if (node.isArray()) {
-            if (type != null) {
-                return p.getCodec().treeToValue(node, type.getRawClass());
+            List<Object> result = new ArrayList<>(node.size());
+            for (JsonNode element : node) {
+                result.add(convertElement(p.getCodec(), element));
             }
+            return result;
         }
 
-        // Fallback
-        return p.getCodec().treeToValue(node, Object.class);
+        // Неожиданный тип
+        return Collections.emptyList();
+    }
+    private Object convertElement(ObjectCodec codec, JsonNode node) throws IOException {
+        if (elementType == null) {
+            return codec.treeToValue(node, Object.class);
+        }
+
+        Class<?> targetClass = elementType.getRawClass();
+
+        // Для record'ов используем readValue
+        if (targetClass.isRecord()) {
+            return ((ObjectMapper) codec).readValue(
+                    ((ObjectMapper) codec).treeAsTokens(node),
+                    targetClass
+            );
+        }
+
+        // Для обычных классов
+        return codec.treeToValue(node, targetClass);
     }
 }

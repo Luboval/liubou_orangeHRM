@@ -1,6 +1,5 @@
 package eu.senla.pages.dashboard;
 
-import eu.senla.management.common.BaseActions;
 import eu.senla.management.common.Driver;
 import eu.senla.management.common.Wait;
 import org.openqa.selenium.By;
@@ -15,6 +14,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
+import static eu.senla.management.common.BaseActions.getValue;
+import static eu.senla.management.common.BaseActions.getValueAll;
+import static eu.senla.management.common.constants.AttributesForUITests.ATTRIBUTE_TEXTCONTENT;
 import static eu.senla.management.common.constants.AttributesForUITests.ATTRIBUTE_TITLE;
 
 public class DashboardPage {
@@ -25,7 +27,10 @@ public class DashboardPage {
    private By quickLaunchButtonsLocator = By.cssSelector(".orangehrm-quick-launch-icon");
    private By timeAtWorkPunchedInStateLocator = By.cssSelector(".orangehrm-attendance-card-state");
    private By timeAtWorkPunchedInDetailsLocator = By.cssSelector(".orangehrm-attendance-card-details");
-   private By timeAtWorkPuncedInTimeLocator = By.cssSelector(".orangehrm-attendance-card-bar .orangehrm-attendance-card-fulltime b");
+   private By timeAtWorkPuncedInTimeLocator = By.cssSelector(".orangehrm-attendance-card-bar .orangehrm-attendance-card-fulltime");
+   private By timeAtWorkPunchedOutLocator = By.cssSelector(".orangehrm-attendance-card-details");
+   private By thisWeekDatesLocator = By.cssSelector(".orangehrm-attendance-card-summary-week p:nth-child(2)");
+   private By thisWeekTimeLocator = By.cssSelector(".orangehrm-attendance-card-summary-total p");
 
 
    public DashboardPage waitForDashboardGrid() {
@@ -46,7 +51,7 @@ public class DashboardPage {
    public Map<String, Integer> getAllMyActionsItems() {
 
       waitForDashboardGrid();
-      List<String> webElements = BaseActions.getValueAll(myActionListItemsLocator);
+      List<String> webElements = getValueAll(myActionListItemsLocator);
       ArrayList<String> items = new ArrayList<>(webElements);
 
        return webElements.stream()
@@ -70,6 +75,23 @@ public class DashboardPage {
    }
 
    public  List<String> getAllQuickLaunchButtonsTitles() {
-       return BaseActions.getValueAll(quickLaunchButtonsLocator, ATTRIBUTE_TITLE);
+       return getValueAll(quickLaunchButtonsLocator, ATTRIBUTE_TITLE);
    }
+
+   public String getTimeAtWorkPuncedInTime() {
+       return getValue(timeAtWorkPuncedInTimeLocator, ATTRIBUTE_TEXTCONTENT);
+   }
+
+   public String getTimeAtWorkPurchedOut() {
+       return getValue(timeAtWorkPunchedOutLocator, ATTRIBUTE_TEXTCONTENT);
+   }
+
+   public String getThisWeekDates() {
+       return getValue(thisWeekDatesLocator, ATTRIBUTE_TEXTCONTENT);
+   }
+
+   public String getThisWeekTime() {
+       return getValue(thisWeekTimeLocator, ATTRIBUTE_TEXTCONTENT);
+   }
+
 }
