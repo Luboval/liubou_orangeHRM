@@ -11,4 +11,5 @@ public class ApiPaths {
     public static final String GET_MY_ACTIONS_API = "/api/v2/dashboard/employees/action-summary";
     public static final String GET_TIME_AT_WORK_API = "/api/v2/dashboard/employees/time-at-work";
     public static final String GET_QUICK_LAUNCH_API = "/api/v2/dashboard/shortcuts";
+    public static final String GET_BUZZ_LAST_POST_API = "/api/v2/buzz/feed";
 }
