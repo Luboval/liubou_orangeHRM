@@ -7,6 +7,6 @@ public class ApiLoginStrategy implements LoginStrategy {
 
     @Override
     public void login() {
-        BaseActions.loginWithCookie(ReadPropertyFile.getProperty("DASHBOARDPAGEURL"));;
+        BaseActions.loginWithCookie(ReadPropertyFile.getProperty("DASHBOARDPAGEURL"));
     }
 }

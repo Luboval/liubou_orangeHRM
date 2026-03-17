@@ -59,6 +59,18 @@ public class BaseActions {
     return element;
   }
 
+  public static void moveToPoint(WebElement element) {
+    Actions moveToPointre = new Actions(Driver.driverRun());
+    moveToPointre.moveToElement(element).pause(3000).perform();
+
+  }
+
+  public static void moveToPoint(WebElement element, int x, int y) {
+    Actions moveToPointre = new Actions(Driver.driverRun());
+    moveToPointre.moveToElement(element).pause(100).moveByOffset(x, y).perform();
+
+  }
+
   public static void fillInput(By locator, String value) {
     moveToElement(waitFInteractable(locator)).sendKeys(value);
   }

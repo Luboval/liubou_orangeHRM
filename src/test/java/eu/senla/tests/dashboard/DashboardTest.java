@@ -7,13 +7,20 @@ import eu.senla.api.actions.dashboardwidgets.timeatwork.SendTimeAtWorkRequest;
 import eu.senla.api.apielements.ApiResponse;
 import eu.senla.api.apielements.Meta;
 import eu.senla.api.apielements.dashboard.buzzlatestposts.BuzzLatestPost;
+import eu.senla.api.apielements.dashboard.empdistribution.EmpByLocation;
+import eu.senla.api.apielements.dashboard.empdistribution.EmpByLocationMeta;
+import eu.senla.api.apielements.dashboard.empdistribution.EmpBySubUnit;
+import eu.senla.api.apielements.dashboard.empdistribution.EmpBySubUnitMeta;
 import eu.senla.api.apielements.dashboard.myactions.MyActionsResponse;
 import eu.senla.api.apielements.dashboard.quicklaunch.QuickLaunchResponse;
 import eu.senla.api.apielements.dashboard.timeatwork.TimeAtWorkDataResponse;
 import eu.senla.api.apielements.dashboard.timeatwork.TimeAtWorkMetaResponse;
 import eu.senla.api.utils.DateTimeUtil;
 import eu.senla.api.utils.ObjectToMapConverter;
+import eu.senla.api.utils.StringFormatUtil;
+import eu.senla.elements.dashboard.BuzzLatestPosts;
 import eu.senla.elements.dashboard.DashboardElementsTitles;
+import eu.senla.elements.dashboard.PieChartTooltip;
 import eu.senla.elements.dashboard.QuickLaunchEnum;
 import eu.senla.pages.dashboard.DashboardPage;
 import eu.senla.tests.BaseTest;
@@ -23,14 +30,22 @@ import org.assertj.core.api.SoftAssertions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static eu.senla.api.actions.dashboardwidgets.empdistribution.SendEmployeeDistribByLocation.sendEmployeeByLocationRequest;
+import static eu.senla.api.actions.dashboardwidgets.empdistribution.SendEmployeeDistribBySubUnit.sendEmployeeBySubUnitRequest;
+import static eu.senla.api.utils.DateTimeUtil.convertDateFormatSafe;
+import static eu.senla.api.utils.DateTimeUtil.convertUtcToLocal;
 import static eu.senla.api.utils.DateTimeUtil.formatDateWithoutSuffix;
+import static eu.senla.api.utils.DateTimeUtil.formatTimeTo12Hour;
 import static eu.senla.api.utils.StringFormatUtil.capitalizeWordsStream;
 
 @Slf4j
@@ -84,7 +99,7 @@ public class DashboardTest extends BaseTest {
         TimeAtWorkMetaResponse metaResponse = apiResponse.meta().get(0);
 
         String expectedDays = (metaResponse.lastAction().userDate().equals(LocalDate.now().toString()))
-                ? "Today at " + DateTimeUtil.formatTimeTo12Hour(metaResponse.lastAction().userTime())
+                ? "Today at " + formatTimeTo12Hour(metaResponse.lastAction().userTime())
                 : DateTimeUtil.formatDateTime(
                     metaResponse.lastAction().userDate(),
                     metaResponse.lastAction().userTime()
@@ -162,11 +177,146 @@ public class DashboardTest extends BaseTest {
 
     @Test(testName = "Buzz Last Post Test", groups = {"smoke", "regression", "ext"})
     public void testBuzzLastPost() {
+        log.info("Starting Buzz Last Post Test");
+
+        List<BuzzLatestPosts> uiMessages = new DashboardPage()
+                .getUIBuzzLatestPostMessages();
+
+        log.info(uiMessages.toString());
+
         ApiResponse<BuzzLatestPost, Meta> apiResponse = SendBuzzLatastPostRequest.sendBuzzLastPostRequest();
         log.info(apiResponse.toString());
+
+        List<BuzzLatestPosts> apiMessages = apiResponse.data().stream()
+                .map(data -> BuzzLatestPosts.ofNormalized(
+                        data.employee().getFirstName()
+                                + " " + data.employee().getMiddleName()
+                                + " " + data.employee().getLastName(),
+                        convertDateFormatSafe(data.createdDate())
+                                + " " + convertUtcToLocal(data.createdTime()),
+                        data.text()
+                ))
+                .collect(Collectors.toList());
+
+        log.info(apiMessages.toString());
+
+        Assertions.assertThat(uiMessages)
+                .isEqualTo(apiMessages);
+
+        log.info("Finishing Buzz Last Post Test");
     }
 
+    @Test(testName = "Employee Distribution By Sub Unit Test", groups = {"smoke", "regression", "ext"})
+    public void testEmployeeDistributionBySubUnit() {
+        log.info("Starting Employee Distribution By Sub Unit Test");
 
+        ApiResponse<EmpBySubUnit, EmpBySubUnitMeta> apiResponse =  sendEmployeeBySubUnitRequest();
 
+        List<String> tooltips = new DashboardPage()
+                .getEmployeeDistributionBySubUnitChartTooltips();
 
+        List<PieChartTooltip> chartTooltips = StringFormatUtil.parseTooltipsFromList(tooltips);
+
+        int total = apiResponse.data().stream()
+                .mapToInt(EmpBySubUnit::count)
+                .sum() + apiResponse.meta().get(0).unassignedEmployeeCount();
+
+        List<PieChartTooltip> apiTooltips = apiResponse.data().stream()
+                .map(data -> new PieChartTooltip(
+                        data.subunit().name(),
+                        data.count(),
+                        BigDecimal.valueOf((double) data.count() / total * 100.00)
+                                .setScale(2, RoundingMode.HALF_UP)
+                                .doubleValue()
+                ))
+                .collect(Collectors.toList());
+
+        apiTooltips.add(new PieChartTooltip("Unassigned",
+                apiResponse.meta().get(0).unassignedEmployeeCount(),
+                BigDecimal.valueOf((double) apiResponse.meta().get(0).unassignedEmployeeCount() / total * 100.00)
+                        .setScale(2, RoundingMode.HALF_UP)
+                        .doubleValue()));
+        chartTooltips.sort(Comparator.comparing(PieChartTooltip::title));
+        apiTooltips.sort(Comparator.comparing(PieChartTooltip::title));
+
+        List<String> legend = new DashboardPage()
+                .getLegendOfEmployeeDistributionBySubUnit();
+
+        legend.sort(null);
+
+        log.info("initial tooltips " + tooltips);
+        log.info("sorted chart tooltips " + chartTooltips);
+        log.info("sorted api tooltips " + apiTooltips);
+        log.info("sorted chart legend " + legend);
+
+       SoftAssertions.assertSoftly(softly -> {
+           softly.assertThat(chartTooltips)
+                                   .isEqualTo(apiTooltips);
+           softly.assertThat(legend)
+                   .isEqualTo(apiTooltips
+                           .stream()
+                           .map(PieChartTooltip::title)
+                           .collect(Collectors.toList()));
+
+                       }
+                       );
+       log.info("Finishing Employee Distribution By Sub Unit Test");
+    }
+
+    @Test(testName = "Employee Distribution By Location Test", groups = {"smoke", "regression", "ext"})
+    public void testEmployeeDistributionByLocation() {
+        log.info("Starting Employee Distribution By Location Test");
+
+        ApiResponse<EmpByLocation, EmpByLocationMeta> apiResponse =  sendEmployeeByLocationRequest();
+
+        List<String> tooltips = new DashboardPage()
+                .getEmployeeDistributionByLocationChartTooltips();
+
+        List<PieChartTooltip> chartTooltips = StringFormatUtil.parseTooltipsFromList(tooltips);
+
+        int total = apiResponse.data().stream()
+                .mapToInt(EmpByLocation::count)
+                .sum() + apiResponse.meta().get(0).unassignedEmployeeCount();
+
+        List<PieChartTooltip> apiTooltips = apiResponse.data().stream()
+                .map(data -> new PieChartTooltip(
+                        data.location().name(),
+                        data.count(),
+                        BigDecimal.valueOf((double) data.count() / total * 100.00)
+                                .setScale(2, RoundingMode.HALF_UP)
+                                .doubleValue()
+                ))
+                .collect(Collectors.toList());
+
+        apiTooltips.add(new PieChartTooltip("Unassigned",
+                apiResponse.meta().get(0).unassignedEmployeeCount(),
+                BigDecimal.valueOf((double) apiResponse.meta().get(0).unassignedEmployeeCount() / total * 100.00)
+                        .setScale(2, RoundingMode.HALF_UP)
+                        .doubleValue()));
+        chartTooltips.sort(Comparator.comparing(PieChartTooltip::title));
+        apiTooltips.sort(Comparator.comparing(PieChartTooltip::title));
+
+        List<String> legend = new DashboardPage()
+                .getLegendOfEmployeeDistributionByLocation();
+
+        legend.sort(null);
+
+        log.info("initial tooltips " + tooltips);
+        log.info("sorted chart tooltips " + chartTooltips);
+        log.info("sorted api tooltips " + apiTooltips);
+        log.info("sorted chart legend " + legend);
+
+        SoftAssertions.assertSoftly(softly -> {
+                    softly.assertThat(chartTooltips)
+                            .isEqualTo(apiTooltips);
+                    softly.assertThat(legend)
+                            .isEqualTo(apiTooltips
+                                    .stream()
+                                    .map(PieChartTooltip::title)
+                                    .collect(Collectors.toList()));
+
+                }
+        );
+        log.info("Finishing Employee Distribution By Location Test");
+    }
 }

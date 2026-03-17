@@ -18,7 +18,7 @@ public class SendBuzzLatastPostRequest {
                 SpecConfig.requestSpecification(),
                 SpecConfig.responseSpecification(),
                 GET_BUZZ_LAST_POST_API,
-                Map.of("limit", 10,
+                Map.of("limit", 5,
                         "offset", 0,
                         "sortOrder", "DESC",
                         "sortField", "share.createdAtUtc"),
