@@ -1,12 +1,16 @@
 package eu.senla.api.utils;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Locale;
 
+@Slf4j
 public class DateTimeUtil {
     private static final Locale DEFAULT_LOCALE = Locale.ENGLISH;
     private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -89,6 +93,19 @@ public class DateTimeUtil {
     public static String formatDateSimple(LocalDate date) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d", DEFAULT_LOCALE);
         return date.format(formatter);
+    }
+
+    public static String convertDateFormatSafe(String inputDate) {
+        try {
+            DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-dd-MM");
+
+            LocalDate date = LocalDate.parse(inputDate, inputFormatter);
+            return date.format(outputFormatter);
+        } catch (Exception e) {
+            System.err.println("Ошибка преобразования даты: " + inputDate);
+            return inputDate; // или выбросить исключение
+        }
     }
 
     // ============= ФОРМАТИРОВАНИЕ ДАТЫ С ВОЗМОЖНОСТЬЮ ВЫБОРА =============
@@ -177,6 +194,18 @@ public class DateTimeUtil {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm:ss a", DEFAULT_LOCALE);
         return time.format(formatter);
     }
+
+    public static String convertUtcToLocal(String utcTime) {
+        return LocalTime.parse(utcTime, DateTimeFormatter.ofPattern("HH:mm"))
+                .atDate(java.time.LocalDate.now())
+                .atZone(ZoneId.of("UTC"))
+                .withZoneSameInstant(ZoneId.systemDefault())
+                .format(DateTimeFormatter.ofPattern("hh:mm a", Locale.US));
+    }
+
+
+
+
 
     // ============= ФОРМАТИРОВАНИЕ ДАТЫ И ВРЕМЕНИ =============
 
