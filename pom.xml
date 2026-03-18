@@ -25,6 +25,7 @@
         <jsoup.version>1.21.1</jsoup.version>
         <datafaker.version>2.4.3</datafaker.version>
         <jackson.version>2.19.1</jackson.version>
+        <jackson.datatype.version>2.21.1</jackson.datatype.version>
         <slf4j.version>2.0.17</slf4j.version>
         <selenide.version>7.10.0</selenide.version>
         <allure.version>2.29.1</allure.version>
@@ -98,6 +99,13 @@
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>${jackson.version}</version>
+        </dependency>
+        <!-- Source: https://mvnrepository.com/artifact/com.fasterxml.jackson.datatype/jackson-datatype-jsr310 -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>${jackson.datatype.version}</version>
+            <scope>compile</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
         <dependency>
