@@ -11,21 +11,21 @@ import java.time.Duration;
 import java.util.List;
 
 public class Wait {
-    private static final int timeoutSec = 180;
-    private static final int poolingSec = 1;
+    private static final int TIMEOUT_SEC = 180;
+    private static final int POOLING_SEC = 1;
 
     public static WebElement wait(ExpectedCondition<WebElement> expectedConditions) {
         return new FluentWait<>(Driver.driverRun())
-                .withTimeout(Duration.ofSeconds(timeoutSec))
-                .pollingEvery(Duration.ofSeconds(poolingSec))
+                .withTimeout(Duration.ofSeconds(TIMEOUT_SEC))
+                .pollingEvery(Duration.ofSeconds(POOLING_SEC))
                 .ignoring(NoSuchElementException.class)
                 .until(expectedConditions);
     }
 
     public static List<WebElement> waitAll(ExpectedCondition<List<WebElement>> expectedConditions) {
         return new FluentWait<>(Driver.driverRun())
-                .withTimeout(Duration.ofSeconds(timeoutSec))
-                .pollingEvery(Duration.ofSeconds(poolingSec))
+                .withTimeout(Duration.ofSeconds(TIMEOUT_SEC))
+                .pollingEvery(Duration.ofSeconds(POOLING_SEC))
                 .ignoring(NoSuchElementException.class)
                 .until(expectedConditions);
     }
@@ -33,8 +33,8 @@ public class Wait {
 
     public static boolean waitBool(ExpectedCondition<Boolean> expectedConditions) {
         return new FluentWait<>(Driver.driverRun())
-                .withTimeout(Duration.ofSeconds(timeoutSec))
-                .pollingEvery(Duration.ofSeconds(poolingSec))
+                .withTimeout(Duration.ofSeconds(TIMEOUT_SEC))
+                .pollingEvery(Duration.ofSeconds(POOLING_SEC))
                 .ignoring(NoSuchElementException.class)
                 .until(expectedConditions);
     }
