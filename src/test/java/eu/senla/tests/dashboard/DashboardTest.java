@@ -1,6 +1,7 @@
 package eu.senla.tests.dashboard;
 
 import eu.senla.api.actions.dashboardwidgets.buzz.SendBuzzLatastPostRequest;
+import eu.senla.api.actions.dashboardwidgets.employeeonleave.SendEmployeeOnLeaveRequest;
 import eu.senla.api.actions.dashboardwidgets.myactions.SendMyActionsRequest;
 import eu.senla.api.actions.dashboardwidgets.quicklaunch.SendQuickLaunchRequest;
 import eu.senla.api.actions.dashboardwidgets.timeatwork.SendTimeAtWorkRequest;
@@ -11,6 +12,8 @@ import eu.senla.api.apielements.dashboard.empdistribution.EmpByLocation;
 import eu.senla.api.apielements.dashboard.empdistribution.EmpByLocationMeta;
 import eu.senla.api.apielements.dashboard.empdistribution.EmpBySubUnit;
 import eu.senla.api.apielements.dashboard.empdistribution.EmpBySubUnitMeta;
+import eu.senla.api.apielements.dashboard.emponleave.EmpOnLeaveMain;
+import eu.senla.api.apielements.dashboard.emponleave.EmpOnLeaveMeta;
 import eu.senla.api.apielements.dashboard.myactions.MyActionsResponse;
 import eu.senla.api.apielements.dashboard.quicklaunch.QuickLaunchResponse;
 import eu.senla.api.apielements.dashboard.timeatwork.TimeAtWorkDataResponse;
@@ -20,6 +23,7 @@ import eu.senla.api.utils.ObjectToMapConverter;
 import eu.senla.api.utils.StringFormatUtil;
 import eu.senla.elements.dashboard.BuzzLatestPosts;
 import eu.senla.elements.dashboard.DashboardElementsTitles;
+import eu.senla.elements.dashboard.EmpOnLeave;
 import eu.senla.elements.dashboard.PieChartTooltip;
 import eu.senla.elements.dashboard.QuickLaunchEnum;
 import eu.senla.pages.dashboard.DashboardPage;
@@ -87,8 +91,6 @@ public class DashboardTest extends BaseTest {
     @Test (testName = "Time at Work widget validation", groups = {"smoke", "regression", "ext"})
     public void testTimeAtWorkWidget() {
         log.info("Starting Time at Work widget validation");
-        // Дописать с UI тестом
-
 
         DashboardPage dashboardPage = new DashboardPage()
                 .waitForDashboardGrid();
@@ -133,46 +135,55 @@ public class DashboardTest extends BaseTest {
     @Test (testName = "Quick Launch widget validation", groups = {"smoke", "regression", "ext"})
     public void testQuickLaunchWidget() {
         log.info("Starting Quick Launch widget validation");
-
-        List<String> quickLaunchButtonsTitles = new DashboardPage()
-                .getAllQuickLaunchButtonsTitles();
-        log.info(quickLaunchButtonsTitles.toString());
-
+        DashboardPage dashboardPage = new DashboardPage();
         ApiResponse<QuickLaunchResponse, Meta> apiResponse = SendQuickLaunchRequest.sendQuickLaunchRequest();
         log.info(apiResponse.toString());
 
-        List<String> trueApiResponseFields = ObjectToMapConverter.getTrueFieldNames(apiResponse.data().get(0));
+        if (dashboardPage.getQuickLaunchState()) {
+            SoftAssertions.assertSoftly(softly -> {
+                softly.assertThat(dashboardPage.getQuickLaunchNoContentImg())
+                        .isEqualTo("No Content");
+                softly.assertThat(dashboardPage.getQuickLaunchNoContentText())
+                        .isEqualTo("Not Available");
+                softly.assertThat(ObjectToMapConverter.getTrueFieldNames(apiResponse.data().get(0)).isEmpty()).isTrue();
+            });
+            log.info("No Quick Launch Icons");
+        } else {
+
+            List<String> quickLaunchButtonsTitles = dashboardPage.getAllQuickLaunchButtonsTitles();
+            log.info(quickLaunchButtonsTitles.toString());
+
+            //ApiResponse<QuickLaunchResponse, Meta> apiResponse = SendQuickLaunchRequest.sendQuickLaunchRequest();
+            //log.info(apiResponse.toString());
+
+            List<String> trueApiResponseFields = ObjectToMapConverter.getTrueFieldNames(apiResponse.data().get(0));
 
 
-        // Buttons Number Validation
-        Assertions.assertThat(quickLaunchButtonsTitles
-                                .stream()
-                                .count())
-                        .isEqualTo(trueApiResponseFields
-                                .stream()
-                                .count()
-                        );
+            // Buttons Number Validation
+            Assertions.assertThat(quickLaunchButtonsTitles.size())
+                    .isEqualTo(trueApiResponseFields.size());
 
-        Map<String, String> expectedQuickLaunchButtons = Stream.of(QuickLaunchEnum.values())
-                                                                    .collect(Collectors
-                                                                    .toMap(
-                                                                            QuickLaunchEnum::getResponseName,
-                                                                            QuickLaunchEnum::getNameToSee));
+            Map<String, String> expectedQuickLaunchButtons = Stream.of(QuickLaunchEnum.values())
+                    .collect(Collectors
+                            .toMap(
+                                    QuickLaunchEnum::getResponseName,
+                                    QuickLaunchEnum::getNameToSee));
 
-        // Button Titles Validation
-        Assertions.assertThat(quickLaunchButtonsTitles
-                                .stream()
-                                .sorted()
-                                .collect(Collectors.toList()))
-                        .isEqualTo(expectedQuickLaunchButtons
-                                .entrySet()
-                                .stream()
-                                .filter(entry -> trueApiResponseFields.contains(entry.getKey()))
-                                .map(Map.Entry::getValue)
-                                .sorted()
-                                .collect(Collectors.toList())
-                        );
-        log.info("Finishing Quick Launch widget validation");
+            // Button Titles Validation
+            Assertions.assertThat(quickLaunchButtonsTitles
+                            .stream()
+                            .sorted()
+                            .collect(Collectors.toList()))
+                    .isEqualTo(expectedQuickLaunchButtons
+                            .entrySet()
+                            .stream()
+                            .filter(entry -> trueApiResponseFields.contains(entry.getKey()))
+                            .map(Map.Entry::getValue)
+                            .sorted()
+                            .collect(Collectors.toList())
+                    );
+            log.info("Finishing Quick Launch widget validation");
+        }
     }
 
     @Test(testName = "Buzz Last Post Test", groups = {"smoke", "regression", "ext"})
@@ -319,4 +330,54 @@ public class DashboardTest extends BaseTest {
         );
         log.info("Finishing Employee Distribution By Location Test");
     }
+
+    @Test(testName = "Employee On Leave Test", groups = {"smoke", "regression", "ext"})
+    public void testEmployeeOnLeaveToday() {
+        log.info("Starting Employee On Leave Test");
+        DashboardPage dashboardPage = new DashboardPage()
+                .waitForDashboardGrid();
+        ApiResponse<EmpOnLeaveMain, EmpOnLeaveMeta> apiResponse = SendEmployeeOnLeaveRequest.sendEmpOnLeaveRequest();
+
+        if (dashboardPage.getEmployeesOnLeaveTodayState()) {
+            SoftAssertions.assertSoftly(softly -> {
+                softly.assertThat(dashboardPage.getEmployeeOnLeaveNoContentImg())
+                        .isEqualTo("No Content");
+                softly.assertThat(dashboardPage.getEmployeeOnLeaveNoContentTxt())
+                        .isEqualTo("No Employees are on Leave Today");
+                softly.assertThat(apiResponse.data().isEmpty()).isTrue();
+                softly.assertThat(apiResponse.meta().get(0).total())
+                        .isEqualTo(0);
+            });
+            log.info("No Employees on leave today");
+        } else {
+            List<EmpOnLeave> uiEmpOnLeave = dashboardPage.getEmployeeOnLeaveList();
+            // ApiResponse<EmpOnLeaveMain, EmpOnLeaveMeta> apiResponse = SendEmployeeOnLeaveRequest.sendEmpOnLeaveRequest();
+
+            List<EmpOnLeave> apiEmpOnLeave = apiResponse.data().stream()
+                            .map(data -> new EmpOnLeave(
+                                    data.employee().getFirstName() + " " + data.employee().getLastName(),
+                                    data.employee().getEmployeeId(),
+                                    data.leaveType().name() + " ("
+                                    + data.startTime() + " - "
+                                    + data.endTime() + ")"
+                            ))
+                                    .collect(Collectors.toList());
+            uiEmpOnLeave.sort(Comparator.comparing(EmpOnLeave::name));
+            apiEmpOnLeave.sort(Comparator.comparing(EmpOnLeave::name));
+
+            log.info("EmpList UI " + uiEmpOnLeave);
+            log.info("EmpList Api " + apiEmpOnLeave);
+
+            SoftAssertions.assertSoftly(softly -> {
+                softly.assertThat(uiEmpOnLeave)
+                                        .isEqualTo(apiEmpOnLeave);
+                softly.assertThat(uiEmpOnLeave.size())
+                        .isEqualTo(apiResponse.meta().get(0).total());
+            });
+
+        }
+
+        log.info("Finishing Employee On Leave Test");
+    }
+
 }

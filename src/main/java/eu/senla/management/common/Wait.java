@@ -11,8 +11,8 @@ import java.time.Duration;
 import java.util.List;
 
 public class Wait {
-    private static int timeoutSec = 180;
-    private static int poolingSec = 1;
+    private static final int timeoutSec = 180;
+    private static final int poolingSec = 1;
 
     public static WebElement wait(ExpectedCondition<WebElement> expectedConditions) {
         return new FluentWait<>(Driver.driverRun())
@@ -43,6 +43,11 @@ public class Wait {
 
         return wait(ExpectedConditions.presenceOfElementLocated(locator));
     }
+
+    public static boolean waitFNotPresenceBool(By locator) {
+        return waitBool(ExpectedConditions.invisibilityOfElementLocated(locator));
+    }
+
 
     public static List<WebElement> waitFPresenceAll(By locator) {
 

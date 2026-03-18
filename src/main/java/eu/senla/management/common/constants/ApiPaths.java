@@ -14,4 +14,5 @@ public class ApiPaths {
     public static final String GET_BUZZ_LAST_POST_API = "/api/v2/buzz/feed";
     public static final String GET_EMPL_BY_SUB_UNIT = "/api/v2/dashboard/employees/subunit";
     public static final String GET_EMPL_BY_LOCATION = "/api/v2/dashboard/employees/locations";
+    public static final String GET_EMP_ON_LEAVE_API = "/api/v2/dashboard/employees/leaves";
 }

@@ -1,6 +1,7 @@
 package eu.senla.pages.dashboard;
 
 import eu.senla.elements.dashboard.BuzzLatestPosts;
+import eu.senla.elements.dashboard.EmpOnLeave;
 import eu.senla.management.common.Driver;
 import eu.senla.management.common.Wait;
 import lombok.extern.slf4j.Slf4j;
@@ -22,33 +23,47 @@ import java.util.stream.Collectors;
 import static eu.senla.management.common.BaseActions.getValue;
 import static eu.senla.management.common.BaseActions.getValueAll;
 import static eu.senla.management.common.BaseActions.moveToPoint;
+import static eu.senla.management.common.Wait.waitFNotPresenceBool;
 import static eu.senla.management.common.Wait.waitFPresence;
+import static eu.senla.management.common.constants.AttributesForUITests.ATTRIBUTE_ALT;
 import static eu.senla.management.common.constants.AttributesForUITests.ATTRIBUTE_TEXTCONTENT;
 import static eu.senla.management.common.constants.AttributesForUITests.ATTRIBUTE_TITLE;
 
 @Slf4j
 public class DashboardPage {
 
-   private By widgetTitleLocator = By.xpath("//div[@class='orangehrm-dashboard-widget-header']//p");
-   private By dashboardWidgetGridLocator = By.cssSelector("[class~='orangehrm-dashboard-grid']");
-   private By myActionListItemsLocator = By.cssSelector(".orangehrm-todo-list-item p");
-   private By quickLaunchButtonsLocator = By.cssSelector(".orangehrm-quick-launch-icon");
-   private By timeAtWorkPunchedInStateLocator = By.cssSelector(".orangehrm-attendance-card-state");
-   private By timeAtWorkPunchedInDetailsLocator = By.cssSelector(".orangehrm-attendance-card-details");
-   private By timeAtWorkPuncedInTimeLocator = By.cssSelector(".orangehrm-attendance-card-bar .orangehrm-attendance-card-fulltime");
-   private By timeAtWorkPunchedOutLocator = By.cssSelector(".orangehrm-attendance-card-details");
-   private By thisWeekDatesLocator = By.cssSelector(".orangehrm-attendance-card-summary-week p:nth-child(2)");
-   private By thisWeekTimeLocator = By.cssSelector(".orangehrm-attendance-card-summary-total p");
-   private By buzzLatestPostsLocator = By.cssSelector(".orangehrm-buzz-widget-card");
-   private By buzzLatestPostsImageLocator = By.cssSelector(".orangehrm-buzz-widget-picture");
-   private By buzzLatestPostsAuthorLocator = By.cssSelector(".orangehrm-buzz-widget-header-emp");
-   private By buzzLatestPostsTimeLocator = By.cssSelector(".orangehrm-buzz-widget-header-time");
-   private By buzzLatestPostsTextLocator = By.cssSelector(".orangehrm-buzz-widget-body");
-   private By employeeDistributionChartTooltipLocator = By.id("oxd-pie-chart-tooltip");
-   private By employeeDistributionBySubUnitChartLocator = By.xpath("//div[@class='orangehrm-dashboard-widget-name'][.//p[text()='Employee Distribution by Sub Unit']]/../..//canvas");
-   private By employeeDistributionBySubUnitChartLegendLocator = By.xpath("//div[@class='orangehrm-dashboard-widget-name'][.//p[text()='Employee Distribution by Sub Unit']]/../..//*//li/span[@class='oxd-text oxd-text--span']");
-   private By employeeDistributionByLocationChartLocator = By.xpath("//div[@class='orangehrm-dashboard-widget-name'][.//p[text()='Employee Distribution by Location']]/../..//canvas");
-   private By employeeDistributionByLocationChartLegendLocator = By.xpath("//div[@class='orangehrm-dashboard-widget-name'][.//p[text()='Employee Distribution by Location']]/../..//*//li/span[@class='oxd-text oxd-text--span']");
+   private final By widgetTitleLocator = By.xpath("//div[@class='orangehrm-dashboard-widget-header']//p");
+   private final By dashboardWidgetGridLocator = By.cssSelector("[class~='orangehrm-dashboard-grid']");
+   private final By myActionListItemsLocator = By.cssSelector(".orangehrm-todo-list-item p");
+   private final By quickLaunchButtonsLocator = By.cssSelector(".orangehrm-quick-launch-icon");
+  // private final By timeAtWorkPunchedInStateLocator = By.cssSelector(".orangehrm-attendance-card-state");
+  // private final By timeAtWorkPunchedInDetailsLocator = By.cssSelector(".orangehrm-attendance-card-details");
+   private final By timeAtWorkPuncedInTimeLocator = By.cssSelector(".orangehrm-attendance-card-bar .orangehrm-attendance-card-fulltime");
+   private final By timeAtWorkPunchedOutLocator = By.cssSelector(".orangehrm-attendance-card-details");
+   private final By thisWeekDatesLocator = By.cssSelector(".orangehrm-attendance-card-summary-week p:nth-child(2)");
+   private final By thisWeekTimeLocator = By.cssSelector(".orangehrm-attendance-card-summary-total p");
+   private final By buzzLatestPostsLocator = By.cssSelector(".orangehrm-buzz-widget-card");
+   private final By buzzLatestPostsImageLocator = By.cssSelector(".orangehrm-buzz-widget-picture");
+   private final By buzzLatestPostsAuthorLocator = By.cssSelector(".orangehrm-buzz-widget-header-emp");
+   private final By buzzLatestPostsTimeLocator = By.cssSelector(".orangehrm-buzz-widget-header-time");
+   private final By buzzLatestPostsTextLocator = By.cssSelector(".orangehrm-buzz-widget-body");
+   private final By employeeDistributionChartTooltipLocator = By.id("oxd-pie-chart-tooltip");
+   private final By employeeDistributionBySubUnitChartLocator = By.xpath("//div[@class='orangehrm-dashboard-widget-name'][.//p[text()='Employee Distribution by Sub Unit']]/../..//canvas");
+   private final By employeeDistributionBySubUnitChartLegendLocator = By.xpath("//div[@class='orangehrm-dashboard-widget-name'][.//p[text()='Employee Distribution by Sub Unit']]/../..//*//li/span[@class='oxd-text oxd-text--span']");
+   private final By employeeDistributionByLocationChartLocator = By.xpath("//div[@class='orangehrm-dashboard-widget-name'][.//p[text()='Employee Distribution by Location']]/../..//canvas");
+   private final By employeeDistributionByLocationChartLegendLocator = By.xpath("//div[@class='orangehrm-dashboard-widget-name'][.//p[text()='Employee Distribution by Location']]/../..//*//li/span[@class='oxd-text oxd-text--span']");
+   private final By employeesOnLeaveNoContentLocator = By.cssSelector(".emp-leave-chart .orangehrm-dashboard-widget-body-nocontent");
+   private final By employeeOnLeaveNoContentImgLocator = By.cssSelector(".emp-leave-chart .orangehrm-dashboard-widget-body-nocontent img");
+   private final By employeeOnLeaveNoContentTxtLocator = By.cssSelector(".emp-leave-chart .orangehrm-dashboard-widget-body-nocontent p");
+   private final By empliyeeOnLeaveCardLocator = By.cssSelector(".orangehrm-leave-card");
+   private final By empliyeeOnLeaveCardEmpNameLocator = By.cssSelector(".orangehrm-leave-card-emp-name");
+   private final By empliyeeOnLeaveCardLeaveDetailsLocator = By.cssSelector(".orangehrm-leave-card-leave-details");
+   private final By empliyeeOnLeaveCardEmpIdLocator = By.cssSelector(".orangehrm-leave-card-emp-id");
+   private final By empOnLeaveSpinnerLocator = By.cssSelector(".emp-leave-chart .oxd-loading-spinner");
+   private final By quickLaunchSpinnerLocator = By.cssSelector("[class='oxd-grid-item oxd-grid-item--gutters orangehrm-dashboard-widget']:nth-child(2) .oxd-loading-spinner");
+   private final By quickLaunchNoContentLocator = By.cssSelector(".orangehrm-quick-launch .orangehrm-dashboard-widget-body-nocontent");
+   private final By quickLaunchNoContentImgLocator = By.cssSelector(".orangehrm-quick-launch .orangehrm-dashboard-widget-body-nocontent img");
+   private final By quickLaunchNoContentTxtLocator = By.cssSelector(".orangehrm-quick-launch .orangehrm-dashboard-widget-body-nocontent p");
 
 
 
@@ -71,7 +86,6 @@ public class DashboardPage {
 
       waitForDashboardGrid();
       List<String> webElements = getValueAll(myActionListItemsLocator);
-      ArrayList<String> items = new ArrayList<>(webElements);
 
        return webElements.stream()
               .map(item -> {
@@ -95,6 +109,18 @@ public class DashboardPage {
 
    public  List<String> getAllQuickLaunchButtonsTitles() {
        return getValueAll(quickLaunchButtonsLocator, ATTRIBUTE_TITLE);
+   }
+
+   public boolean getQuickLaunchState() {
+        return getWidgetState(quickLaunchSpinnerLocator, quickLaunchNoContentLocator);
+   }
+
+   public String getQuickLaunchNoContentImg() {
+        return getValue(quickLaunchNoContentImgLocator, ATTRIBUTE_ALT);
+   }
+
+   public String getQuickLaunchNoContentText() {
+       return getValue(quickLaunchNoContentTxtLocator, ATTRIBUTE_TEXTCONTENT);
    }
 
    public String getTimeAtWorkPuncedInTime() {
@@ -187,6 +213,41 @@ public class DashboardPage {
    public List<String> getLegendOfEmployeeDistributionByLocation() {
        return getValueAll(employeeDistributionByLocationChartLegendLocator);
    }
+
+   public boolean getWidgetState(By spinnerLocator, By noContentLocator) {
+       waitFNotPresenceBool(spinnerLocator);
+
+       return !Driver.driverRun().findElements(noContentLocator).isEmpty();
+
+   }
+   public boolean getEmployeesOnLeaveTodayState() {
+       return getWidgetState(empOnLeaveSpinnerLocator, employeesOnLeaveNoContentLocator);
+
+   }
+
+   public String getEmployeeOnLeaveNoContentImg() {
+       return getValue(employeeOnLeaveNoContentImgLocator, ATTRIBUTE_ALT);
+   }
+
+    public String getEmployeeOnLeaveNoContentTxt() {
+        return getValue(employeeOnLeaveNoContentTxtLocator, ATTRIBUTE_TEXTCONTENT);
+    }
+
+    public List<EmpOnLeave> getEmployeeOnLeaveList() {
+       List<EmpOnLeave> empOnLeaveList = new ArrayList<>();
+       List<WebElement> webElementList = Wait.waitFPresenceAll(empliyeeOnLeaveCardLocator);
+
+       for (WebElement webElement : webElementList) {
+           String name = webElement.findElement(empliyeeOnLeaveCardEmpNameLocator).getAttribute(ATTRIBUTE_TEXTCONTENT);
+           String cardDetails = webElement.findElement(empliyeeOnLeaveCardLeaveDetailsLocator).getAttribute(ATTRIBUTE_TEXTCONTENT);
+           String empId = webElement.findElement(empliyeeOnLeaveCardEmpIdLocator).getAttribute(ATTRIBUTE_TEXTCONTENT);
+
+           empOnLeaveList.add(new EmpOnLeave(name, empId, cardDetails));
+       }
+       return empOnLeaveList;
+    }
+
+
 
 
 }
